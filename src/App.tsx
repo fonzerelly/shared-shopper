@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import List from './List/List'
 
 import logo from './logo.svg';
 import './App.css';
@@ -32,9 +33,6 @@ function App() {
         <Switch>
           <Route path="/list">
             <List />
-            <input></input>
-            <button></button>
-            <div><p>02.01.2021</p> <button></button> </div>
           </Route>
           <Route path="/users">
             <Users />
@@ -52,9 +50,6 @@ function SharedShopper() {
   return <h2>Home</h2>;
 }
 
-function List() {
-  return <h2>Einkaufszettel</h2>;
-}
 
 function Users() {
   return <h2>Users</h2>;
