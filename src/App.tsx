@@ -12,45 +12,48 @@ import './App.css';
 function App() {
   return (
     <Router>
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/users">Users</Link>
-          </li>
-        </ul>
-      </nav>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">SharedShopper</Link>
+            </li>
+            <li>
+              <Link to="/list">Einkaufszettel</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          </ul>
+        </nav>
 
-      {/* A <Switch> looks through its children <Route>s and
+        {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
-      <Switch>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/users">
-          <Users />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </div>
-  </Router>
+        <Switch>
+          <Route path="/list">
+            <List />
+            <input></input>
+            <button></button>
+            <div><p>02.01.2021</p> <button></button> </div>
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/">
+            <SharedShopper />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-function Home() {
+function SharedShopper() {
   return <h2>Home</h2>;
 }
 
-function About() {
-  return <h2>About</h2>;
+function List() {
+  return <h2>Einkaufszettel</h2>;
 }
 
 function Users() {
