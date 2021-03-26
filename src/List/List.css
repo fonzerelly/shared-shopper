@@ -1,0 +1,79 @@
+:root {
+    --primary: #FE6019;
+}
+.List_Header {
+    background-color: var(--primary);
+    text-align: left;
+    padding: 20px 12px;
+    color: white;
+    font-size: 16px;
+}
+h1 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: var(--primary);
+}
+
+.Add {
+    background-color: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.ListButton {
+    height: 40px;
+    background-color: var(--primary);
+    color:white;
+    padding: 0px 35px;
+    border: none;
+    border-radius: 10px;
+    font-size: 24px;
+    margin-left: 5px;
+}
+
+.ListInput {
+    border: 1px solid #D3D3D3;
+    height: 40px;
+    font-size: 16px;
+    padding-left: 12px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.ListButton:focus {
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+}
+
+.ListButton:placeholder-shown{
+    padding-left: 12px;
+    color: #D3D3D3;
+  }
+.ListContainer {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 12px;
+    font-size: 16px;
+    line-height: 19px;
+    margin: 6px 0px;
+}
+
+.DelButton {
+    height: 30px;
+    width: 30px;
+    background: 0;
+    padding: 0;
+    border: none;
+}
