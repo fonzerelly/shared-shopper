@@ -27,13 +27,22 @@ export default function ShoppingList() {
                     <button className="ListButton">+</button>
                 </div>
                 <Product />
+                <Product />
+                <Product />
+                <Product />
             </Route>
             <Route path = "/list/shoppinglist/kaufen">
-                <div className="Add">
-                    <input className="ListInput"></input>
-                    <button className="ListButton">+</button>
+                <div className="OpenProducts">
+                    <div>...</div>
+                    <div>Milch</div>
+                    <div>...</div>
+                    <div>...</div>
+                    <div>...</div>
                 </div>
-                <Product />
+                <div className="ClosedProducts">
+                    <div>ApfelKompot</div>
+                    <div>...</div>
+                </div>
             </Route>
         </Switch>
     </div>;
