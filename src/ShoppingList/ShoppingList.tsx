@@ -8,7 +8,7 @@ import {
 import App from "../App"
 import '../List/List.css';
 import Header from '../Header/Header'
-import Product from '../Product/Product'
+import ProductChange from '../Components/ProductChange'
 
 
 
@@ -17,8 +17,8 @@ export default function ShoppingList() {
         <Header />
         <h1>29.03.2021</h1>
         <div className="tab">
-            <Link to="/list/shoppinglist/bearbeiten"><button className="tablinks" >Bearbeiten</button></Link>
-            <Link to="/list/shoppinglist/kaufen"><button className="tablinks" >Kaufen</button></Link>
+            <Link to="/list/shoppinglist/bearbeiten"><button className="tabLinks tabLinksActive" >Bearbeiten</button></Link>
+            <Link to="/list/shoppinglist/kaufen"><button className="tabLinks" >Kaufen</button></Link>
         </div>
         <Switch>
             <Route path = "/list/shoppinglist/bearbeiten">
@@ -26,14 +26,14 @@ export default function ShoppingList() {
                     <input className="ListInput"></input>
                     <button className="ListButton">+</button>
                 </div>
-                <Product />
+                <ProductChange />
             </Route>
             <Route path = "/list/shoppinglist/kaufen">
                 <div className="Add">
                     <input className="ListInput"></input>
                     <button className="ListButton">+</button>
                 </div>
-                <Product />
+                <ProductChange />
             </Route>
         </Switch>
     </div>;
