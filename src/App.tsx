@@ -6,6 +6,7 @@ import {
   Link
 } from 'react-router-dom';
 import List from './List/List'
+import ShoppingList from './ShoppingList/ShoppingList'
 
 import logo from './logo.svg';
 import './App.css';
@@ -22,10 +23,16 @@ function App() {
             <li>
               <Link to="/list">Einkaufszettel</Link>
             </li>
+            <li>
+              <Link to="/list/shoppinglist">ShoppingList</Link>
+            </li>
           </ul>
         </nav>
 
         <Switch>
+          <Route path="/list/shoppinglist">
+            <ShoppingList/>
+          </Route>
           <Route path="/list">
             <List />
           </Route>
