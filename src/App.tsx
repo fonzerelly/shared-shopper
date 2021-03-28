@@ -24,7 +24,7 @@ function App() {
               <Link to="/list">Einkaufszettel</Link>
             </li>
             <li>
-              <Link to="/list/shoppinglist">ShoppingList</Link>
+              <Link to="/list/shoppinglist/kaufen">ShoppingList</Link>
             </li>
           </ul>
         </nav>
