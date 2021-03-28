@@ -1,4 +1,3 @@
-import App from "../App"
 import './List.css';
 import Header from '../Header/Header'
 

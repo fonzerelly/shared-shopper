@@ -7,8 +7,6 @@ import {
 } from 'react-router-dom';
 import List from './List/List'
 import ShoppingList from './ShoppingList/ShoppingList'
-
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
