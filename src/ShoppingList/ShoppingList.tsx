@@ -6,7 +6,8 @@ import {
 } from 'react-router-dom';
 import '../List/List.css';
 import Header from '../Header/Header'
-import Product from '../Product/Product'
+import ProductChange from '../Components/ProductChange'
+import ProductBuy from '../Components/ProductBuy'
 
 
 
@@ -15,32 +16,23 @@ export default function ShoppingList() {
         <Header />
         <h1>29.03.2021</h1>
         <div className="tab">
-            <Link to="/list/shoppinglist/bearbeiten"><button className="tablinks" >Bearbeiten</button></Link>
-            <Link to="/list/shoppinglist/kaufen"><button className="tablinks" >Kaufen</button></Link>
+            <Link to="/list/shoppinglist/bearbeiten"><button className="tabLinks" >Bearbeiten</button></Link>
+            <Link to="/list/shoppinglist/kaufen"><button className="tabLinks" >Kaufen</button></Link>
         </div>
         <Switch>
-            <Route path = "/list/shoppinglist/bearbeiten">
+            <Route path="/list/shoppinglist/bearbeiten">
                 <div className="Add">
                     <input className="ListInput"></input>
                     <button className="ListButton">+</button>
                 </div>
-                <Product />
-                <Product />
-                <Product />
-                <Product />
+                <ProductChange />
+                <ProductChange />
+                <ProductChange />
             </Route>
-            <Route path = "/list/shoppinglist/kaufen">
-                <div className="OpenProducts">
-                    <div>...</div>
-                    <div>Milch</div>
-                    <div>...</div>
-                    <div>...</div>
-                    <div>...</div>
-                </div>
-                <div className="ClosedProducts">
-                    <div>ApfelKompot</div>
-                    <div>...</div>
-                </div>
+            <Route path="/list/shoppinglist/kaufen">
+                <ProductBuy />
+                <ProductBuy/>
+                <ProductBuy/>
             </Route>
         </Switch>
     </div>;
