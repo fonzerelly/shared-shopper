@@ -1,3 +1,8 @@
+import {
+    Switch,
+    Route,
+    Link
+} from 'react-router-dom';
 import './List.css';
 import Header from '../Header/Header'
 
@@ -9,10 +14,10 @@ export default function List() {
             <input className="ListInput"></input>
             <button className="ListButton">+</button>
         </div>
-        <ListContainer />
-        <ListContainer />
-        <ListContainer />
-        <ListContainer />
+        <Link to="/list/shoppinglist/kaufen"><ListContainer /></Link>
+        <Link to="/list/shoppinglist/kaufen"><ListContainer /></Link>
+        <Link to="/list/shoppinglist/kaufen"><ListContainer /></Link>
+        <Link to="/list/shoppinglist/kaufen"><ListContainer /></Link>
     </div>;
 }
 
