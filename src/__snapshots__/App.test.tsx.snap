@@ -1,32 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders learn react link 1`] = `
-<div
-  class="App"
->
-  <header
-    class="App-header"
-  >
-    <img
-      alt="logo"
-      class="App-logo"
-      src="logo.svg"
-    />
-    <p>
-      Edit 
-      <code>
-        src/App.tsx
-      </code>
-       and save to reload.
-    </p>
-    <a
-      class="App-link"
-      href="https://reactjs.org"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Learn React
-    </a>
-  </header>
+<div>
+  <nav>
+    <ul>
+      <li>
+        <a
+          href="/"
+        >
+          SharedShopper
+        </a>
+      </li>
+      <li>
+        <a
+          href="/list"
+        >
+          Einkaufszettel
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <h2>
+    Home
+  </h2>
 </div>
 `;
