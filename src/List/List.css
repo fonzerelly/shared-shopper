@@ -28,13 +28,14 @@ h1 {
 
 .ListButton {
     height: 40px;
+    padding: 0px 35px;
     background-color: var(--primary);
     color:white;
-    padding: 0px 35px;
     border: none;
     border-radius: 10px;
-    font-size: 24px;
     margin-left: 5px;
+    font-size: 24px;
+    text-align: center;
 }
 
 .ListInput {
@@ -99,7 +100,12 @@ h1 {
     font-size: 16px;
 }
 
-.tabLinks:focus {
+.tabLinks:active{
+    border: none;
+    outline: none;
+}
+
+.tabLinksActive {
     color: white;
     background-color: var(--primary);
 }

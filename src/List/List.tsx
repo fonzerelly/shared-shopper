@@ -5,25 +5,43 @@ import {
 } from 'react-router-dom';
 import './List.css';
 import Header from '../Header/Header'
+import { ChangeEventHandler, useState } from 'react';
 
 export default function List() {
+    var dateformatter = new Intl.DateTimeFormat('de-DE', { day:"2-digit" , month:"2-digit" , year:"numeric" })
+    let date = dateformatter.format(new Date())
+    const [listName, setListName] = useState("");
+    const onChangeListListener:ChangeEventHandler<HTMLInputElement> = (event) => {
+        setListName(event.target.value)
+    }
+    function onClickList() {
+        let newListName = listName
+        if (newListName.length > 0) {
+            console.log(newListName)
+        }
+
+        else {
+            console.log(date)
+        }
+
+    }
     return <div>
         <Header />
         <h1>Einkaufszettel</h1>
         <div className="Add">
-            <input className="ListInput"></input>
-            <button className="ListButton">+</button>
+            <input type="text" name="name" className="ListInput" placeholder={"Einkaufszettel vom " + date} onChange={onChangeListListener}></input>
+            <button className="ListButton" onClick={onClickList}>+</button>
         </div>
-        <Link to="/list/shoppinglist/kaufen"><ListContainer /></Link>
-        <Link to="/list/shoppinglist/kaufen"><ListContainer /></Link>
-        <Link to="/list/shoppinglist/kaufen"><ListContainer /></Link>
-        <Link to="/list/shoppinglist/kaufen"><ListContainer /></Link>
+        <Link to="/list/shoppinglist/bearbeiten"><ListContainer name={date}/></Link>
+        <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Wochenende"/></Link>
+        <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Party"/></Link>
+        <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Geburtstagsessen"/></Link>
     </div>;
 }
 
 
-function ListContainer() {
-    return <div className="ListContainer"><p>02.01.2021</p> <button className="DelButton"><DelIcon /></button> </div>
+function ListContainer(props:{name:string}) {
+    return <div className="ListContainer"><p>{props.name}</p> <button className="DelButton"><DelIcon /></button> </div>
 }
 
 function DelIcon() {
@@ -33,5 +51,4 @@ function DelIcon() {
         <path d="M8.62502 14.2501H9.37498C9.48441 14.2501 9.5743 14.215 9.6444 14.1448C9.71492 14.0743 9.74985 13.9846 9.74985 13.8751V7.12487C9.74985 7.01556 9.71488 6.92567 9.6444 6.85531C9.5743 6.78517 9.48441 6.75003 9.37498 6.75003H8.62502C8.51567 6.75003 8.42578 6.78513 8.35547 6.85531C8.28511 6.92567 8.25006 7.01556 8.25006 7.12487V13.8751C8.25006 13.9846 8.28511 14.0743 8.35547 14.1448C8.42574 14.215 8.51567 14.2501 8.62502 14.2501Z" fill="#292929" />
         <path d="M11.6251 14.2501H12.3749C12.4845 14.2501 12.5744 14.215 12.6446 14.1448C12.7148 14.0743 12.7498 13.9846 12.7498 13.8751V7.12487C12.7498 7.01556 12.7148 6.92567 12.6446 6.85531C12.5744 6.78517 12.4845 6.75003 12.3749 6.75003H11.6251C11.5155 6.75003 11.4259 6.78513 11.3554 6.85531C11.2852 6.92567 11.2501 7.01556 11.2501 7.12487V13.8751C11.2501 13.9846 11.2852 14.0743 11.3554 14.1448C11.4259 14.215 11.5155 14.2501 11.6251 14.2501Z" fill="#292929" />
     </svg>
-
 }

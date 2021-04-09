@@ -1,11 +1,12 @@
 import './Components.css';
 
-export default function ProductChange() {
+export default function ProductChange(props:{name:string, amount:string}) {
     return <div className="Product">
-        <p>02.01.2021</p>
+        <div>{props.amount}x</div>
+        <p>{props.name}</p>
         <div className="Up_Down">
-        <button className="UpButton">up</button>
-        <button className="UpButton">down</button>
+        <button className="UpButton">-</button>
+        <button className="UpButton">+</button>
         </div>
     </div>
 }

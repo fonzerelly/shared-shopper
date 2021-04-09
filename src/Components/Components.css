@@ -18,7 +18,10 @@
     border: 2px solid var(--primary);
     border-radius: 50%;
 }
-
+.checked {
+    background: #f2f2f2;
+    box-shadow: none;
+}
 input {
     width: 18px;
     height: 18px;
