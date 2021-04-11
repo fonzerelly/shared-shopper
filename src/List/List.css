@@ -78,17 +78,21 @@ h1 {
     padding: 0;
     border: none;
 }
-
+button {
+    all: unset;
+}
 .tab{
     display:flex;
     flex-direction: row;
     width: 90vw;
     justify-content: space-between;
-    border-bottom: 1px solid #D3D3D3;
     margin-bottom: 1rem;
+    padding-bottom: 0px;
+    border-bottom: 2px outset #f2f2f2;
+    
 }
 
-.tabLinks{
+.tabs{
     height: 40px;
     width: 45vw;
     display: flex;
@@ -98,16 +102,13 @@ h1 {
     color:black;
     border: none;
     font-size: 16px;
+    
+    
 }
 
-.tabLinks:active{
-    border: none;
-    outline: none;
-}
-
-.tabLinksActive {
-    color: white;
+.active-tabs{
     background-color: var(--primary);
+    color:white;
 }
 
 a {
