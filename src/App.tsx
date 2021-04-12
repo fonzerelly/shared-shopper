@@ -19,6 +19,7 @@ function App() {
           Learn React
         </a>
       <h3>Hallo Ansbach</h3>
+      <h4>VIS Mobile Development</h4>
       </header>
     </div>
   );
