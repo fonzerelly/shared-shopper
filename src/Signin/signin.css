@@ -1,0 +1,46 @@
+.signinbody{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 100vh;
+    justify-content: space-evenly;
+}
+
+.Logo {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
+    margin-bottom: 6px;
+    padding-right: 28px;
+} 
+
+.logoPlace{
+    align-items: center;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #292929;
+}
+
+.orSection {
+    width: 90vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.orSection svg {
+    width: 40vw;
+}
+
+.orSection p {
+    font-weight: 500;
+}
+
+.textPlace {
+    padding: 12px;
+    font-size: 12px;
+}
+
+.textPlace a {
+    color: #FE6019;
+}
