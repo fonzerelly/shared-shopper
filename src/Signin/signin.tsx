@@ -46,13 +46,9 @@ function Logo() {
 
 function ORSection() {
     return <div className="orSection">
-        <svg width="121" height="2" viewBox="0 0 121 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line y1="1" x2="121" y2="1" stroke="black" />
-        </svg>
+        <div className="line"></div>
         <p>ODER</p>
-        <svg width="121" height="2" viewBox="0 0 121 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-<line y1="1" x2="121" y2="1" stroke="black"/>
-</svg>
+        <div className="line"></div>
 
     </div>
 }

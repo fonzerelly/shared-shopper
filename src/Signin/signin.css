@@ -28,11 +28,14 @@
     justify-content: space-between;
 }
 
-.orSection svg {
-    width: 40vw;
+.line {
+    background-color: #292929;
+    height: 1px;
+    width: 35vw;
 }
 
 .orSection p {
+    color: #292929;
     font-weight: 500;
 }
 
