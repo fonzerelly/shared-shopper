@@ -13,21 +13,6 @@ import {SignIn} from './Signin/signin'
 function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">SharedShopper</Link>
-            </li>
-            <li>
-              <Link to="/list">Einkaufszettel</Link>
-            </li>
-            <li>
-              <Link to="/list/shoppinglist/kaufen">ShoppingList</Link>
-            </li>
-          </ul>
-        </nav>
-
         <Switch>
           <Route path="/signin">
             <SignIn />
@@ -42,7 +27,6 @@ function App() {
             <SharedShopper />
           </Route>
         </Switch>
-      </div>
     </Router>
   );
 }
