@@ -21,7 +21,6 @@ export function SignIn() {
             </div>
     </div>
     </>
-
 }
 
 function Logo() {
@@ -42,7 +41,7 @@ function Logo() {
     </div>
     <div className="logoText">Shared Shopper</div>
     </div>
-} 
+}
 
 function ORSection() {
     return <div className="orSection">

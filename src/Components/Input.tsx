@@ -5,4 +5,4 @@ export default function InputComp(props:{place:string, label:string}) {
     <label>{props.label}</label>
     <input className="inputComp" placeholder={props.place}></input>
     </div>
-} 
+}
