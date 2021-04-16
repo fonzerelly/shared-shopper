@@ -9,6 +9,7 @@ import List from './List/List'
 import ShoppingList from './ShoppingList/ShoppingList'
 import './App.css';
 import {SignIn} from './Signin/signin' 
+import {Register} from './Register/register'
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
         <Switch>
           <Route path="/signin">
             <SignIn />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
           <Route path="/list/shoppinglist">
             <ShoppingList/>
