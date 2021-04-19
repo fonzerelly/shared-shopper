@@ -10,6 +10,7 @@ import ShoppingList from './ShoppingList/ShoppingList'
 import './App.css';
 import {SignIn} from './Signin/signin' 
 import {Register} from './Register/register'
+import {Loading} from './Loading/Loading'
 
 function App() {
   return (
@@ -28,15 +29,13 @@ function App() {
             <List />
           </Route>
           <Route path="/">
-            <SharedShopper />
+            <Loading />
           </Route>
         </Switch>
     </Router>
   );
 }
 
-function SharedShopper() {
-  return <h2>Home</h2>;
-}
+
 
 export default App;
