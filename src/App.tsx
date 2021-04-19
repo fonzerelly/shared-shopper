@@ -8,6 +8,7 @@ import {
 import List from './List/List'
 import ShoppingList from './ShoppingList/ShoppingList'
 import './App.css';
+import {SignIn} from './Signin/signin' 
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
         </nav>
 
         <Switch>
+          <Route path="/signin">
+            <SignIn />
+          </Route>
           <Route path="/list/shoppinglist">
             <ShoppingList/>
           </Route>
