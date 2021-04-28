@@ -34,3 +34,12 @@ strong{
     font-weight: 600;
 }
 
+.validError{
+    color: #FE6019;
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 10px;
+    border-left: 1px solid #FE6019;
+    padding-left: 5px;
+}
+
