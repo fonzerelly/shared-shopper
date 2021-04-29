@@ -13,7 +13,7 @@ export function Register() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordRepeat, setPasswordRepeat] = useState("");
+  //const [passwordRepeat, setPasswordRepeat] = useState("");
   const [error, setError] = useState("");
   const [errorPW, setErrorPW] = useState("");
   const [errorPWcheck, setErrorPWcheck] = useState("");
@@ -46,7 +46,6 @@ export function Register() {
     }
     else {
       setErrorPWcheck("Passwörter stimmen überein")
-      setPasswordRepeat(txt)
     }
 
   }
