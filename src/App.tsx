@@ -2,14 +2,13 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 import List from './List/List'
 import ShoppingList from './ShoppingList/ShoppingList'
 import './App.css';
-import {SignIn} from './Signin/signin' 
-import {Register} from './Register/register'
+import {SignIn} from './Login/Signin/signin' 
+import {Register} from './Login/Register/register'
 import {Loading} from './Loading/Loading'
 
 function App() {
