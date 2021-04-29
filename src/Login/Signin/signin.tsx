@@ -1,6 +1,6 @@
 import './signin.css'
-import Logosvg from '../../Components/Logo'
-import { PrimaryButton, SecondaryButton } from '../../Components/Button'
+import Logosvg from '../../Components/Logo/Logo'
+import { PrimaryButton, SecondaryButton } from '../../Components/Buttons/Button'
 import {Link} from 'react-router-dom';
 
 export function SignIn() {

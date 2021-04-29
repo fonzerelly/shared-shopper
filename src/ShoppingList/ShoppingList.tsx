@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 import '../List/List.css';
 import Header from '../Header/Header'
-import ProductChange from '../Components/ProductChange'
-import {ProductBuy, ProductBuyChecked} from '../Components/ProductBuy'
+import ProductChange from '../Components/Products/ProductChange'
+import {ProductBuy, ProductBuyChecked} from '../Components/Products/ProductBuy'
 
 
 

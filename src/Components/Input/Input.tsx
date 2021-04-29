@@ -1,4 +1,4 @@
-import './Components.css'
+import './input.css'
 
 export default function InputComp(props:{place:string, label:string, setter: Function}) {
     return <div className="formInput">

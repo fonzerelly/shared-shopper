@@ -1,0 +1,26 @@
+.PrimaryButton {
+    width: 90vw;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    background: #FE6019;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.SecondaryButton {
+    width: 90vw;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #FE6019;
+    color: #FE6019;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}

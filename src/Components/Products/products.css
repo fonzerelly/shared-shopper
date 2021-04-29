@@ -1,0 +1,39 @@
+.Product {
+    background: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 12px;
+    font-size: 16px;
+    line-height: 19px;
+    margin: 6px 0px;
+}
+
+.checkedProduct {
+    background: #f2f2f2;
+    box-shadow: none;
+}
+
+/* Gewoehnungsbeduerftig! */
+.productText{
+    margin-left: 10vw;
+}
+/* Gewoehnungsbeduerftig! */
+
+.text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.trash {
+    margin-right: 15vw;
+}
+
+.UpButton {
+    padding: 5px;
+}

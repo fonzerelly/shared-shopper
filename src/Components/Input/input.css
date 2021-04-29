@@ -1,0 +1,29 @@
+.inputComp {
+    margin: 0;
+    border: 1px solid #D3D3D3;
+    height: 40px;
+    font-size: 16px;
+    padding-left: 2vw;
+    border-radius: 4px;
+    align-self: center;
+    width: 88vw;
+}
+
+.inputComp:focus {
+    border: 1px solid #FE6019;
+}
+
+
+label {
+    margin-bottom: 4px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #292929;
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
