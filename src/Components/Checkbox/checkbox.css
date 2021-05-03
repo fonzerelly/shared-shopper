@@ -1,0 +1,32 @@
+.Checkbox {
+    align-content: center;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+}
+
+input {
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    margin: 2px;
+    padding: 0px;
+    transition: 0.3s ease-in-out;
+}
+
+input:checked {
+    background-image: url(../../img/check.svg);
+    transition: 0.3s ease-in-out;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.checked input {
+    background-color: #f2f2f2;
+}

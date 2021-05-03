@@ -1,5 +1,5 @@
-import {ReactComponent as Logosvg} from '../img/Logo.svg' 
-import './Components.css'
+import {ReactComponent as Logosvg} from '../../img/Logo.svg' 
+import './logo.css'
 
 export default function Logo () {
     return <div className="logoPlace"> 

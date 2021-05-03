@@ -1,4 +1,4 @@
-import './Components.css'
+import './button.css'
 
 export function PrimaryButton(props:{name:string}) {
     return <button className="PrimaryButton">{props.name}</button>

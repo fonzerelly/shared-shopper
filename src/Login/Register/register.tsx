@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './register.css'
-import InputComp from '../../Components/Input'
-import Logosvg from '../../Components/Logo'
-import { PrimaryButton } from '../../Components/Button'
+import InputComp from '../../Components/Input/Input'
+import Logosvg from '../../Components/Logo/Logo'
+import { PrimaryButton } from '../../Components/Buttons/Button'
 import {
   Link
 } from 'react-router-dom';
