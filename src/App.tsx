@@ -12,6 +12,7 @@ import {Register} from './Login/Register/register'
 import {Loading} from './Loading/Loading'
 
 function App() {
+  /* comment to trigger rerun of activation */
   return (
     <Router>
         <Switch>
