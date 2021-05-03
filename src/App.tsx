@@ -12,6 +12,7 @@ import {Register} from './Login/Register/register'
 import {Loading} from './Loading/Loading'
 
 function App() {
+  /* commit comment to trigger rebuild */
   return (
     <Router>
         <Switch>
