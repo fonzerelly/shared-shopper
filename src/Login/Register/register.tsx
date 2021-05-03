@@ -55,6 +55,7 @@ export function Register() {
       <Logosvg />
       <div className="registertext">
         <h1>Registrierung</h1>
+        <p>Ihr Erster Login!</p>
         <p>Schon bald kann es <strong >Losgehen!</strong></p>
         <p>Registrieren und direkt gemeinsm Einkaufen.</p>
         <strong>Einfach, aktuell und intuitiv. </strong>
