@@ -5,7 +5,6 @@ import {
     Link
 } from 'react-router-dom';
 import '../List/List.css';
-import Header from '../Header/Header'
 import ProductChange from '../Components/Products/ProductChange'
 import {ProductBuy, ProductBuyChecked} from '../Components/Products/ProductBuy'
 
@@ -19,7 +18,6 @@ export default function ShoppingList() {
         setToggleState(index)
     }
     return <div>
-        <Header />
         <h1>Einkaufsliste</h1>
         <div className="tab">
             <Link to="/list/shoppinglist/bearbeiten"><button className={ toggleState === 1 ? "tabs active-tabs" : "tabs" } onClick={() => toggleTab(1)}>Bearbeiten</button></Link>
@@ -29,7 +27,8 @@ export default function ShoppingList() {
             <Route path="/list/shoppinglist/bearbeiten">
                 <div className="content-tabs">
                 <div className="Add">
-                    <input className="ListInput"></input>
+                    <input className="ListInput" type="number" pattern="[0-9]*" placeholder="Anzahl"></input>
+                    <input className="ListInput" placeholder="Produkt"></input>
                     <button className="ListButton">+</button>
                 </div>
                 <ProductChange name="Butter" amount="1"/>

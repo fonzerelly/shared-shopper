@@ -1,12 +1,12 @@
 import './products.css'
-import {ReactComponent as TrashIcon} from '../../img/trash.svg'
+import {ReactComponent as PencilIcon} from '../../img/pencil.svg'
 import {ReactComponent as UpIcon} from '../../img/up.svg'
 import {ReactComponent as DownIcon} from '../../img/down.svg'
 export default function ProductChange(props:{name:string, amount:string}) {
     return <div className="Product">
         <div className="text">
-        <TrashIcon className="trash"/>
-        <p>{props.amount}x {props.name}</p>
+        <PencilIcon className="pencil"/>
+        <p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p>
         </div>
         <div className="Up_Down">
         <button className="UpButton"><UpIcon/></button>
