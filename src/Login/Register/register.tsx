@@ -60,11 +60,11 @@ export function Register() {
         <strong>Einfach, aktuell und intuitiv. </strong>
       </div>
       <div className="form">
-        <InputComp label="E-Mail" place="E-Mail" setter={handleEmail} />
+        <InputComp label="E-Mail" type="email" place="E-Mail" setter={handleEmail} />
         <p className="validError">{error}</p>
-        <InputComp label="Passwort" place="Passwort" setter={handlePassword} />
+        <InputComp label="Passwort" type="password" place="Passwort" setter={handlePassword} />
         <p className="validError">{errorPW}</p>
-        <InputComp label="Passwort wiederholen" place="Passwort" setter={handlePasswordCheck} />
+        <InputComp label="Passwort wiederholen" type="password" place="Passwort" setter={handlePasswordCheck} />
         <p className="validError">{errorPWcheck}</p>
         <Link to="signin"><PrimaryButton name="Jetzt zusammen einkaufen!" /></Link>
       </div>
