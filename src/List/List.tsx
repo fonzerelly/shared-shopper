@@ -23,7 +23,7 @@ export default function List() {
         }
 
     }
-    return <div>
+    return <div className="listBody">
         <h1>Einkaufszettel</h1>
         <div className="Add">
             <input type="text" name="name" className="ListInput" placeholder={"Einkaufszettel vom " + date} onChange={onChangeListListener}></input>

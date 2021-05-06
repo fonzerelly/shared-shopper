@@ -17,8 +17,7 @@ export default function ShoppingList() {
     const toggleTab = (index: number) => {
         setToggleState(index)
     }
-    return <div>
-        <h1>Einkaufsliste</h1>
+    return <div className="listBody">
         <div className="tab">
             <Link to="/list/shoppinglist/bearbeiten"><button className={ toggleState === 1 ? "tabs active-tabs" : "tabs" } onClick={() => toggleTab(1)}>Bearbeiten</button></Link>
             <Link to="/list/shoppinglist/kaufen"><button className={ toggleState === 2 ? "tabs active-tabs" : "tabs" } onClick={() => toggleTab(2)}>Kaufen</button></Link>

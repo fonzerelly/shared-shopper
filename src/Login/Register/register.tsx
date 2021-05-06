@@ -27,6 +27,7 @@ export function Register() {
     }
 
     setEmail(txt)
+    console.log(email)
   }
 
   const handlePassword = (txt: string) => {
@@ -47,7 +48,6 @@ export function Register() {
     else {
       setErrorPWcheck("Passwörter stimmen überein")
     }
-
   }
 
   return <>
@@ -68,8 +68,6 @@ export function Register() {
         <p className="validError">{errorPWcheck}</p>
         <Link to="signin"><PrimaryButton name="Jetzt zusammen einkaufen!" /></Link>
       </div>
-
-      <button onClick={() => alert(email)}>click me</button>
     </div>
   </>
 }
