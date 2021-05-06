@@ -5,7 +5,7 @@ import {
     Link
 } from 'react-router-dom';
 import '../List/List.css';
-import ProductChange from '../Components/Products/ProductChange'
+import ProductChange, { ProductChangeEdit } from '../Components/Products/ProductChange'
 import {ProductBuy, ProductBuyChecked} from '../Components/Products/ProductBuy'
 import {Header} from '../Header/header'
 
@@ -18,6 +18,7 @@ export default function ShoppingList() {
     const toggleTab = (index: number) => {
         setToggleState(index)
     }
+
     return <div>
         <Header titleName="Einkaufszettel" path="/list"></Header>
         
@@ -27,6 +28,7 @@ export default function ShoppingList() {
         </div>
         <Switch>
             <Route path="/list/shoppinglist/bearbeiten">
+                <div className="content-tabs2">
                 <div className="content-tabs">
                 <div className="Add">
                     <input className="ListInput" type="number" pattern="[0-9]*" placeholder="Anzahl"></input>
@@ -37,6 +39,8 @@ export default function ShoppingList() {
                 <ProductChange name="Kekse" amount="3"/>
                 <ProductChange name="Kuchen" amount="5"/>
                 <ProductChange name="Eier" amount="10"/>
+                </div>
+                <ProductChangeEdit name= "Butter" amount="1"/>
                 </div>
             </Route>
             <Route path="/list/shoppinglist/kaufen">
