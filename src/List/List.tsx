@@ -2,7 +2,6 @@ import {
     Link
 } from 'react-router-dom';
 import './List.css';
-import Header from '../Header/Header'
 import { ChangeEventHandler, useState } from 'react';
 import {ReactComponent as TrashIcon} from '../img/trash.svg'
 
@@ -25,7 +24,6 @@ export default function List() {
 
     }
     return <div>
-        <Header />
         <h1>Einkaufszettel</h1>
         <div className="Add">
             <input type="text" name="name" className="ListInput" placeholder={"Einkaufszettel vom " + date} onChange={onChangeListListener}></input>

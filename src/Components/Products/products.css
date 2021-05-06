@@ -30,10 +30,14 @@
     align-items: center;
 }
 
-.trash {
-    margin-right: 15vw;
+.pencil {
+    margin-right: 10vw;
 }
 
 .UpButton {
     padding: 5px;
+}
+
+.AmountPlace {
+    width: 50px;
 }
