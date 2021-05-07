@@ -3,14 +3,14 @@ import {
 } from 'react-router-dom';
 import './List.css';
 import { ChangeEventHandler, useState } from 'react';
-import {ReactComponent as TrashIcon} from '../img/trash.svg'
-import {Header} from '../Header/header'
+import { ReactComponent as TrashIcon } from '../img/trash.svg'
+import { Header } from '../Header/header'
 
 export default function List() {
-    var dateformatter = new Intl.DateTimeFormat('de-DE', { day:"2-digit" , month:"2-digit" , year:"numeric" })
+    var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
     let date = dateformatter.format(new Date())
     const [listName, setListName] = useState("");
-    const onChangeListListener:ChangeEventHandler<HTMLInputElement> = (event) => {
+    const onChangeListListener: ChangeEventHandler<HTMLInputElement> = (event) => {
         setListName(event.target.value)
     }
     function onClickList() {
@@ -26,19 +26,21 @@ export default function List() {
     }
     return <div>
         <Header titleName="Einkaufszettel" path="/signin"></Header>
-        <h1>Einkaufszettel</h1>
-        <div className="Add">
-            <input type="text" name="name" className="ListInput" placeholder={"Einkaufszettel vom " + date} onChange={onChangeListListener}></input>
-            <button className="ListButton" onClick={onClickList}>+</button>
+        <div className="listBody">
+            <h1>Einkaufszettel</h1>
+            <div className="Add">
+                <input type="text" name="name" className="ListInput" placeholder={"Einkaufszettel vom " + date} onChange={onChangeListListener}></input>
+                <button className="ListButton" onClick={onClickList}>+</button>
+            </div>
+            <Link to="/list/shoppinglist/bearbeiten"><ListContainer name={date} /></Link>
+            <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Wochenende" /></Link>
+            <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Party" /></Link>
+            <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Geburtstagsessen" /></Link>
         </div>
-        <Link to="/list/shoppinglist/bearbeiten"><ListContainer name={date}/></Link>
-        <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Wochenende"/></Link>
-        <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Party"/></Link>
-        <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Geburtstagsessen"/></Link>
-    </div>;
+    </div>
 }
 
 
-function ListContainer(props:{name:string}) {
+function ListContainer(props: { name: string }) {
     return <div className="ListContainer"><p>{props.name}</p> <button className="DelButton"><TrashIcon /></button> </div>
 }

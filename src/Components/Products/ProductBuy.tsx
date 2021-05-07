@@ -3,7 +3,7 @@ import {Checkbox, CheckboxChecked} from '../Checkbox/Checkbox'
 
 export function ProductBuy(props:{name:string, amount:string}) {
     return <div className="Product">
-        <p className="productText">{props.amount}x {props.name}</p>
+        <div className="text"><p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p></div>
         <div>
         <Checkbox />
         </div>
@@ -12,7 +12,7 @@ export function ProductBuy(props:{name:string, amount:string}) {
 
 export function ProductBuyChecked(props:{name:string, amount:string}) {
     return <div className="Product checkedProduct">
-        <p className="productText">{props.amount}x {props.name}</p>
+        <div className="text"><p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p></div>
     <div>
     <CheckboxChecked />
     </div>

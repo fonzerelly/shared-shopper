@@ -1,6 +1,12 @@
 :root {
     --primary: #FE6019;
 }
+
+.listBody {
+    width: 90vw;
+    margin: 0 auto;
+}
+
 .List_Header {
     background-color: var(--primary);
     text-align: left;
@@ -85,7 +91,7 @@ button {
 
 .tabs{
     height: 40px;
-    width: 45vw;
+    width: 50vw;
     display: flex;
     justify-content: center;
     align-items: center;
