@@ -5,7 +5,7 @@ import {
     Link
 } from 'react-router-dom';
 import '../List/List.css';
-import ProductChange, { ProductChangeEdit } from '../Components/Products/ProductChange'
+import ProductChange from '../Components/Products/ProductChange'
 import {ProductBuy, ProductBuyChecked} from '../Components/Products/ProductBuy'
 import {Header} from '../Header/header'
 
@@ -18,6 +18,7 @@ export default function ShoppingList() {
     const toggleTab = (index: number) => {
         setToggleState(index)
     }
+    const [edit, setEdit] = useState(1);
 
     return <div>
         <Header titleName="Einkaufszettel" path="/list"></Header>
@@ -40,7 +41,6 @@ export default function ShoppingList() {
                 <ProductChange name="Kuchen" amount="5"/>
                 <ProductChange name="Eier" amount="10"/>
                 </div>
-                <ProductChangeEdit name= "Butter" amount="1"/>
                 </div>
             </Route>
             <Route path="/list/shoppinglist/kaufen">

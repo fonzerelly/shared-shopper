@@ -34,6 +34,14 @@
     margin-right: 10vw;
 }
 
+.pencil2 {
+    margin-right: 2vw;
+}
+
+.trash {
+    margin-right: 2vw;  
+}
+
 .UpButton {
     padding: 5px;
 }
@@ -44,7 +52,7 @@
 
 .ListInput2{
     border: 1px solid #D3D3D3;
-    height: 40px;
+    height: 30px;
     font-size: 16px;
     padding-left: 12px;
     width: 7%;
@@ -53,14 +61,9 @@
 
 .ListInput3{
     border: 1px solid #D3D3D3;
-    height: 40px;
+    height: 30px;
     font-size: 16px;
     padding-left: 12px;
     width: 53%;
     border-radius: 10px; 
-}
-
-.pencil2{
-    padding-left: 12px;
-    padding-right: 36px;
 }
