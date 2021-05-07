@@ -4,6 +4,7 @@ import {
 import './List.css';
 import { ChangeEventHandler, useState } from 'react';
 import {ReactComponent as TrashIcon} from '../img/trash.svg'
+import {Header} from '../Header/header'
 
 export default function List() {
     var dateformatter = new Intl.DateTimeFormat('de-DE', { day:"2-digit" , month:"2-digit" , year:"numeric" })
@@ -24,6 +25,7 @@ export default function List() {
 
     }
     return <div>
+        <Header titleName="Einkaufszettel" path="/signin"></Header>
         <h1>Einkaufszettel</h1>
         <div className="Add">
             <input type="text" name="name" className="ListInput" placeholder={"Einkaufszettel vom " + date} onChange={onChangeListListener}></input>

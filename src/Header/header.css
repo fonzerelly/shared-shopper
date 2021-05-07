@@ -1,0 +1,23 @@
+.Header{
+    display: flex;
+    flex-direction: row;
+    background-color: #FE6019;
+    border-radius: 0px; 
+    justify-content: space-between;
+    align-content: center;
+    margin: 0 auto;
+    padding: 12px;
+    height: 40px;
+}
+
+.Titel{
+font-size: 24px;
+text-align: center;
+color: #FFFFFF;
+margin: 0;
+}
+
+.Placeholder{
+    width: 17.56px;
+    height: 1px;
+}
