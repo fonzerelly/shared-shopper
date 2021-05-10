@@ -18,7 +18,6 @@ export default function ShoppingList() {
     const toggleTab = (index: number) => {
         setToggleState(index)
     }
-    const [edit, setEdit] = useState(1);
 
     return <div>
         <Header titleName="Einkaufszettel" path="/list"></Header>

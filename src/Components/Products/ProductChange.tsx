@@ -13,7 +13,7 @@ export default function ProductChange(props: { name: string, amount: string}) {
         setEdit(index)
     }
 
-    if(edit == 2) {
+    if(edit === 2) {
         return <div className="Product">
         <div className="text">   
             <PencilIcon2 onClick = {() => editProduct(1)} className={"pencil" + String(edit)} />
