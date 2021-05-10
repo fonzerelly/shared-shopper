@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 import '../List/List.css';
 import ProductChange from '../Components/Products/ProductChange'
-import {ProductBuy, ProductBuyChecked} from '../Components/Products/ProductBuy'
-import {Header} from '../Header/header'
+import { ProductBuy, ProductBuyChecked } from '../Components/Products/ProductBuy'
+import { Header } from '../Header/header'
 
 
 
@@ -21,7 +21,6 @@ export default function ShoppingList() {
 
     return <div>
         <Header titleName="Einkaufszettel" path="/list"></Header>
-        
         <div className="tab">
             <Link to="/list/shoppinglist/bearbeiten"><button className={ toggleState === 1 ? "tabs active-tabs" : "tabs" } onClick={() => toggleTab(1)}>Bearbeiten</button></Link>
             <Link to="/list/shoppinglist/kaufen"><button className={ toggleState === 2 ? "tabs active-tabs" : "tabs" } onClick={() => toggleTab(2)}>Kaufen</button></Link>
