@@ -7,26 +7,27 @@ import { ReactComponent as TrashIcon } from '../../img/trash.svg'
 import React, { useState } from 'react';
 
 export default function ProductChange(props: { name: string, amount: string}) {
+    enum ProductStatus{
+        static = 1,
+        edit  
+      }
 
-    const [edit, setEdit] = useState (1);
-    const editProduct = (index: number) => {
-        setEdit(index)
-    }
+    const [componentMode, setComponentMode] = useState (ProductStatus.static);
 
-    if(edit === 2) {
+    if(componentMode === ProductStatus.edit) {
         return <div className="Product">
         <div className="text">   
-            <PencilIcon2 onClick = {() => editProduct(1)} className={"pencil" + String(edit)} />
+            <PencilIcon2 onClick = {() => (setComponentMode(ProductStatus.static))} className={"pencil--" + String(componentMode)} />
             <TrashIcon className = "trash" />
-            <input className="ListInput2" type="number" pattern="[0-9]*" placeholder={props.amount}></input>
-            <input className="ListInput3" placeholder={props.name}></input>
+            <input className="product--count" type="number" pattern="[0-9]*" placeholder={props.amount}></input>
+            <input className="product--label" placeholder={props.name}></input>
         </div> 
         </div>
     }
 
     return <div className="Product">
         <div className="text">
-            <PencilIcon onClick = {() => editProduct(2)} className="pencil" />
+            <PencilIcon onClick = {() => setComponentMode(ProductStatus.edit)} className="pencil" />
             <p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p>
         </div>
         <div className="Up_Down">

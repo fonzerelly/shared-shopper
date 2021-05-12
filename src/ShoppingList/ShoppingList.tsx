@@ -10,9 +10,6 @@ import { ProductBuy, ProductBuyChecked } from '../Components/Products/ProductBuy
 import { Header } from '../Header/header'
 
 
-
-
-
 export default function ShoppingList() {
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index: number) => {
@@ -53,5 +50,3 @@ export default function ShoppingList() {
         </Switch>
     </div>;
 }
-
-

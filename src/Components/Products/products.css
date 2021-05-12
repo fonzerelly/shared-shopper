@@ -34,7 +34,7 @@
     margin-right: 10vw;
 }
 
-.pencil2 {
+.pencil--2 {
     margin-right: 2vw;
 }
 
@@ -50,7 +50,7 @@
     width: 50px;
 }
 
-.ListInput2{
+.product--count{
     border: 1px solid #D3D3D3;
     height: 30px;
     font-size: 16px;
@@ -59,7 +59,7 @@
     border-radius: 10px; 
 }
 
-.ListInput3{
+.product--label{
     border: 1px solid #D3D3D3;
     height: 30px;
     font-size: 16px;
