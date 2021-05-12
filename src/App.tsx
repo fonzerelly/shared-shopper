@@ -8,7 +8,7 @@ import List from './List/List'
 import ShoppingList from './ShoppingList/ShoppingList'
 import './App.css';
 import {SignIn} from './Login/Signin/signin' 
-import {Register} from './Login/Register/register'
+import {Register, handleEmail} from './Login/Register/register'
 import {Loading} from './Loading/Loading'
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
             <SignIn />
           </Route>
           <Route path="/register">
-            <Register />
+            <Register checkFunction={(e: string) => handleEmail(e)} />
           </Route>
           <Route path="/list/shoppinglist">
             <ShoppingList/>

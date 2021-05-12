@@ -7,27 +7,41 @@ import {
   Link
 } from 'react-router-dom';
 
-export function Register() {
 
-  //const [loginModel, setLoginModel] = useState(initLoginModel);
+export const handleEmail = (txt: string) => {
 
+  if (txt.match(/[a-z]+(\.|-)[a-z]+@\w{2,}\.[a-z]{2,3}/g)) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+
+export function Register(props: {checkFunction: Function}) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  //const [passwordRepeat, setPasswordRepeat] = useState("");
   const [error, setError] = useState("");
+
+  const [password, setPassword] = useState("");
   const [errorPW, setErrorPW] = useState("");
   const [errorPWcheck, setErrorPWcheck] = useState("");
 
-  const handleEmail = (txt: string) => {
-    if (!txt.includes("@")) {
-      setError("Das ist keine Email")
+
+  const errorRender = (txt: string) => {
+
+    const emailCheck = props.checkFunction(txt);
+
+    if (emailCheck === true){
+      setError("");
+      setEmail(txt);
+      console.log(email);
     }
-    else {
-      setError("")
+    else{
+      setError("Bitte überprüfen Sie ihre Email-Adresse");
     }
 
-    setEmail(txt)
-    console.log(email)
+
   }
 
   const handlePassword = (txt: string) => {
@@ -60,7 +74,7 @@ export function Register() {
         <strong>Einfach, aktuell und intuitiv. </strong>
       </div>
       <div className="form">
-        <InputComp label="E-Mail" type="email" place="E-Mail" setter={handleEmail} />
+        <InputComp label="E-Mail" type="email" place="E-Mail" setter={errorRender} />
         <p className="validError">{error}</p>
         <InputComp label="Passwort" type="password" place="Passwort" setter={handlePassword} />
         <p className="validError">{errorPW}</p>
