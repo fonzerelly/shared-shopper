@@ -11,16 +11,19 @@ import { Header } from '../Header/header'
 
 
 export default function ShoppingList() {
-    const [toggleState, setToggleState] = useState(1);
-    const toggleTab = (index: number) => {
-        setToggleState(index)
+
+    enum TabState {
+        editSL = 1,
+        buy
     }
+
+    const [toggleState, setToggleState] = useState(TabState.editSL);
 
     return <div>
         <Header titleName="Einkaufszettel" path="/list"></Header>
         <div className="tab">
-            <Link to="/list/shoppinglist/bearbeiten"><button className={ toggleState === 1 ? "tabs active-tabs" : "tabs" } onClick={() => toggleTab(1)}>Bearbeiten</button></Link>
-            <Link to="/list/shoppinglist/kaufen"><button className={ toggleState === 2 ? "tabs active-tabs" : "tabs" } onClick={() => toggleTab(2)}>Kaufen</button></Link>
+            <Link to="/list/shoppinglist/bearbeiten"><button className={ toggleState === 1 ? "tabs active-tabs" : "tabs" } onClick={() => setToggleState(TabState.editSL)}>Bearbeiten</button></Link>
+            <Link to="/list/shoppinglist/kaufen"><button className={ toggleState === 2 ? "tabs active-tabs" : "tabs" } onClick={() => setToggleState(TabState.buy)}>Kaufen</button></Link>
         </div>
         <Switch>
             <Route path="/list/shoppinglist/bearbeiten">

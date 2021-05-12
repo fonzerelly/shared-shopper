@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 export default function ProductChange(props: { name: string, amount: string}) {
     enum ProductStatus{
         static = 1,
-        edit  
+        edit 
       }
 
     const [componentMode, setComponentMode] = useState (ProductStatus.static);
