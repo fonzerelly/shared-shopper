@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import '../List/List.css';
 import ProductChange from '../Components/Products/ProductChange'
-import { ProductBuy, ProductBuyChecked } from '../Components/Products/ProductBuy'
+import { ProductBuy} from '../Components/Products/ProductBuy'
 import { Header } from '../Header/header'
 
 
@@ -43,11 +43,11 @@ export default function ShoppingList() {
             </Route>
             <Route path="/list/shoppinglist/kaufen">
                 <h1>Kaufen</h1>
-                <ProductBuy name="Kuchen" amount="5"/>
-                <ProductBuy name="Eier" amount="10"/>
+                <ProductBuy name="Kuchen" amount="5" state="unchecked"/>
+                <ProductBuy name="Eier" amount="10" state="unchecked"/>
                 <h1>Im Einkaufswagen</h1>
-                <ProductBuyChecked name="Butter" amount="1"/>
-                <ProductBuyChecked name="Kekse" amount="3"/>
+                <ProductBuy name="Butter" amount="1" state="checked"/>
+                <ProductBuy name="Kekse" amount="3" state="checked"/>
             </Route>
             
         </Switch>
