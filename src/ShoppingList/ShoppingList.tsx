@@ -5,7 +5,7 @@ import {
     Link
 } from 'react-router-dom';
 import '../List/List.css';
-import ProductChange from '../Components/Products/ProductChange'
+import {ProductChange, ProductInit } from '../Components/Products/ProductChange'
 import { ProductBuy} from '../Components/Products/ProductBuy'
 import { Header } from '../Header/header'
 
@@ -29,11 +29,9 @@ export default function ShoppingList() {
             <Route path="/list/shoppinglist/bearbeiten">
                 <div className="content-tabs2">
                 <div className="content-tabs">
-                <div className="Add">
-                    <input className="ListInput" type="number" pattern="[0-9]*" placeholder="Anzahl"></input>
-                    <input className="ListInput" placeholder="Produkt"></input>
-                    <button className="ListButton">+</button>
-                </div>
+        
+                    <ProductInit name="" amount ="" />
+                
                 <ProductChange name="Butter" amount="1"/>
                 <ProductChange name="Kekse" amount="3"/>
                 <ProductChange name="Kuchen" amount="5"/>
