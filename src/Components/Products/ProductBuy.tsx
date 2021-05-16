@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import './products.css'
 import { Checkbox, CheckboxChecked } from '../Checkbox/Checkbox'
 
