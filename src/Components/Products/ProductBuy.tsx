@@ -1,20 +1,22 @@
 import './products.css'
-import {Checkbox, CheckboxChecked} from '../Checkbox/Checkbox'
+import { Checkbox, CheckboxChecked } from '../Checkbox/Checkbox'
 
-export function ProductBuy(props:{name:string, amount:string}) {
+export function ProductBuy(props: { name: string, amount: string, state: string }) {
+
+    if(props.state ==="checked"){
+        return <div className="Product checkedProduct">
+        <div className="text"><p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p></div>
+        <div>
+            <CheckboxChecked />
+        </div>
+    </div>
+    }
+
+   
     return <div className="Product">
         <div className="text"><p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p></div>
         <div>
-        <Checkbox />
+            <Checkbox />
         </div>
-    </div>
-}
-
-export function ProductBuyChecked(props:{name:string, amount:string}) {
-    return <div className="Product checkedProduct">
-        <div className="text"><p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p></div>
-    <div>
-    <CheckboxChecked />
-    </div>
     </div>
 }
