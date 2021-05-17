@@ -12,18 +12,18 @@ import { Header } from '../Header/header'
 
 export default function ShoppingList() {
 
-    enum TabState {
-        editSL = 1,
-        buy
+    enum ShoppingListMode {
+        EDIT_MODE = 1,
+        BUY_MODE
     }
 
-    const [toggleState, setToggleState] = useState(TabState.editSL);
+    const [toggleState, setToggleState] = useState(ShoppingListMode.EDIT_MODE);
 
     return <div>
         <Header titleName="Einkaufszettel" path="/list"></Header>
         <div className="tab">
-            <Link to="/list/shoppinglist/bearbeiten"><button className={ toggleState === 1 ? "tabs active-tabs" : "tabs" } onClick={() => setToggleState(TabState.editSL)}>Bearbeiten</button></Link>
-            <Link to="/list/shoppinglist/kaufen"><button className={ toggleState === 2 ? "tabs active-tabs" : "tabs" } onClick={() => setToggleState(TabState.buy)}>Kaufen</button></Link>
+            <Link to="/list/shoppinglist/bearbeiten"><button className={ toggleState === 1 ? "tabs active-tabs" : "tabs" } onClick={() => setToggleState(ShoppingListMode.EDIT_MODE)}>Bearbeiten</button></Link>
+            <Link to="/list/shoppinglist/kaufen"><button className={ toggleState === 2 ? "tabs active-tabs" : "tabs" } onClick={() => setToggleState(ShoppingListMode.BUY_MODE)}>Kaufen</button></Link>
         </div>
         <Switch>
             <Route path="/list/shoppinglist/bearbeiten">
