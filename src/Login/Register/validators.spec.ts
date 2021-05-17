@@ -1,6 +1,6 @@
 import { handleEmail } from './register'
 
-describe('Register', () => {
+describe('Validators', () => {
     describe('handleEmail', () => {
         it('should be false', () => {
             [
