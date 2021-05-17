@@ -3,23 +3,14 @@ import './register.css'
 import InputComp from '../../Components/Input/Input'
 import Logosvg from '../../Components/Logo/Logo'
 import { PrimaryButton } from '../../Components/Buttons/Button'
+import { handleEmail } from './validators'
 import {
   Link
 } from 'react-router-dom';
 
 
-export const handleEmail = (txt: string) => {
 
-  if (txt.match(/[a-z]+(\.|-)[a-z]+@\w{2,}\.[a-z]{2,3}/g)) {
-    return true;
-  }
-  else {
-    return false;
-  }
-}
-
-
-export function Register(props: {checkFunction: Function}) {
+export function Register() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
@@ -30,7 +21,7 @@ export function Register(props: {checkFunction: Function}) {
 
   const errorRender = (txt: string) => {
 
-    const emailCheck = props.checkFunction(txt);
+    const emailCheck = handleEmail(txt);
 
     if (emailCheck === true){
       setError("");

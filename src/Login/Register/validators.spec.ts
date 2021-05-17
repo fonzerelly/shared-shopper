@@ -1,37 +1,43 @@
-import { handleEmail } from './register'
+import { handleEmail } from './validators'
 
 describe('Validators', () => {
     describe('handleEmail', () => {
-        it('should be false', () => {
-            [
-                "email",
-                "meineEmailAdresseAtBlahDe",
-                "meine.email.adresse@blahde",
-                "meine.email.adresse@x.de",
-                "meine&email@blah.de",
-                "meine%email@blah.de",
-                "meine!email@blah.de",
-                `meine"email@blah.de`,
-                "meine§email@blah.de",
-                "meine$email@blah.de",
-                "meine/email@blah.de",
-                "meine(email@blah.de",
-                "meine)email@blah.de",
-                "meine?email@blah.de",
-                `meine'email@blah.de`,
-                "meine=email@blah.de",
-                "meine`email@blah.de"
+        [
+            "email",
+            "meineEmailAdresseAtBlahDe",
+            "meine.email.adresse@blahde",
+            "meine.email.adresse@x.de",
+            "meine&email@blah.de",
+            "meine%email@blah.de",
+            "meine!email@blah.de",
+            `meine"email@blah.de`,
+            "meine§email@blah.de",
+            "meine$email@blah.de",
+            "meine/email@blah.de",
+            "meine(email@blah.de",
+            "meine)email@blah.de",
+            "meine?email@blah.de",
+            `meine'email@blah.de`,
+            "meine=email@blah.de",
+            "meine`email@blah.de"
 
-            ].forEach(e => {
-                expect(handleEmail(e)).toBe(false);
+        ].forEach((email) => {
+            it(`should be false for ${email}`, () => {
+               
+                    expect(handleEmail(email)).toBe(false);
+    
             })
         })
+        
 
         it('should be true', () => {
             expect(handleEmail("meine.email.adresse@blah.de")).toBe(true);
         })
         it('should be true with .com', () => {
-            expect(handleEmail("meine.em&ail.adresse@blah.com")).toBe(true);
+            expect(handleEmail("meine-email-adresse@blah.com")).toBe(true);
+        })
+        it('should be true with .com without any signs', () => {
+            expect(handleEmail("meineemailadresse@blah.com")).toBe(true);
         })
     })
 })
