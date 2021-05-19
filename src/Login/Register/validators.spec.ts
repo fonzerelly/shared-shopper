@@ -39,5 +39,8 @@ describe('Validators', () => {
         it('should be true with .com without any signs', () => {
             expect(handleEmail("meineemailadresse@blah.com")).toBe(true);
         })
+        it('should be true with - after @ ', () => {
+            expect(handleEmail("meineemailadresse@blah-blah.com")).toBe(true);
+        })
     })
 })
