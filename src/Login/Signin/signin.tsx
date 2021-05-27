@@ -15,7 +15,7 @@ export function SignIn() {
 
                 <InputComp label="E-Mail" place="E-Mail" type="email" setter={() => { }} />
                 <InputComp label="Passwort" place="Passwort" type="password" setter={() => { }} />
-                <button className="SecondaryButton" onClick={() => {LoginToken().then(console.log)}}>Login</button>
+                <Link to="/list"><button className="SecondaryButton" onClick={() => {LoginToken().then(console.log)}}>Login</button></Link>
                 <ORSection />
                 <Link to="register"><PrimaryButton name="Register" /></Link>
             </div>
