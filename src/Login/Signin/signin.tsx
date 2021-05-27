@@ -6,13 +6,13 @@ import InputComp from '../../Components/Input/Input';
 import {LoginToken} from '../backend'
 import '../../Components/Buttons/button.css'
 
-
 export function SignIn() {
     
     return (
         <div className="signinbody">
             <Logosvg />
             <div className="form">
+
                 <InputComp label="E-Mail" place="E-Mail" type="email" setter={() => { }} />
                 <InputComp label="Passwort" place="Passwort" type="password" setter={() => { }} />
                 <button className="SecondaryButton" onClick={() => {LoginToken().then(console.log)}}>Login</button>
