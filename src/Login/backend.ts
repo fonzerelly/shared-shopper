@@ -2,7 +2,7 @@ import { urlCheck } from "../secret/secret"
 
 export function aquireToken(email: string, password: string) {
     const secret = urlCheck();
-    const token = fetch("http://localhost:3000/login", {
+    return fetch("http://localhost:3000/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -16,5 +16,4 @@ export function aquireToken(email: string, password: string) {
         .then((response) => response.json())
         .then((data) => data.accessToken)
 
-        return token
 }
