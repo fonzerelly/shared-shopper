@@ -1,19 +1,20 @@
-import { secretCheck } from "../secret/secret"
+import { urlCheck } from "../secret/secret"
 
-export function aquireToken() {
-    const search = window.location.search
-    const secret = secretCheck(search);
-        return fetch("http://localhost:3000/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "x-shared-shopper-secret":`${ secret }`
-            },
-            body: JSON.stringify({
-                "email": "test123@gmx.de",
-                "password": "12231"
-            })
+export function aquireToken(email: string, password: string) {
+    const secret = urlCheck();
+    const token = fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`
+        },
+        body: JSON.stringify({
+            "email": `${email}`,
+            "password": `${password}`
         })
-            .then((response) => response.json())
-            .then((data) => data.accessToken)
+    })
+        .then((response) => response.json())
+        .then((data) => data.accessToken)
+
+        return token
 }
