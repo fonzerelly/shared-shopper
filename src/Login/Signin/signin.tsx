@@ -3,7 +3,7 @@ import Logosvg from '../../Components/Logo/Logo'
 import { PrimaryButton } from '../../Components/Buttons/Button'
 import { Link } from 'react-router-dom';
 import InputComp from '../../Components/Input/Input';
-import {LoginToken} from '../backend'
+import {aquireToken} from '../backend'
 import '../../Components/Buttons/button.css'
 
 export function SignIn() {
@@ -15,7 +15,7 @@ export function SignIn() {
 
                 <InputComp label="E-Mail" place="E-Mail" type="email" setter={() => { }} />
                 <InputComp label="Passwort" place="Passwort" type="password" setter={() => { }} />
-                <Link to="/list"><button className="SecondaryButton" onClick={() => {LoginToken().then(console.log)}}>Login</button></Link>
+                <Link to="/list"><button className="SecondaryButton" onClick={() => {aquireToken().then(console.log)}}>Login</button></Link>
                 <ORSection />
                 <Link to="register"><PrimaryButton name="Register" /></Link>
             </div>

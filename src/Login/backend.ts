@@ -1,6 +1,6 @@
 import { secretCheck } from "../secret/secret"
 
-export function LoginToken() {
+export function aquireToken() {
     const search = window.location.search
     const secret = secretCheck(search);
         return fetch("http://localhost:3000/login", {
