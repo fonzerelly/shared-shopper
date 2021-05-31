@@ -14,7 +14,7 @@ export function SignIn() {
 
     const callToken = () => {
         aquireToken(email, password)
-            .then(console.log)
+            //.then(console.log)
        }
     
     return (
