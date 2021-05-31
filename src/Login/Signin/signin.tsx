@@ -12,12 +12,10 @@ export function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-
     const callToken = () => {
         aquireToken(email, password)
             .then(console.log)
        }
-
     
     return (
         <div className="signinbody">
