@@ -1,7 +1,7 @@
 import { urlCheck } from "../secret/secret"
 
-export function aquireToken(email: string, password: string) {
-    // const secret = urlCheck();
+export async function aquireToken(email: string, password: string) {
+     const secret = urlCheck();
     // return fetch("http://localhost:3000/login", {
     //     method: "POST",
     //     headers: {
@@ -15,4 +15,16 @@ export function aquireToken(email: string, password: string) {
     // })
     //     .then((response) => response.json())
     //     .then((data) => data.accessToken)
-}
+
+    return await fetch('http://localhost:3000/login', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",    
+        },
+        body: JSON.stringify({
+            "email": "test@mail.de"
+        })
+    })
+        .then((response) => response.json())
+        .then((data) => data.accessToken)
+}s
