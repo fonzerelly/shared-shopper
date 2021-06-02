@@ -15,14 +15,17 @@ describe("aquireToken", () => {
             "Content-Type": "application/json",
           },
         }) 
-        .post('/login',  'email=test@mail.de')
-        .reply(200, { token: [{ token: '1111111' }] }, 
+        .post('/login', {email: `test@email.de`, password: 'test'})
+        .reply(200, { token: '1111111' }, 
         { 
-          'Access-Control-Allow-Origin': '*', 
+          'Access-Control-Allow-Origin': '*',
+          "x-shared-shopper-secret": `${secret}`
         });
 
       const result =  await aquireToken("test@email.de", "test")
       console.log(result + "************************")
+
+      expect(result).toEqual('1111111')
     
     })
 })
