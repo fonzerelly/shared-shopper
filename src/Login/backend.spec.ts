@@ -7,8 +7,7 @@ describe("aquireToken", () => {
     //     .reply(200, { token: "1111111" })
 
    const secret = "fake-secret"
-
-
+   
     it("should return accessToken", async () => {
         const scope = nock('http://localhost:3000', {
           reqheaders: {
@@ -16,15 +15,13 @@ describe("aquireToken", () => {
           },
         }) 
         .post('/login', {email: `test@email.de`, password: 'test'})
-        .reply(200, { token: '1111111' }, 
+        .reply(200, { accessToken: '1111111' }, 
         { 
           'Access-Control-Allow-Origin': '*',
           "x-shared-shopper-secret": `${secret}`
         });
 
       const result =  await aquireToken("test@email.de", "test")
-      console.log(result + "************************")
-
       expect(result).toEqual('1111111')
     
     })

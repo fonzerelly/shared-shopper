@@ -29,5 +29,5 @@ export async function aquireToken(email: string, password: string) {
     })
         .then((response) => response.json())
         .then((data) => data.accessToken)
-        .then(console.log)
+        
 }
