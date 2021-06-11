@@ -1,4 +1,5 @@
 import { urlCheck } from "../secret/secret"
+import {session} from "./session"
 
 export function aquireToken(email: string, password: string) {
     const secret = urlCheck();
@@ -6,7 +7,7 @@ export function aquireToken(email: string, password: string) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "x-shared-shopper-secret": `${secret}`
+            "x-shared-shopper-secret": `${secret}`,
         },
         body: JSON.stringify({
             "email": `${email}`,
@@ -16,4 +17,18 @@ export function aquireToken(email: string, password: string) {
         .then((response) => response.json())
         .then((data) => data.accessToken)
 
+}
+
+export async function getList() {
+    const secret = urlCheck();
+    return await fetch(`http://localhost:3000/overview`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`,
+            "authorization": `${session.token}`
+        }
+    })
+        .then((response) => response.json())
+        .then((data) => data.shoppingLists)
 }
