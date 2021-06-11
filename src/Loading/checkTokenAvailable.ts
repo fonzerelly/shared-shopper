@@ -6,6 +6,6 @@ export function CheckTokenAvailable() {
         history.push('/signin')
     }
     else {
-        history.push('/list')
+        history.push('./list')
     }
 }

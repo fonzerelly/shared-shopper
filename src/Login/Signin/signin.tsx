@@ -1,5 +1,5 @@
 import './signin.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Logosvg from '../../Components/Logo/Logo'
 import { PrimaryButton } from '../../Components/Buttons/Button'
 import { Link, useHistory } from 'react-router-dom';
@@ -10,12 +10,20 @@ import { session } from '../session';
 
 export function SignIn() {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState("")
+    const [readyToLoad, setReadyToLoad] = useState(false)
     const history = useHistory()
-    const callToken = async () => {
-        session.token = await aquireToken(email, password)
-        history.push('/')
+    useEffect(() => {
+        if(readyToLoad === true){
+            aquireToken(email, password).then((token) => {
+                session.token = token
+                console.log(session.token)
+            })
         }
+    }, [readyToLoad])
+    const callToken = async () => {
+        setReadyToLoad(true)
+    }
     return (
         <div className="signinbody">
             <Logosvg />
