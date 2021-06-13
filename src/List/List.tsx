@@ -6,6 +6,7 @@ import { ChangeEventHandler, useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
 import { CheckTokenAvailable } from '../Loading/checkTokenAvailable';
+import { deleteList } from './deleteList';
 
 export default function List() {
     var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
@@ -43,5 +44,5 @@ export default function List() {
 
 
 function ListContainer(props: { name: string }) {
-    return <div className="ListContainer"><p>{props.name}</p> <button className="DelButton"><TrashIcon /></button> </div>
+    return <div className="ListContainer"><p>{props.name}</p> <button className="DelButton" onClick={() => {deleteList(0)}}><TrashIcon /></button> </div>
 }
