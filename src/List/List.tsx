@@ -5,7 +5,6 @@ import './List.css';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
-import { CheckTokenAvailable } from '../Loading/checkTokenAvailable';
 import { deleteList } from './deleteList';
 import { initialList, fetchedList } from '../Login/session';
 
