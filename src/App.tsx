@@ -14,7 +14,7 @@ import {Loading} from './Loading/Loading'
 function App() {
   /* comment to trigger rerun of activation */
   return (
-    <Router>
+        <Router>
         <Switch>
           <Route path="/signin">
             <SignIn />
@@ -33,8 +33,9 @@ function App() {
           </Route>
         </Switch>
     </Router>
-  );
+    );
 }
+
 
 
 

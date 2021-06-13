@@ -17,6 +17,7 @@ export function SignIn() {
         if(readyToLoad === true){
             aquireToken(email, password).then((token) => {
                 session.token = token
+                console.log(session.token)
                 history.push("/list")
             })
         }

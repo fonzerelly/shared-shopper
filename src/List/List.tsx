@@ -5,6 +5,8 @@ import './List.css';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
+import { CheckTokenAvailable } from '../Loading/checkTokenAvailable';
+import { deleteList } from './deleteList';
 import { initialList, fetchedList } from '../Login/session';
 
 export default function List() {
@@ -49,6 +51,7 @@ export default function List() {
 }
 
 
-function ListContainer(props: { name?: string }) {
-    return <div className="ListContainer" onClick={() => { }}><p>{props.name}</p> <button className="DelButton"><TrashIcon /></button> </div>
+
+function ListContainer(props: { name: string }) {
+    return <div className="ListContainer"><p>{props.name}</p> <button className="DelButton" onClick={() => {deleteList(0)}}><TrashIcon /></button> </div>
 }
