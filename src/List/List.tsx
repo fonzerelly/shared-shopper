@@ -5,17 +5,13 @@ import './List.css';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
-import { getList } from '../Login/backend'
+import { initialList, fetchedList } from '../Login/session';
 
 export default function List() {
-    const [listFetch, setListFetch] = useState([{
-        id: 0,
-        name: '',
-        content: []
-    }]);
+    const [listFetch, setListFetch] = useState(initialList());
 
     useEffect(() => {
-        getList().then((data) =>
+        fetchedList().then((data) =>
             setListFetch(data))
     }, [])
 
@@ -45,7 +41,7 @@ export default function List() {
             </div>
 
             {listFetch.map((list, id) => {
-                return (<ListContainer key={id} name={list.name}></ListContainer>)
+                return (<Link to="/list/shoppinglist/bearbeiten" key={id}><ListContainer name={list.name}></ListContainer></Link>)
 
             })}
         </div>
