@@ -5,7 +5,7 @@ import './List.css';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
-import { deleteList } from './deleteList';
+import { deleteList } from '../Login/backend';
 import { initialList, fetchedList } from '../Login/session';
 
 export default function List() {
@@ -42,7 +42,7 @@ export default function List() {
             </div>
 
             {listFetch.map((list, id) => {
-                return (<Link to="/list/shoppinglist/bearbeiten" key={id}><ListContainer name={list.name}></ListContainer></Link>)
+                return (<Link to="/list/shoppinglist/bearbeiten" key={id}><ListContainer name={list.name} id={list.id}></ListContainer></Link>)
 
             })}
         </div>
@@ -51,6 +51,6 @@ export default function List() {
 
 
 
-function ListContainer(props: { name: string }) {
-    return <div className="ListContainer"><p>{props.name}</p> <button className="DelButton" onClick={() => {deleteList(0)}}><TrashIcon /></button> </div>
+function ListContainer(props: { name: string, id: number }) {
+    return <div className="ListContainer"><p>{props.name}</p> <button className="DelButton" onClick={() => {deleteList(props.id)}}><TrashIcon /></button> </div>
 }
