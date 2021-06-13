@@ -2,13 +2,22 @@ import {
     Link
 } from 'react-router-dom';
 import './List.css';
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
 import { CheckTokenAvailable } from '../Loading/checkTokenAvailable';
 import { deleteList } from './deleteList';
+import { initialList, fetchedList } from '../Login/session';
 
 export default function List() {
+    const [listFetch, setListFetch] = useState(initialList());
+
+    useEffect(() => {
+        fetchedList().then((data) =>
+            setListFetch(data))
+    }, [])
+
+
     var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
     let date = dateformatter.format(new Date())
     const [listName, setListName] = useState("");
@@ -20,11 +29,9 @@ export default function List() {
         if (newListName.length > 0) {
             console.log(newListName)
         }
-
         else {
             console.log(date)
         }
-
     }
     return <div>
         <Header titleName="Einkaufszettel" path="/signin"></Header>
@@ -34,13 +41,15 @@ export default function List() {
                 <input type="text" name="name" className="ListInput" placeholder={"Einkaufszettel vom " + date} onChange={onChangeListListener}></input>
                 <button className="ListButton" onClick={onClickList}>+</button>
             </div>
-            <Link to="/list/shoppinglist/bearbeiten"><ListContainer name={date} /></Link>
-            <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Wochenende" /></Link>
-            <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Party" /></Link>
-            <Link to="/list/shoppinglist/bearbeiten"><ListContainer name="Geburtstagsessen" /></Link>
+
+            {listFetch.map((list, id) => {
+                return (<Link to="/list/shoppinglist/bearbeiten" key={id}><ListContainer name={list.name}></ListContainer></Link>)
+
+            })}
         </div>
     </div>
 }
+
 
 
 function ListContainer(props: { name: string }) {
