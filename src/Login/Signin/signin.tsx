@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Logosvg from '../../Components/Logo/Logo'
 import { PrimaryButton } from '../../Components/Buttons/Button'
 import { Link, useHistory } from 'react-router-dom';
-import InputComp from '../../Components/Input/Input';
+import {InputComp} from '../../Components/Input/Input';
 import {aquireToken} from '../backend'
 import '../../Components/Buttons/button.css'
 import { session } from '../session';

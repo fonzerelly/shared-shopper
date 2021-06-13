@@ -5,8 +5,9 @@ import './List.css';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
-import { deleteList } from '../Login/backend';
+import { deleteList, addList } from '../Login/backend';
 import { initialList, fetchedList } from '../Login/session';
+import {ListInput} from '../Components/Input/Input'
 
 export default function List() {
     const [listFetch, setListFetch] = useState(initialList());
@@ -17,33 +18,39 @@ export default function List() {
     }, [])
 
 
-    var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
-    let date = dateformatter.format(new Date())
+    //var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
+    //let date = dateformatter.format(new Date())
     const [listName, setListName] = useState("");
-    const onChangeListListener: ChangeEventHandler<HTMLInputElement> = (event) => {
-        setListName(event.target.value)
-    }
+    //const onChangeListListener: ChangeEventHandler<HTMLInputElement> = (event) => {
+      //  setListName(event.target.value)
+    //}
     function onClickList() {
         let newListName = listName
-        if (newListName.length > 0) {
-            console.log(newListName)
-        }
-        else {
-            console.log(date)
-        }
+
+        console.log(listName)
+        addList(listName)
+        fetchedList().then((data) =>
+            setListFetch(data))
+
+        // if (newListName.length > 0) {
+        //    console.log(newListName)
+            
+        //}
+        //else {
+           // console.log(date)
+        //}
     }
     return <div>
         <Header titleName="Einkaufszettel" path="/signin"></Header>
         <div className="listBody">
             <h1>Einkaufszettel</h1>
             <div className="Add">
-                <input type="text" name="name" className="ListInput" placeholder={"Einkaufszettel vom " + date} onChange={onChangeListListener}></input>
-                <button className="ListButton" onClick={onClickList}>+</button>
+                <ListInput place= "Neue Einkaufsliste" setter={(txt: string) => {setListName(txt)}} />
+                <button className="ListButton" onClick={() => onClickList()}>+</button>
             </div>
 
             {listFetch.map((list, id) => {
                 return (<Link to="/list/shoppinglist/bearbeiten" key={id}><ListContainer name={list.name} id={list.id}></ListContainer></Link>)
-
             })}
         </div>
     </div>

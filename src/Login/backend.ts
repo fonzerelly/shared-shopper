@@ -44,3 +44,20 @@ export async function deleteList(id: number) {
         }
     })
 }
+
+export async function addList(name: string) {
+    const secret = urlCheck();
+    return await fetch(`http://localhost:3000/overview/add`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`,
+            "authorization": `${session.token}`,
+        },
+        body: JSON.stringify({
+           "name": `${name}`
+        })
+    })
+
+    
+}

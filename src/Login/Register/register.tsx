@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './register.css'
-import InputComp from '../../Components/Input/Input'
+import {InputComp} from '../../Components/Input/Input'
 import Logosvg from '../../Components/Logo/Logo'
 import { PrimaryButton } from '../../Components/Buttons/Button'
 import {
