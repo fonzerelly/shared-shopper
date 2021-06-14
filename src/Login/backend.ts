@@ -57,7 +57,49 @@ export async function addList(name: string) {
         body: JSON.stringify({
            "name": `${name}`
         })
-    })
+    })  
+}
 
-    
+export async function addContent(name: string, count: string, id: string) {
+    const secret = urlCheck();
+    return await fetch(`http://localhost:3000/shoppinglist/${id}/add`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`,
+            "authorization": `${session.token}`,
+        },
+        body: JSON.stringify({
+           "name": `${name}`,
+           "count": `${count}`
+        })
+    })
+}
+
+export async function deleteContent(id: number, entryId: number) {
+    const secret = urlCheck();
+    return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`,
+            "authorization": `${session.token}`,
+        }
+    })
+}
+
+export async function editList(name: string, count: string, id: number, entryId: number) {
+    const secret = urlCheck();
+    return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`,
+            "authorization": `${session.token}`,
+        },
+        body: JSON.stringify({
+            "name": `${name}`,
+            "count": `${count}`
+        })
+    })  
 }
