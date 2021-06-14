@@ -21,7 +21,7 @@ export function SignIn() {
                 history.push("/list")
             })
         }
-    }, [readyToLoad])
+    }, [readyToLoad, email, history, password])
     const callToken = async () => {
         setReadyToLoad(true)
     }
