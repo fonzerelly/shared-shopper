@@ -115,3 +115,18 @@ export async function editCount( count: string, id: string | null, entryId: numb
         })
     })  
 }
+
+export async function editMark( marked: boolean, id: string | null, entryId: number) {
+    const secret = urlCheck();
+    return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/mark`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`,
+            "authorization": `${session.token}`,
+        },
+        body: JSON.stringify({
+            "marked": !marked
+        })
+    })  
+}
