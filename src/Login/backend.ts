@@ -33,6 +33,20 @@ export async function getList() {
         .then((data) => data.shoppingLists)
 }
 
+export async function getContent() {
+    const secret = urlCheck();
+    return await fetch(`http://localhost:3000/overview`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`,
+            "authorization": `${session.token}`
+        }
+    })
+        .then((response) => response.json())
+        .then((data) => data.shoppingLists)
+}
+
 export async function deleteList(id: number) {
     const secret = urlCheck();
     return await fetch(`http://localhost:3000/overview/${id}`, {
