@@ -5,15 +5,12 @@ import './List.css';
 import { ChangeEventHandler, useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
-import { CheckTokenAvailable } from '../Loading/checkTokenAvailable';
 
 export default function List() {
     var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
     let date = dateformatter.format(new Date())
     const [listName, setListName] = useState("");
-    const onChangeListListener: ChangeEventHandler<HTMLInputElement> = (event) => {
-        setListName(event.target.value)
-    }
+
     function onClickList() {
         let newListName = listName
         if (newListName.length > 0) {

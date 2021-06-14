@@ -10,29 +10,32 @@ import './App.css';
 import {SignIn} from './Login/Signin/signin' 
 import {Register} from './Login/Register/register'
 import {Loading} from './Loading/Loading'
+import { ProvideAuth, PrivateRoute} from './Login/auth';
 
 function App() {
   /* comment to trigger rerun of activation */
   return (
-    <Router>
-        <Switch>
-          <Route path="/signin">
-            <SignIn />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/list/shoppinglist">
-            <ShoppingList/>
-          </Route>
-          <Route path="/list">
-            <List />
-          </Route>
-          <Route path="/">
-            <Loading />
-          </Route>
-        </Switch>
-    </Router>
+    <ProvideAuth>
+      <Router>
+          <Switch>
+            <Route path="/signin">
+              <SignIn />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <PrivateRoute path="/list/shoppinglist">
+              <ShoppingList/>
+            </PrivateRoute>
+            <PrivateRoute path="/list">
+              <List />
+            </PrivateRoute>
+            <Route path="/">
+              <Loading />
+            </Route>
+          </Switch>
+      </Router>
+    </ProvideAuth>
   );
 }
 

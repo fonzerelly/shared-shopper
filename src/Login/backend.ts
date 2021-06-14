@@ -1,6 +1,6 @@
 import { urlCheck } from "../secret/secret"
 
-export function aquireToken(email: string, password: string) {
+export function aquireToken(email: string, password: string):Promise<string> {
     const secret = urlCheck();
     return fetch("http://localhost:3000/login", {
         method: "POST",
