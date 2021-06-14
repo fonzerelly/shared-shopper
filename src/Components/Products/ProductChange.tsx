@@ -5,8 +5,9 @@ import { ReactComponent as UpIcon } from '../../img/up.svg'
 import { ReactComponent as DownIcon } from '../../img/down.svg'
 import { ReactComponent as TrashIcon } from '../../img/trash.svg'
 import React, { useState } from 'react';
+import { deleteContent } from '../../Login/backend'
 
-export function ProductChange(props: { name: string, amount: string }) {
+export function ProductChange(props: { name: string, amount: number, delete: Function }) {
     enum ProductStatus {
         STATIC = 1,
         EDITABLE
@@ -18,8 +19,8 @@ export function ProductChange(props: { name: string, amount: string }) {
         return <div className="Product">
             <div className="text">
                 <PencilIcon2 onClick={() => (setComponentMode(ProductStatus.STATIC))} className={"pencil--" + String(componentMode)} />
-                <TrashIcon className="trash" />
-                <input className="product--count" type="number" pattern="[0-9]*" placeholder={props.amount}></input>
+                <TrashIcon className="trash" onClick={()=> props.delete()} />
+                <input className="product--count" type="number" pattern="[0-9]*" placeholder={JSON.stringify(props.amount)}></input>
                 <input className="product--label" placeholder={props.name}></input>
             </div>
         </div>
@@ -37,14 +38,14 @@ export function ProductChange(props: { name: string, amount: string }) {
     </div>
 }
 
-export function ProductInit(props: { name: string, amount: string }) {
+export function ProductInit(props: { name: string, amount: string, setter: Function, setterCount: Function, fetch: Function }) {
     return <div className="Product">
         <div className="text">
-            <input className="productInit--count" type="number" pattern="[0-9]*" placeholder="Anzahl"></input>
-            <input className="productInit--label" placeholder="Produkt"></input>
+            <input className="productInit--count" type="number" pattern="[0-9]*" placeholder="Anzahl" onChange={(e) => { props.setterCount(e.target.value)}}></input>
+            <input className="productInit--label" placeholder="Produkt" onChange={(e) => { props.setter(e.target.value)}}></input>
         </div>
         <div className="Up_Down">
-            <button className="productInit--button">+</button>
+            <button className="productInit--button" onClick={() => props.fetch()}>+</button>
         </div>
     </div>
 }

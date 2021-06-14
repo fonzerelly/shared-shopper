@@ -33,7 +33,7 @@ export async function getList() {
         .then((data) => data.shoppingLists)
 }
 
-export async function getContent(id: string) {
+export async function getContent(id: string | null) {
     const secret = urlCheck();
     return await fetch(`http://localhost:3000/shoppinglist/${id}`, {
         method: "GET",
@@ -73,7 +73,7 @@ export async function addList(name: string) {
     })  
 }
 
-export async function addContent(name: string, count: string, id: string) {
+export async function addContent(name: string, count: number, id: string | null) {
     const secret = urlCheck();
     return await fetch(`http://localhost:3000/shoppinglist/${id}/add`, {
         method: "POST",
@@ -83,13 +83,13 @@ export async function addContent(name: string, count: string, id: string) {
             "authorization": `${session.token}`,
         },
         body: JSON.stringify({
-           "name": `${name}`,
-           "count": `${count}`
+           "count": `${count}`,
+           "label": `${name}`,
         })
     })
 }
 
-export async function deleteContent(id: number, entryId: number) {
+export async function deleteContent(id: string | null, entryId: number) {
     const secret = urlCheck();
     return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}`, {
         method: "DELETE",
@@ -111,8 +111,8 @@ export async function editList(name: string, count: string, id: number, entryId:
             "authorization": `${session.token}`,
         },
         body: JSON.stringify({
-            "name": `${name}`,
-            "count": `${count}`
+            "count": `${count}`,
+            "label": `${name}`
         })
     })  
 }

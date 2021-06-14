@@ -32,11 +32,8 @@ export async function fetchedList() {
 }
 
 export function checkListId() {
-    const path = window.location.pathname
-    var r = /\d+/g;
-    var pathMatch = path.match(r)
-    console.log(pathMatch)
-    return 0
-    //console.log(pathMatch[0])
-        
+    const path = window.location.search
+    const urlParams = new URLSearchParams(path)
+    const pathUrl = urlParams.get('id')
+    return pathUrl      
 }

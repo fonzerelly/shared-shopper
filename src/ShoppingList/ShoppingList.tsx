@@ -8,7 +8,7 @@ import '../List/List.css';
 import { ProductChange, ProductInit } from '../Components/Products/ProductChange'
 import { ProductBuy } from '../Components/Products/ProductBuy'
 import { Header } from '../Header/header'
-import { getContent } from '../Login/backend'
+import { addContent, deleteContent, getContent } from '../Login/backend'
 import { initialList, initialContent, fetchedList, checkListId } from '../Login/session';
 
 
@@ -19,36 +19,51 @@ export default function ShoppingList() {
     }
 
     const [toggleState, setToggleState] = useState(ShoppingListMode.EDIT_MODE);
-    const [listFetch, setListFetch] = useState(initialContent());
+    const [listContent, setListContent] = useState(initialContent());
+
+    const [productName, setProductName] = useState("")
+    const [productCount, setProductCount] = useState(0)
+    const currentListId = checkListId()
 
     useEffect(() => {
-        const currentListId = checkListId()
-        console.log(JSON.stringify(currentListId))
-        getContent("0")
-            .then((data) => setListFetch(data))
+        getContent(currentListId)
+            .then((data) => setListContent(data))
+            
     }, [])
+
+    function onClickFetch() {        
+        addContent(productName, productCount, currentListId)
+        getContent(currentListId)
+            .then((data) => setListContent(data))
+    }
+
+    function onClickDelete(id: number) {        
+        deleteContent(currentListId,id)
+        getContent(currentListId)
+            .then((data) => setListContent(data))
+    }
 
     return <div>
         <Header titleName="Einkaufszettel" path="/list"></Header>
         <div className="tab">
-            <Link to="/list/shoppinglist/bearbeiten/0"><button className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => setToggleState(ShoppingListMode.EDIT_MODE)}>Bearbeiten</button></Link>
-            <Link to="/list/shoppinglist/kaufen/0"><button className={toggleState === 2 ? "tabs active-tabs" : "tabs"} onClick={() => setToggleState(ShoppingListMode.BUY_MODE)}>Kaufen</button></Link>
+            <Link to="/list/shoppinglist/bearbeiten"><button className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => setToggleState(ShoppingListMode.EDIT_MODE)}>Bearbeiten</button></Link>
+            <Link to="/list/shoppinglist/kaufen"><button className={toggleState === 2 ? "tabs active-tabs" : "tabs"} onClick={() => setToggleState(ShoppingListMode.BUY_MODE)}>Kaufen</button></Link>
         </div>
         <Switch>
-            <Route path="/list/shoppinglist/bearbeiten/0">
+            <Route path="/list/shoppinglist/bearbeiten">
                 <div className="content-tabs2">
                     <div className="content-tabs">
 
-                        <ProductInit name="" amount="" />
+                        <ProductInit name="" amount="" setter={(txt: string)=>{setProductName(txt)}} setterCount={(num: number)=>{setProductCount(num)}} fetch= {() => onClickFetch()}/>
 
-                        {listFetch.map((list, id) => {
-                            return (<ProductChange key={id} name={list.label} amount={JSON.stringify(list.count)}></ProductChange>)
+                        {listContent.map((list, id) => {
+                            return (<ProductChange key={id} name={list.label} amount={list.count} delete={()=> onClickDelete(list.id)}></ProductChange>)
 
                         })}
                     </div>
                 </div>
             </Route>
-            <Route path="/list/shoppinglist/kaufen/0">
+            <Route path="/list/shoppinglist/kaufen">
                 <h1>Kaufen</h1>
                 <ProductBuy name="Kuchen" amount="5" state="unchecked" />
                 <ProductBuy name="Eier" amount="10" state="unchecked" />
