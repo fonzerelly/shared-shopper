@@ -50,7 +50,7 @@ export default function List() {
             </div>
 
             {listFetch.map((list, id) => {
-                return (<Link to="/list/shoppinglist/bearbeiten" key={id}><ListContainer name={list.name} id={list.id}></ListContainer></Link>)
+                return (<Link to={`/list/shoppinglist/bearbeiten/${list.id}`} key={id}><ListContainer name={list.name} id={list.id}></ListContainer></Link>)
             })}
         </div>
     </div>
