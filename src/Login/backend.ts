@@ -101,9 +101,9 @@ export async function deleteContent(id: string | null, entryId: number) {
     })
 }
 
-export async function editList(name: string, count: string, id: number, entryId: number) {
+export async function editCount( count: string, id: string | null, entryId: number) {
     const secret = urlCheck();
-    return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}`, {
+    return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/count`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -111,8 +111,7 @@ export async function editList(name: string, count: string, id: number, entryId:
             "authorization": `${session.token}`,
         },
         body: JSON.stringify({
-            "count": `${count}`,
-            "label": `${name}`
+            "newCount": `${count}`
         })
     })  
 }

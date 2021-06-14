@@ -8,7 +8,7 @@ import '../List/List.css';
 import { ProductChange, ProductInit } from '../Components/Products/ProductChange'
 import { ProductBuy } from '../Components/Products/ProductBuy'
 import { Header } from '../Header/header'
-import { addContent, deleteContent, getContent } from '../Login/backend'
+import { addContent, deleteContent, editCount, getContent } from '../Login/backend'
 import { initialList, initialContent, fetchedList, checkListId } from '../Login/session';
 
 
@@ -57,7 +57,7 @@ export default function ShoppingList() {
                         <ProductInit name="" amount="" setter={(txt: string)=>{setProductName(txt)}} setterCount={(num: number)=>{setProductCount(num)}} fetch= {() => onClickFetch()}/>
 
                         {listContent.map((list, id) => {
-                            return (<ProductChange key={id} name={list.label} amount={list.count} delete={()=> onClickDelete(list.id)}></ProductChange>)
+                            return (<ProductChange key={id} name={list.label} amount={list.count} productId={list.id} listId={currentListId} delete={()=> onClickDelete(list.id)} setter={setListContent} ></ProductChange>)
 
                         })}
                     </div>

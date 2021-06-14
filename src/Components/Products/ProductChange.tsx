@@ -5,22 +5,30 @@ import { ReactComponent as UpIcon } from '../../img/up.svg'
 import { ReactComponent as DownIcon } from '../../img/down.svg'
 import { ReactComponent as TrashIcon } from '../../img/trash.svg'
 import React, { useState } from 'react';
-import { deleteContent } from '../../Login/backend'
+import { editCount, getContent } from '../../Login/backend'
 
-export function ProductChange(props: { name: string, amount: number, delete: Function }) {
+export function ProductChange(props: { name: string, amount: number, delete: Function, productId: number, listId: string | null, setter: Function }) {
     enum ProductStatus {
         STATIC = 1,
         EDITABLE
     }
 
     const [componentMode, setComponentMode] = useState(ProductStatus.STATIC);
+    const [currentAmount, setCurrentAmount] = useState("")
+
+    function onClickEdit() {
+        setComponentMode(ProductStatus.STATIC)
+        editCount(currentAmount, props.listId, props.productId)
+        getContent(props.listId)
+            .then((data) => props.setter(data))
+    }
 
     if (componentMode === ProductStatus.EDITABLE) {
         return <div className="Product">
             <div className="text">
-                <PencilIcon2 onClick={() => (setComponentMode(ProductStatus.STATIC))} className={"pencil--" + String(componentMode)} />
+                <PencilIcon2 onClick={()=>onClickEdit()} className={"pencil--" + String(componentMode)} />
                 <TrashIcon className="trash" onClick={()=> props.delete()} />
-                <input className="product--count" type="number" pattern="[0-9]*" placeholder={JSON.stringify(props.amount)}></input>
+                <input className="product--count" type="number" pattern="[0-9]*" placeholder={JSON.stringify(props.amount)} onChange={(e) => { setCurrentAmount(e.target.value)}}></input>
                 <input className="product--label" placeholder={props.name}></input>
             </div>
         </div>
