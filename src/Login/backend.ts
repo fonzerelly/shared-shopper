@@ -33,9 +33,9 @@ export async function getList() {
         .then((data) => data.shoppingLists)
 }
 
-export async function getContent() {
+export async function getContent(id: string) {
     const secret = urlCheck();
-    return await fetch(`http://localhost:3000/overview`, {
+    return await fetch(`http://localhost:3000/shoppinglist/${id}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -43,8 +43,7 @@ export async function getContent() {
             "authorization": `${session.token}`
         }
     })
-        .then((response) => response.json())
-        .then((data) => data.shoppingLists)
+    .then((response) => response.json())
 }
 
 export async function deleteList(id: number) {
