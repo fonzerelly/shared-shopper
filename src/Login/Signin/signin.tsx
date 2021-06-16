@@ -17,7 +17,9 @@ export function SignIn() {
         if (readyToLoad === true) {
             aquireToken(email, password).then((token) => {
                 session.token = token;
-                history.push("/list")
+                history.push("/list") 
+                //  Variable (URL) anlegen, weiterleitung 
+                //  auf 404 Seite wenn Seite nicht verfügbar
             })
         }
     }, [readyToLoad])
