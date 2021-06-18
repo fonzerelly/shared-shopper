@@ -115,3 +115,28 @@ export async function editCount( count: string, id: string | null, entryId: numb
         })
     })  
 }
+
+export async function changePositionUp( id: string | null, entryId: number) {
+    const secret = urlCheck();
+    return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/moveUp`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`,
+            "authorization": `${session.token}`,
+        }
+        
+    })  
+}
+
+export async function changePositionDown( id: string | null, entryId: number) {
+    const secret = urlCheck();
+    return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/moveDown`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`,
+            "authorization": `${session.token}`,
+        }
+    })  
+}
