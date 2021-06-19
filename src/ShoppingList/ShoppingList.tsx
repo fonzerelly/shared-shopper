@@ -81,8 +81,6 @@ export default function ShoppingList() {
                     }
                     return content;
                 })}
-                {/* <ProductBuy name="Kuchen" amount="5" state="unchecked" />
-                <ProductBuy name="Eier" amount="10" state="unchecked" /> */}
                 <h1>Im Einkaufswagen</h1>
                 {listContent.map((list, id) => {
                     let content

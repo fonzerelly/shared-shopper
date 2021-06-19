@@ -44,8 +44,6 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
             </div>
         </div>
     }
-    
-  
 
     return <div className="Product">
         <div className="text">

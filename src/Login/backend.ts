@@ -21,7 +21,6 @@ export function aquireToken(email: string, password: string) {
 
 }
 
-
 export async function getList() {   
     return await fetch(`http://localhost:3000/overview`, {
         method: "GET",
@@ -111,7 +110,6 @@ export async function editCount(count: string, id: string | null, entryId: numbe
         })
     })
 }
-
 
 export async function editMark(marked: boolean, id: string | null, entryId: number) {
     return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/mark`, {
