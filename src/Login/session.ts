@@ -3,6 +3,8 @@ import { getList } from '../Login/backend'
 
 export const session: { token?: string } = {}
 
+
+
 export function initialList() {
     return [{
         id: 0,

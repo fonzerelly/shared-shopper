@@ -6,8 +6,9 @@ import { ReactComponent as DownIcon } from '../../img/down.svg'
 import { ReactComponent as TrashIcon } from '../../img/trash.svg'
 import React, { useState } from 'react';
 import { editCount, getContent } from '../../Login/backend'
+import { changePositionUp, changePositionDown} from '../../Login/backend'
 
-export function ProductChange(props: { name: string, amount: number, delete: Function, productId: number, listId: string | null, setter: Function }) {
+export function ProductChange(props: { name: string, amount: number, delete: Function, productId: number, listId: string | null, setter: Function, onMoveUp: Function }) {
     enum ProductStatus {
         STATIC = 1,
         EDITABLE
@@ -23,6 +24,18 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
             .then((data) => props.setter(data))
     }
 
+    function onClickUp() {
+        changePositionUp(props.listId, props.productId)
+        props.onMoveUp()
+        console.log(props.productId)
+    }
+ 
+    function onClickDown() {
+     changePositionDown(props.listId, props.productId)
+     props.onMoveUp()
+     console.log(props.productId)
+    }
+
     if (componentMode === ProductStatus.EDITABLE) {
         return <div className="Product">
             <div className="text">
@@ -33,6 +46,8 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
             </div>
         </div>
     }
+    
+  
 
     return <div className="Product">
         <div className="text">
@@ -40,8 +55,8 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
             <p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p>
         </div>
         <div className="Up_Down">
-            <button className="UpButton"><UpIcon /></button>
-            <button className="UpButton"><DownIcon /></button>
+            <button className="UpButton" onClick={()=>{onClickUp()}}><UpIcon /></button>
+            <button className="DownButton" onClick={()=>{onClickDown()}}><DownIcon /></button>
         </div>
     </div>
 }

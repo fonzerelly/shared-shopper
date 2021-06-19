@@ -8,8 +8,9 @@ import '../List/List.css';
 import { ProductChange, ProductInit } from '../Components/Products/ProductChange'
 import { ProductBuy } from '../Components/Products/ProductBuy'
 import { Header } from '../Header/header'
-import { addContent, deleteContent, getContent } from '../Login/backend'
-import { initialContent, checkListId } from '../Login/session';
+import { addContent, deleteContent, getContent, changePositionUp } from '../Login/backend'
+import {  initialContent, checkListId } from '../Login/session';
+
 
 
 export default function ShoppingList() {
@@ -20,7 +21,7 @@ export default function ShoppingList() {
 
     const [toggleState, setToggleState] = useState(ShoppingListMode.EDIT_MODE);
     const [listContent, setListContent] = useState(initialContent());
-
+    console.log(listContent)
     const [productName, setProductName] = useState("")
     const [productCount, setProductCount] = useState(0)
     const currentListId = checkListId()
@@ -43,6 +44,13 @@ export default function ShoppingList() {
             .then((data) => setListContent(data))
     }
 
+    
+    function positionChange(id: number) {
+        getContent(currentListId)
+            .then((data) => setListContent(data))
+          
+    }
+
     return <div>
         <Header titleName="Einkaufszettel" path="/list"></Header>
         <div className="tab">
@@ -56,9 +64,11 @@ export default function ShoppingList() {
 
                         <ProductInit name="" amount="" setter={(txt: string) => { setProductName(txt) }} setterCount={(num: number) => { setProductCount(num) }} fetch={() => onClickFetch()} />
 
-                        {listContent.map((list, id) => {
-                            return (<ProductChange key={id} name={list.label} amount={list.count} productId={list.id} listId={currentListId} delete={() => onClickDelete(list.id)} setter={setListContent} ></ProductChange>)
 
+                        {listContent
+                        .sort((a,b)=> a.position - b.position)
+                        .map((list) => {
+                            return (<ProductChange key={list.position} name={list.label} amount={list.count} productId={list.id} listId={currentListId} delete={()=> onClickDelete(list.id)} setter={setListContent} onMoveUp={()=>positionChange(list.id)}></ProductChange>)
                         })}
                     </div>
                 </div>

@@ -10,3 +10,4 @@ export function urlCheck() {
     return secret
 
 }
+

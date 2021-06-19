@@ -1,5 +1,5 @@
 import { urlCheck } from "../secret/secret"
-import {session} from "./session"
+import { session } from "./session"
 
 export function aquireToken(email: string, password: string) {
     const secret = urlCheck();
@@ -43,7 +43,7 @@ export async function getContent(id: string | null) {
             "authorization": `${session.token}`
         }
     })
-    .then((response) => response.json())
+        .then((response) => response.json())
 }
 
 export async function deleteList(id: number) {
@@ -68,9 +68,9 @@ export async function addList(name: string) {
             "authorization": `${session.token}`,
         },
         body: JSON.stringify({
-           "name": `${name}`
+            "name": `${name}`
         })
-    })  
+    })
 }
 
 export async function addContent(name: string, count: number, id: string | null) {
@@ -83,8 +83,8 @@ export async function addContent(name: string, count: number, id: string | null)
             "authorization": `${session.token}`,
         },
         body: JSON.stringify({
-           "count": `${count}`,
-           "label": `${name}`,
+            "count": `${count}`,
+            "label": `${name}`,
         })
     })
 }
@@ -101,7 +101,7 @@ export async function deleteContent(id: string | null, entryId: number) {
     })
 }
 
-export async function editCount( count: string, id: string | null, entryId: number) {
+export async function editCount(count: string, id: string | null, entryId: number) {
     const secret = urlCheck();
     return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/count`, {
         method: "PUT",
@@ -113,10 +113,11 @@ export async function editCount( count: string, id: string | null, entryId: numb
         body: JSON.stringify({
             "newCount": `${count}`
         })
-    })  
+    })
 }
 
-export async function editMark( marked: boolean, id: string | null, entryId: number) {
+
+export async function editMark(marked: boolean, id: string | null, entryId: number) {
     const secret = urlCheck();
     return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/mark`, {
         method: "PUT",
@@ -128,5 +129,30 @@ export async function editMark( marked: boolean, id: string | null, entryId: num
         body: JSON.stringify({
             "marked": !marked
         })
-    })  
+    })
+}
+
+export async function changePositionUp(id: string | null, entryId: number) {
+    const secret = urlCheck();
+    return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/moveUp`, { 
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`,
+            "authorization": `${session.token}`
+        }
+    })
+}
+
+export async function changePositionDown(id: string | null, entryId: number) {
+    const secret = urlCheck();
+    return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/moveDown`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "x-shared-shopper-secret": `${secret}`,
+            "authorization": `${session.token}`,
+        }
+
+    })
 }
