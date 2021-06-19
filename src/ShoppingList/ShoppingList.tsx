@@ -8,7 +8,7 @@ import '../List/List.css';
 import { ProductChange, ProductInit } from '../Components/Products/ProductChange'
 import { ProductBuy } from '../Components/Products/ProductBuy'
 import { Header } from '../Header/header'
-import { addContent, deleteContent, getContent, changePositionUp } from '../Login/backend'
+import { addContent, deleteContent, getContent} from '../Login/backend'
 import {  initialContent, checkListId } from '../Login/session';
 
 
@@ -21,7 +21,6 @@ export default function ShoppingList() {
 
     const [toggleState, setToggleState] = useState(ShoppingListMode.EDIT_MODE);
     const [listContent, setListContent] = useState(initialContent());
-    console.log(listContent)
     const [productName, setProductName] = useState("")
     const [productCount, setProductCount] = useState(0)
     const currentListId = checkListId()
@@ -76,17 +75,21 @@ export default function ShoppingList() {
             <Route path={`/list/shoppinglist/kaufen`}>
                 <h1>Kaufen</h1>
                 {listContent.map((list, id) => {
-                    if (list.marked = true) {
-                        return (<ProductBuy key={id} name={list.label} amount={list.count} state={false} productId={list.id} listId={currentListId}></ProductBuy>)
+                    let content;
+                    if (list.marked === true) {
+                        return content = (<ProductBuy key={id} name={list.label} amount={list.count} state={false} productId={list.id} listId={currentListId}></ProductBuy>)
                     }
+                    return content;
                 })}
                 {/* <ProductBuy name="Kuchen" amount="5" state="unchecked" />
                 <ProductBuy name="Eier" amount="10" state="unchecked" /> */}
                 <h1>Im Einkaufswagen</h1>
                 {listContent.map((list, id) => {
-                    if (list.marked = false) {
-                        return (<ProductBuy key={id} name={list.label} amount={list.count} state={true} productId={list.id} listId={currentListId}></ProductBuy>)
+                    let content
+                    if (list.marked === false) {
+                        return content = (<ProductBuy key={id} name={list.label} amount={list.count} state={true} productId={list.id} listId={currentListId}></ProductBuy>)
                     }
+                    return content
                 })}
             </Route>
 

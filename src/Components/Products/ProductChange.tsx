@@ -27,13 +27,11 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
     function onClickUp() {
         changePositionUp(props.listId, props.productId)
         props.onMoveUp()
-        console.log(props.productId)
     }
  
     function onClickDown() {
      changePositionDown(props.listId, props.productId)
      props.onMoveUp()
-     console.log(props.productId)
     }
 
     if (componentMode === ProductStatus.EDITABLE) {
