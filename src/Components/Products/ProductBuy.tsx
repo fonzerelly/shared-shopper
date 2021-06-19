@@ -12,7 +12,7 @@ export function ProductBuy(props: { name: string, amount: number, state: boolean
     if(props.state === true){
         return <div className="Product checkedProduct">
         <div className="text"><p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p></div>
-        <div>
+        <div onClick={()=> {markItem()}}>
             <CheckboxChecked />
         </div>
     </div>
