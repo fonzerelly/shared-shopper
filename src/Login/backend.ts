@@ -1,8 +1,10 @@
 import { urlCheck } from "../secret/secret"
 import { session } from "./session"
 
+let secret: string;
+
 export function aquireToken(email: string, password: string) {
-    const secret = urlCheck();
+    secret= urlCheck();
     return fetch("http://localhost:3000/login", {
         method: "POST",
         headers: {
@@ -19,8 +21,8 @@ export function aquireToken(email: string, password: string) {
 
 }
 
-export async function getList() {
-    const secret = urlCheck();
+
+export async function getList() {   
     return await fetch(`http://localhost:3000/overview`, {
         method: "GET",
         headers: {
@@ -33,8 +35,7 @@ export async function getList() {
         .then((data) => data.shoppingLists)
 }
 
-export async function getContent(id: string | null) {
-    const secret = urlCheck();
+export async function getContent(id: string | null) { 
     return await fetch(`http://localhost:3000/shoppinglist/${id}`, {
         method: "GET",
         headers: {
@@ -47,7 +48,6 @@ export async function getContent(id: string | null) {
 }
 
 export async function deleteList(id: number) {
-    const secret = urlCheck();
     return await fetch(`http://localhost:3000/overview/${id}`, {
         method: "DELETE",
         headers: {
@@ -59,7 +59,6 @@ export async function deleteList(id: number) {
 }
 
 export async function addList(name: string) {
-    const secret = urlCheck();
     return await fetch(`http://localhost:3000/overview/add`, {
         method: "POST",
         headers: {
@@ -74,7 +73,6 @@ export async function addList(name: string) {
 }
 
 export async function addContent(name: string, count: number, id: string | null) {
-    const secret = urlCheck();
     return await fetch(`http://localhost:3000/shoppinglist/${id}/add`, {
         method: "POST",
         headers: {
@@ -90,7 +88,6 @@ export async function addContent(name: string, count: number, id: string | null)
 }
 
 export async function deleteContent(id: string | null, entryId: number) {
-    const secret = urlCheck();
     return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}`, {
         method: "DELETE",
         headers: {
@@ -102,7 +99,6 @@ export async function deleteContent(id: string | null, entryId: number) {
 }
 
 export async function editCount(count: string, id: string | null, entryId: number) {
-    const secret = urlCheck();
     return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/count`, {
         method: "PUT",
         headers: {
@@ -118,7 +114,6 @@ export async function editCount(count: string, id: string | null, entryId: numbe
 
 
 export async function editMark(marked: boolean, id: string | null, entryId: number) {
-    const secret = urlCheck();
     return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/mark`, {
         method: "PUT",
         headers: {
@@ -133,7 +128,6 @@ export async function editMark(marked: boolean, id: string | null, entryId: numb
 }
 
 export async function changePositionUp(id: string | null, entryId: number) {
-    const secret = urlCheck();
     return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/moveUp`, { 
         method: "PUT",
         headers: {
@@ -145,7 +139,6 @@ export async function changePositionUp(id: string | null, entryId: number) {
 }
 
 export async function changePositionDown(id: string | null, entryId: number) {
-    const secret = urlCheck();
     return await fetch(`http://localhost:3000/shoppinglist/${id}/${entryId}/moveDown`, {
         method: "PUT",
         headers: {
