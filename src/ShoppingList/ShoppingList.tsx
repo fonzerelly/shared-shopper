@@ -42,12 +42,10 @@ export default function ShoppingList() {
         getContent(currentListId)
             .then((data) => setListContent(data))
     }
-
     
-    function positionChange(id: number) {
+    function updateList() {
         getContent(currentListId)
-            .then((data) => setListContent(data))
-          
+            .then((data) => setListContent(data))    
     }
 
     return <div>
@@ -60,14 +58,11 @@ export default function ShoppingList() {
             <Route path={`/list/shoppinglist/bearbeiten`}>
                 <div className="content-tabs2">
                     <div className="content-tabs">
-
                         <ProductInit name="" amount="" setter={(txt: string) => { setProductName(txt) }} setterCount={(num: number) => { setProductCount(num) }} fetch={() => onClickFetch()} />
-
-
                         {listContent
                         .sort((a,b)=> a.position - b.position)
                         .map((list) => {
-                            return (<ProductChange key={list.position} name={list.label} amount={list.count} productId={list.id} listId={currentListId} delete={()=> onClickDelete(list.id)} setter={setListContent} onMoveUp={()=>positionChange(list.id)}></ProductChange>)
+                            return (<ProductChange key={list.position} name={list.label} amount={list.count} productId={list.id} listId={currentListId} delete={()=> onClickDelete(list.id)} setter={setListContent} onMoveUp={()=>updateList()}></ProductChange>)
                         })}
                     </div>
                 </div>
@@ -76,21 +71,20 @@ export default function ShoppingList() {
                 <h1>Kaufen</h1>
                 {listContent.map((list, id) => {
                     let content;
-                    if (list.marked === true) {
-                        return content = (<ProductBuy key={id} name={list.label} amount={list.count} state={false} productId={list.id} listId={currentListId}></ProductBuy>)
+                    if (list.marked === false) {
+                        return content = (<ProductBuy key={id} name={list.label} amount={list.count} state={false} productId={list.id} listId={currentListId} markFn={()=>{updateList()}}></ProductBuy>)
                     }
                     return content;
                 })}
                 <h1>Im Einkaufswagen</h1>
                 {listContent.map((list, id) => {
                     let content
-                    if (list.marked === false) {
-                        return content = (<ProductBuy key={id} name={list.label} amount={list.count} state={true} productId={list.id} listId={currentListId}></ProductBuy>)
+                    if (list.marked === true) {
+                        return content = (<ProductBuy key={id} name={list.label} amount={list.count} state={true} productId={list.id} listId={currentListId} markFn={()=>{updateList()}}></ProductBuy>)
                     }
                     return content
                 })}
             </Route>
-
         </Switch>
     </div>;
 }
