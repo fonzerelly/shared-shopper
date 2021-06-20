@@ -62,7 +62,7 @@ export default function ShoppingList() {
                         {listContent
                         .sort((a,b)=> a.position - b.position)
                         .map((list) => {
-                            return (<ProductChange key={list.position} name={list.label} amount={list.count} productId={list.id} listId={currentListId} delete={()=> onClickDelete(list.id)} setter={setListContent} onMoveUp={()=>updateList()}></ProductChange>)
+                            return (<ProductChange key={list.position} name={list.label} amount={list.count} productId={list.id} position={list.position} listId={currentListId} delete={()=> onClickDelete(list.id)} setter={setListContent} onMove={()=>updateList()} listContent={listContent}></ProductChange>)
                         })}
                     </div>
                 </div>

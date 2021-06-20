@@ -1,14 +1,12 @@
 import './products.css'
 import { ReactComponent as PencilIcon } from '../../img/pencil.svg'
 import { ReactComponent as PencilIcon2 } from '../../img/pencil2.svg'
-import { ReactComponent as UpIcon } from '../../img/up.svg'
-import { ReactComponent as DownIcon } from '../../img/down.svg'
 import { ReactComponent as TrashIcon } from '../../img/trash.svg'
 import React, { useState } from 'react';
 import { editCount, getContent } from '../../Login/backend'
-import { changePositionUp, changePositionDown} from '../../Login/backend'
+import {UpDownButtons} from '../UpDownButton/UpDownButton'
 
-export function ProductChange(props: { name: string, amount: number, delete: Function, productId: number, listId: string | null, setter: Function, onMoveUp: Function }) {
+export function ProductChange(props: { name: string, amount: number, delete: Function, productId: number, position: number; listId: string | null, setter: Function, onMove: Function, listContent: any }) {
     enum ProductStatus {
         STATIC = 1,
         EDITABLE
@@ -22,16 +20,6 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
         editCount(currentAmount, props.listId, props.productId)
         getContent(props.listId)
             .then((data) => props.setter(data))
-    }
-
-    function onClickUp() {
-        changePositionUp(props.listId, props.productId)
-        props.onMoveUp()
-    }
- 
-    function onClickDown() {
-     changePositionDown(props.listId, props.productId)
-     props.onMoveUp()
     }
 
     if (componentMode === ProductStatus.EDITABLE) {
@@ -50,10 +38,7 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
             <PencilIcon onClick={() => setComponentMode(ProductStatus.EDITABLE)} className="pencil" />
             <p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p>
         </div>
-        <div className="Up_Down">
-            <button className="UpButton" onClick={()=>{onClickUp()}}><UpIcon /></button>
-            <button className="DownButton" onClick={()=>{onClickDown()}}><DownIcon /></button>
-        </div>
+        <UpDownButtons listId={props.listId} productId= {props.productId} position={props.position} onMove={()=>{props.onMove()}} list= {props.listContent} />
     </div>
 }
 
