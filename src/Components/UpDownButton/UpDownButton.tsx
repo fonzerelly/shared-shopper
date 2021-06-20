@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { ReactComponent as UpIcon } from '../../img/up.svg'
 import { ReactComponent as DownIcon } from '../../img/down.svg'
 import { ReactComponent as UpIconInactive } from '../../img/upInactive.svg'
