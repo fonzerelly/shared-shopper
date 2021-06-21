@@ -2,7 +2,7 @@ import {
     Link
 } from 'react-router-dom';
 import './List.css';
-import { ChangeEventHandler, useState } from 'react';
+import {  useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
 
@@ -10,10 +10,9 @@ export default function List() {
     var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
     let date = dateformatter.format(new Date())
     const [listName, setListName] = useState("");
-    const onChangeListListener: ChangeEventHandler<HTMLInputElement> = (event) => {
-        setListName(event.target.value)
-    }
+
     function onClickList() {
+        setListName("")
         let newListName = listName
         if (newListName.length > 0) {
             console.log(newListName)
@@ -29,7 +28,7 @@ export default function List() {
         <div className="listBody">
             <h1>Einkaufszettel</h1>
             <div className="Add">
-                <input type="text" name="name" className="ListInput" placeholder={"Einkaufszettel vom " + date} onChange={onChangeListListener}></input>
+                <input type="text" name="name" className="ListInput" placeholder={"Einkaufszettel vom " + date} onChange={() => {}}></input>
                 <button className="ListButton" onClick={onClickList}>+</button>
             </div>
             <Link to="/list/shoppinglist/bearbeiten"><ListContainer name={date} /></Link>
