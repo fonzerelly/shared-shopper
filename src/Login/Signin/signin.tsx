@@ -2,7 +2,7 @@ import './signin.css'
 import { useEffect, useState } from 'react'
 import Logosvg from '../../Components/Logo/Logo'
 import { PrimaryButton } from '../../Components/Buttons/Button'
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import InputComp from '../../Components/Input/Input';
 import {aquireToken} from '../backend'
 import '../../Components/Buttons/button.css'
@@ -12,7 +12,6 @@ export function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [readyToLoad, setReadyToLoad] = useState(false)
-    const history = useHistory()
     useEffect(() => {
         if(readyToLoad === true){
             aquireToken(email, password).then((token) => {
@@ -20,7 +19,7 @@ export function SignIn() {
                 console.log(session.token)
             })
         }
-    }, [readyToLoad])
+    }, [readyToLoad, email, password])
     const callToken = async () => {
         setReadyToLoad(true)
     }
