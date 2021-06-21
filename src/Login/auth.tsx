@@ -16,8 +16,12 @@ export function ProvideAuth({ children }:{children:any}) {
       </authContext.Provider>
     );
     }
+function urlRedirect() {
+  session.url = window.location.pathname
 
+}
 export function PrivateRoute({ children, path }:{children:any, path:string}) {
+      urlRedirect()
       let auth = useAuth();
       return (
         <Route

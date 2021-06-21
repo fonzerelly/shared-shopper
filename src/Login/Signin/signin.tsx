@@ -12,12 +12,13 @@ export function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [readyToLoad, setReadyToLoad] = useState(false)
+    
     const history = useHistory()
     useEffect(() => {
         if (readyToLoad === true) {
             aquireToken(email, password).then((token) => {
                 session.token = token;
-                history.push("/list") 
+                history.push(session.url) 
                 //  Variable (URL) anlegen, weiterleitung 
                 //  auf 404 Seite wenn Seite nicht verfügbar
             })
