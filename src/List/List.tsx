@@ -12,6 +12,7 @@ export default function List() {
     const [listName, setListName] = useState("");
 
     function onClickList() {
+        setListName("")
         let newListName = listName
         if (newListName.length > 0) {
             console.log(newListName)

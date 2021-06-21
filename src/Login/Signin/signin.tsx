@@ -23,7 +23,7 @@ export function SignIn() {
                 //  auf 404 Seite wenn Seite nicht verfügbar
             })
         }
-    }, [readyToLoad])
+    }, [readyToLoad, password, email, history])
     const callToken = async () => {
         setReadyToLoad(true)
     }
