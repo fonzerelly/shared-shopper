@@ -1,7 +1,8 @@
+
 export function secretCheck(queryString: string) {
     const urlParams = new URLSearchParams(queryString)
     const secret = urlParams.get('secret')
-    return secret
+    return secret === null ? "" : secret
 }
 
 export function urlCheck() {
@@ -10,3 +11,4 @@ export function urlCheck() {
     return secret
 
 }
+

@@ -10,4 +10,9 @@ describe("secretCheck", () => {
         const urlMock = "?secret=No-Secret"
         expect(secretCheck(urlMock)).not.toEqual("fake-secret")
     })
+
+    it("should return empty string", () => {
+        const urlMock = ""
+        expect(secretCheck(urlMock)).toEqual("")
+    })
 })
