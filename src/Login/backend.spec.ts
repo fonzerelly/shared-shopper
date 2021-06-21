@@ -1,4 +1,4 @@
-import { aquireToken, getList, getContent, deleteList, addList, addContent, deleteContent, editCount, editMark } from "./backend"
+import { aquireToken, getList, getContent, deleteList, addList, addContent, deleteContent, editCount, editMark, changePositionUp, changePositionDown } from "./backend"
 import nock from 'nock'
 
 describe("aquireToken", () => {
@@ -172,5 +172,43 @@ describe("editMark", () => {
       });
 
       await editMark("0", 0).then((res)=>expect(res.status).toBe(200))
+  })
+})
+
+describe("changePositionUp", () => {
+  it("should count up the postion property of an item (status 200)", async () => {
+      const scope = nock('http://localhost:3000')
+      .options("/shoppinglist/0/0/moveUp")
+      .reply(200, () => null, {
+        "Access-Control-Allow-Origin": "*",
+        'access-control-allow-headers': 'x-shared-shopper-secret, authorization',
+        "Content-Type": "application:json"
+      })
+      .put('/shoppinglist/0/0/moveUp')
+      .reply(200, ()=>null, 
+      { 
+        'Access-Control-Allow-Origin': '*',
+      });
+
+      await changePositionUp("0", 0).then((res)=>expect(res.status).toBe(200))
+  })
+})
+
+describe("changePositionDown", () => {
+  it("should count down the postion property of an item (status 200)", async () => {
+      const scope = nock('http://localhost:3000')
+      .options("/shoppinglist/0/0/moveDown")
+      .reply(200, () => null, {
+        "Access-Control-Allow-Origin": "*",
+        'access-control-allow-headers': 'x-shared-shopper-secret, authorization',
+        "Content-Type": "application:json"
+      })
+      .put('/shoppinglist/0/0/moveDown')
+      .reply(200, ()=>null, 
+      { 
+        'Access-Control-Allow-Origin': '*',
+      });
+
+      await changePositionDown("0", 0).then((res)=>expect(res.status).toBe(200))
   })
 })
