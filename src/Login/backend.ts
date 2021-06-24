@@ -18,7 +18,6 @@ export function aquireToken(email: string, password: string) {
     })
         .then((response) => response.json())
         .then((data) => data.accessToken)
-
 }
 
 export async function getList() {   
@@ -141,6 +140,5 @@ export async function changePositionDown(id: string | null, entryId: number) {
             "x-shared-shopper-secret": `${secret}`,
             "authorization": `${session.token}`,
         }
-
     })
 }

@@ -13,5 +13,5 @@ export function Header(props: {titleName: string, path: string}) {
 }
 
 function BackwardsButton(props:{path: string}) {
-    return <Link to={props.path}><button className="Button"><Backward /></button></Link>
+    return <div><Link to={props.path} data-testid="BackButton"><button className="Button"><Backward /></button></Link></div>
 }

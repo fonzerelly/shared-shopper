@@ -12,6 +12,18 @@ import {Register} from './Login/Register/register'
 import {Loading} from './Loading/Loading'
 
 function App() {
+  // const commandPrototype = (product: string, count: number) => async () => {
+  //   await addEntry( product, count)
+  // }
+  // const commandBuffer: Function [] = []
+  // commandBuffer.push(commandPrototype('Kekse', 2))
+
+  // if (internet) {
+  //   commandBuffer.forEach((fn) => {
+  //     fn()
+  //   }
+  // }
+   
   /* comment to trigger rerun of activation */
   return (
         <Router>
