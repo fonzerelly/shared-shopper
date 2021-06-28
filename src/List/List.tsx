@@ -49,7 +49,7 @@ export default function List() {
             </div>
 
             {listFetch.map((list, id) => {
-                return (<ListContainer name={list.name} listId={list.id} fetch={()=>onClickTrash(list.id)} key={id}></ListContainer>)
+                return (<ListContainer data-testid = "testContainer" name={list.name} listId={list.id} fetch={()=>onClickTrash(list.id)} key={id}></ListContainer>)
             })}
         </div>
     </div>

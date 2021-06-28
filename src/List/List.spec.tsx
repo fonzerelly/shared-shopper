@@ -1,5 +1,5 @@
 import List from "./List"
-import {render, screen} from "@testing-library/react"
+import {render, screen, fireEvent} from "@testing-library/react"
 import {
     BrowserRouter as Router,
     Switch,
@@ -30,7 +30,6 @@ describe("List", () => {
         render(<TestEnvironment>
         <List></List>
         </TestEnvironment>)
-        //const listBody = screen.getAllByTestId("listBody")
         screen.getByTestId("Add")
     })
 
@@ -55,5 +54,16 @@ describe("List", () => {
             </TestEnvironment>)
             const ButtonLink = screen.getByTestId("ButtonLink")
             expect(ButtonLink).toHaveAttribute("href")
+    })
+
+    xit("should render ButtonLink", async () => {
+        render(<TestEnvironment>
+            <List></List>
+            </TestEnvironment>)
+            const listButton = screen.getByRole("button", {name: "+"})
+            await fireEvent.click(listButton)
+            const container = screen.getByTestId("testContainer")
+            var count = Object.keys(container).length
+            expect(count).toBe(2)
     })
 })
