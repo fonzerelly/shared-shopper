@@ -5,7 +5,7 @@ import {
   Route
 } from 'react-router-dom';
 import List from './List/List'
-import ShoppingList from './ShoppingList/ShoppingList'
+import {ShoppingList} from './ShoppingList/ShoppingList'
 import './App.css';
 import {SignIn} from './Login/Signin/signin' 
 import {Register} from './Login/Register/register'

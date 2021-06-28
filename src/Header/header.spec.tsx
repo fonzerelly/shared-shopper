@@ -6,7 +6,7 @@ import {
     Route
 } from 'react-router-dom';
 
-function TestEnviorment (props: {children: any}) {
+function TestEnvironment (props: {children: any}) {
     return <Router>
     <Switch>
         <Route>
@@ -14,15 +14,14 @@ function TestEnviorment (props: {children: any}) {
         </Route>
     </Switch>
     </Router>
-
 }
 
 describe('Header', () => {
     it('should render its titleName', () => {
         const titleName = "Test"
-        render(<TestEnviorment>
+        render(<TestEnvironment>
             <Header titleName={titleName} path="/signin" />
-        </TestEnviorment>)         
+        </TestEnvironment>)         
       
         screen.getByText(titleName)
     })
@@ -30,9 +29,9 @@ describe('Header', () => {
     it('should render backbutton', () => {
         const testIdName = "BackButton"
         const path = "/signin"
-        render(<TestEnviorment>
+        render(<TestEnvironment>
             <Header titleName="Test" path={path} />
-        </TestEnviorment>)  
+        </TestEnvironment>)  
 
         screen.getByTestId(testIdName)
     })
@@ -40,9 +39,9 @@ describe('Header', () => {
     it('should render backbutton', () => {
         const testIdName = "BackButton"
         const path = "/signin"
-        render(<TestEnviorment>
+        render(<TestEnvironment>
             <Header titleName="Test" path={path} />
-        </TestEnviorment>)  
+        </TestEnvironment>)  
                
         const backButton = screen.getByTestId(testIdName)
         expect(backButton).toHaveAttribute("href", path)
