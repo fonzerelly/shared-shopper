@@ -30,7 +30,7 @@ export function initialContent() {
 }
 
 export async function fetchedList() {
-    return getList()
+    return await getList()
 }
 
 export function checkListId() {

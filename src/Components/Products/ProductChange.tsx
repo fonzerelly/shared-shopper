@@ -15,11 +15,11 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
     const [componentMode, setComponentMode] = useState(ProductStatus.STATIC);
     const [currentAmount, setCurrentAmount] = useState("")
 
-    function onClickEdit() {
+    async function onClickEdit() {
         setComponentMode(ProductStatus.STATIC)
-        editCount(currentAmount, props.listId, props.productId)
-        getContent(props.listId)
-            .then((data) => props.setter(data))
+        await editCount(currentAmount, props.listId, props.productId)
+        const data = await getContent(props.listId)
+        props.setter(data)
     }
 
     if (componentMode === ProductStatus.EDITABLE) {

@@ -95,9 +95,10 @@ describe('ProductChange', () => {
     it('should change product--editable to product static', async () => {
         const editPen = screen.getAllByTestId("Pencil1")
         await fireEvent.click(editPen[0])
-        const closeEditPen = screen.getAllByTestId("Pencil1")
+        screen.getByTestId("trash")
+        const closeEditPen = screen.getAllByTestId("Pencil2")
         await fireEvent.click(closeEditPen[0])
-        screen.getByTestId('product--static')
+        screen.getAllByTestId('product--static')
     })
 
     it('should erase product', async () => {

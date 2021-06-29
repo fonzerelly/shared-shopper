@@ -21,22 +21,20 @@ export default function List() {
     var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
     let date = dateformatter.format(new Date())
     const [listName, setListName] = useState("");
-    function onClickList() {
+    async function onClickList() {
         if (listName.length > 0) {
-            addList(listName)
-            fetchedList().then((data) =>
-                setListFetch(data))
+            await addList(listName)
         }
         else {
-            addList(date)
-            fetchedList().then((data) =>
-                setListFetch(data))
+            await addList(date)
         }
+        const data = await fetchedList()
+            setListFetch(data)
     }
-    function onClickTrash (id: number) {
-        deleteList(id)
-        fetchedList().then((data) =>
-                setListFetch(data))
+    async function onClickTrash (id: number) {
+        await deleteList(id)
+        const data = await fetchedList()
+        setListFetch(data)
     }
 
     return <div>

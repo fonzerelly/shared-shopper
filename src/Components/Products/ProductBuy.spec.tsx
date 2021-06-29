@@ -45,15 +45,9 @@ describe('ProductChange', () => {
         screen.getByText("test")
     })
 
-    xit('should render text-divs', async () => {
+    it('should render text-divs', async () => {
        const checkBox =  screen.getByTestId('CheckBox')
        await fireEvent.click(checkBox)
-
-       const remainingProduct = screen.getAllByTestId('product--unchecked')
-
-       var count = Object.keys(remainingProduct).length
-       expect(count).toBe(0)
+       screen.getByTestId('product--unchecked')
     })
-
-
 })

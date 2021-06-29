@@ -12,13 +12,13 @@ export function UpDownButtons(props: {listId: string | null, productId: number, 
     let buttonDown = <DownIcon />
     
 
-    function onClickUp() {
-        changePositionUp(props.listId, props.productId)
+   async function onClickUp() {
+        await changePositionUp(props.listId, props.productId)
         props.onMove()
     }
  
-    function onClickDown() {
-     changePositionDown(props.listId, props.productId)
+    async function onClickDown() {
+     await changePositionDown(props.listId, props.productId)
      props.onMove()
     }
  

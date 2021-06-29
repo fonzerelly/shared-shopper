@@ -11,8 +11,6 @@ import { Header } from '../Header/header'
 import { addContent, deleteContent, getContent} from '../Login/backend'
 import {  initialContent, checkListId } from '../Login/session';
 
-
-
 export function ShoppingList() {
     enum ShoppingListMode {
         EDIT_MODE = 1,
@@ -31,21 +29,21 @@ export function ShoppingList() {
 
     }, [currentListId])
 
-    function onClickFetch() {
-        addContent(productName, productCount, currentListId)
-        getContent(currentListId)
-            .then((data) => setListContent(data))
+    async function onClickFetch() {
+        await addContent(productName, productCount, currentListId)
+        const data = await getContent(currentListId)
+        setListContent(data)
     }
 
-    function onClickDelete(id: number) {
-        deleteContent(currentListId, id)
-        getContent(currentListId)
-            .then((data) => setListContent(data))
+    async function onClickDelete(id: number) {
+        await deleteContent(currentListId, id)
+        const data = await getContent(currentListId)
+        setListContent(data)
     }
     
-    function updateList() {
-        getContent(currentListId)
-            .then((data) => setListContent(data))    
+    async function updateList() {
+        const data = await getContent(currentListId)
+        setListContent(data)    
     }
 
     return <div>

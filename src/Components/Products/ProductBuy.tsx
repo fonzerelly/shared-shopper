@@ -4,9 +4,9 @@ import { editMark } from '../../Login/backend'
 
 export function ProductBuy(props: { name: string, amount: number, state: boolean, productId: number, listId: string | null, markFn: Function}) {
 
-    function markItem(){
+    async function markItem(){
+        await editMark(props.listId, props.productId)
         props.markFn()
-        editMark(props.listId, props.productId)
     }
 
     if(props.state === true){
