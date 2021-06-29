@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen, cleanup } from "@testing-library/react"
+import userEvent from '@testing-library/user-event'
 import { ProductBuy } from "./ProductBuy"
 import {
     BrowserRouter as Router,
@@ -38,16 +39,28 @@ describe('ProductChange', () => {
     })
 
     it('should render amount', () => {
-        screen.getAllByText("1"+"x")
+        screen.getAllByText("1" + "x")
     })
 
-    it('should render name od item', () => {
+    it('should render name of item', () => {
         screen.getByText("test")
     })
 
+    it('should render Checkbox', () => {
+        screen.getByTestId("CheckBox")
+        console.log(screen.getByTestId("CheckBox"))
+    })
+
     it('should render text-divs', async () => {
-       const checkBox =  screen.getByTestId('CheckBox')
-       await fireEvent.click(checkBox)
-       screen.getByTestId('product--unchecked')
+        cleanup()
+        const {rerender} = render(<TestEnvironment>
+            <ProductBuy name="test" amount={1} state={false} productId={0} listId="0" markFn={() => { }} />
+        </TestEnvironment>)
+        const checkBox = screen.getByTestId("CheckBox")
+        await userEvent.click(checkBox)
+        rerender(<TestEnvironment>
+            <ProductBuy name="test" amount={1} state={true} productId={0} listId="0" markFn={() => { }} />
+        </TestEnvironment>)
+        screen.getByTestId('product--checked')
     })
 })

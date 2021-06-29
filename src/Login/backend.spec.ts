@@ -3,7 +3,7 @@ import nock from 'nock'
 
 describe("aquireToken", () => {
     it("should return accessToken", async () => {
-        const scope = nock('http://localhost:3000')
+        const scope = nock(`${process.env.REACT_APP_API}`)
         .options("/login")
         .reply(200, () => null, {
           "Access-Control-Allow-Origin": "*",
@@ -23,7 +23,7 @@ describe("aquireToken", () => {
 
 describe("getList", () => {
   it("should return Shoppinglists", async () => {
-      const scope = nock('http://localhost:3000')
+      const scope = nock(`${process.env.REACT_APP_API}`)
       .options("/overview")
       .reply(200, () => null, {
         "Access-Control-Allow-Origin": "*",
@@ -43,7 +43,7 @@ describe("getList", () => {
 
 describe("getContent", () => {
   it("should return Content of a certrain Shoppinglist", async () => {
-      const scope = nock('http://localhost:3000')
+      const scope = nock(`${process.env.REACT_APP_API}`)
       .options("/shoppinglist/0")
       .reply(200, () => null, {
         "Access-Control-Allow-Origin": "*",
@@ -63,7 +63,7 @@ describe("getContent", () => {
 
 describe("deleteList", () => {
   it("should delete a List (status 200)", async () => {
-      const scope = nock('http://localhost:3000')
+      const scope = nock(`${process.env.REACT_APP_API}`)
       .options("/overview/0")
       .reply(200, () => null, {
         "Access-Control-Allow-Origin": "*",
@@ -82,7 +82,7 @@ describe("deleteList", () => {
 
 describe("addList", () => {
   it("should add a new List (status 200)", async () => {
-      const scope = nock('http://localhost:3000')
+      const scope = nock(`${process.env.REACT_APP_API}`)
       .options("/overview/add")
       .reply(200, () => null, {
         "Access-Control-Allow-Origin": "*",
@@ -101,7 +101,7 @@ describe("addList", () => {
 
 describe("addContent", () => {
   it("should add new Content to a certain list (status 200)", async () => {
-      const scope = nock('http://localhost:3000')
+      const scope = nock(`${process.env.REACT_APP_API}`)
       .options("/shoppinglist/0/add")
       .reply(200, () => null, {
         "Access-Control-Allow-Origin": "*",
@@ -120,7 +120,7 @@ describe("addContent", () => {
 
 describe("deleteContent", () => {
   it("should delete an item in a certain list (status 200)", async () => {
-      const scope = nock('http://localhost:3000')
+      const scope = nock(`${process.env.REACT_APP_API}`)
       .options("/shoppinglist/0/0")
       .reply(200, () => null, {
         "Access-Control-Allow-Origin": "*",
@@ -139,7 +139,7 @@ describe("deleteContent", () => {
 
 describe("editCount", () => {
   it("should take a number and write in existing item (status 200)", async () => {
-      const scope = nock('http://localhost:3000')
+      const scope = nock(`${process.env.REACT_APP_API}`)
       .options("/shoppinglist/0/0/count")
       .reply(200, () => null, {
         "Access-Control-Allow-Origin": "*",
@@ -158,7 +158,7 @@ describe("editCount", () => {
 
 describe("editMark", () => {
   it("should set mark of an item from false to true (status 200)", async () => {
-      const scope = nock('http://localhost:3000')
+      const scope = nock(`${process.env.REACT_APP_API}`)
       .options("/shoppinglist/0/0/mark")
       .reply(200, () => null, {
         "Access-Control-Allow-Origin": "*",
@@ -177,7 +177,7 @@ describe("editMark", () => {
 
 describe("changePositionUp", () => {
   it("should count up the postion property of an item (status 200)", async () => {
-      const scope = nock('http://localhost:3000')
+      const scope = nock(`${process.env.REACT_APP_API}`)
       .options("/shoppinglist/0/0/moveUp")
       .reply(200, () => null, {
         "Access-Control-Allow-Origin": "*",
@@ -196,7 +196,7 @@ describe("changePositionUp", () => {
 
 describe("changePositionDown", () => {
   it("should count down the postion property of an item (status 200)", async () => {
-      const scope = nock('http://localhost:3000')
+      const scope = nock(`${process.env.REACT_APP_API}`)
       .options("/shoppinglist/0/0/moveDown")
       .reply(200, () => null, {
         "Access-Control-Allow-Origin": "*",

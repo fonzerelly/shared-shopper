@@ -33,9 +33,14 @@ export async function fetchedList() {
     return await getList()
 }
 
-export function checkListId() {
-    const path = window.location.search
-    const urlParams = new URLSearchParams(path)
-    const pathUrl = urlParams.get('id')
-    return pathUrl      
+export function checkListId(pathURL: string) {
+    const urlParams = new URLSearchParams(pathURL)
+    const path = urlParams.get('id')
+    return path === null ? "" : path
+}
+
+export function findListId () {
+    const pathURL = window.location.search
+    const path = checkListId(pathURL)
+    return path
 }

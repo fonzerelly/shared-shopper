@@ -12,17 +12,17 @@ export function ProductBuy(props: { name: string, amount: number, state: boolean
     if(props.state === true){
         return <div className="Product checkedProduct" data-testid="product--checked">
         <div className="text"><p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p></div>
-        <div onClick={()=> {markItem()}}>
+        <button onClick={()=> {markItem()}} data-testid="CheckBoxChecked">
             <CheckboxChecked />
-        </div>
+        </button>
     </div>
     }
 
    
     return <div className="Product" data-testid="product--unchecked">
         <div className="text" data-testid="text"><p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p></div>
-        <div onClick={()=> {markItem()}} data-testid="CheckBox">
+        <button onClick={()=> {markItem()}} data-testid="CheckBox">
             <Checkbox />
-        </div>
+        </button>
     </div>
 }

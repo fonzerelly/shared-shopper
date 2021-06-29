@@ -9,7 +9,7 @@ import { ProductChange, ProductInit } from '../Components/Products/ProductChange
 import { ProductBuy } from '../Components/Products/ProductBuy'
 import { Header } from '../Header/header'
 import { addContent, deleteContent, getContent} from '../Login/backend'
-import {  initialContent, checkListId } from '../Login/session';
+import {  initialContent, findListId } from '../Login/session';
 
 export function ShoppingList() {
     enum ShoppingListMode {
@@ -21,7 +21,7 @@ export function ShoppingList() {
     const [listContent, setListContent] = useState(initialContent());
     const [productName, setProductName] = useState("")
     const [productCount, setProductCount] = useState(0)
-    const currentListId = checkListId()
+    const currentListId = findListId()
 
     useEffect(() => {
         getContent(currentListId)
