@@ -1,4 +1,6 @@
-import { findListId } from "./session";
+import { findListId, checkListId } from "./session";
+
+
 describe("findListId", () => {
     it("should return the id after =", () => {
         window = Object.create(window);
@@ -25,5 +27,16 @@ describe("findListId", () => {
         expect(window.location.search).toEqual(url);
         expect(findListId()).toEqual("");
     })
+})
 
+describe("checkListId", () => {
+    it("should find id", () => {
+        const urlMock = "?id=0"
+        expect(checkListId(urlMock)).toEqual("0")
+    })
+
+    it("should return empty string", () => {
+        const urlMock = ""
+        expect(checkListId(urlMock)).toEqual("")
+    })
 })

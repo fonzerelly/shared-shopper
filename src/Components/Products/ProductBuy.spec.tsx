@@ -50,7 +50,7 @@ describe('ProductChange', () => {
         screen.getByTestId("CheckBox")
     })
 
-    it('should render text-divs', async () => {
+    it('should change the state type of a product onclick', async () => {
         cleanup()
         const {rerender} = render(<TestEnvironment>
             <ProductBuy name="test" amount={1} state={false} productId={0} listId="0" markFn={() => { }} />
@@ -61,5 +61,19 @@ describe('ProductChange', () => {
             <ProductBuy name="test" amount={1} state={true} productId={0} listId="0" markFn={() => { }} />
         </TestEnvironment>)
         screen.getByTestId('product--checked')
+    })
+
+    it('should not render product unchecked Checkbox is clicked', async () => {
+        cleanup()
+        const {rerender} = render(<TestEnvironment>
+            <ProductBuy name="test" amount={1} state={false} productId={0} listId="0" markFn={() => { }} />
+        </TestEnvironment>)
+        const checkBox = screen.getByTestId("CheckBox")
+        await userEvent.click(checkBox)
+        rerender(<TestEnvironment>
+            <ProductBuy name="test" amount={1} state={true} productId={0} listId="0" markFn={() => { }} />
+        </TestEnvironment>)
+        const productChecked = screen.getByTestId('product--checked')
+        expect(productChecked).toHaveClass("checkedProduct")
     })
 })
