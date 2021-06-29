@@ -45,7 +45,7 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
 export function ProductInit(props: { name: string, amount: string, setter: Function, setterCount: Function, fetch: Function }) {
     return <div className="Product" data-testid="Initial">
         <div className="text">
-            <input className="productInit--count" type="number" pattern="[0-9]*" placeholder="Anzahl" onChange={(e) => { props.setterCount(e.target.value)}}></input>
+            <input className="productInit--count" type="number" pattern="[0-9]*" placeholder="0" onChange={(e) => { props.setterCount(e.target.value)}}></input>
             <input className="productInit--label" placeholder="Produkt" onChange={(e) => { props.setter(e.target.value)}}></input>
         </div>
         <div className="Up_Down">
