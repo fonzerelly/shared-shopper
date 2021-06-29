@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen, fireEvent, cleanup } from "@testing-library/react"
+import userEvent from '@testing-library/user-event'
 import { ProductChange } from "./ProductChange"
 import {
     BrowserRouter as Router,
@@ -37,15 +38,13 @@ describe('ProductChange', () => {
         count: 1,
         position: 2,
         marked: false
-    }
-
-    ]
+    }]
 
     beforeEach(() => {
         render(<TestEnvironment>
             <ProductChange name="test" amount={1} delete={() => { }} productId={0} position={0} listId="0" setter={() => { }} onMove={() => { }} listContent={listContent} />
-            <ProductChange name="test2" amount={1} delete={() => { }} productId={1} position={1} listId="1" setter={() => { }} onMove={() => { }} listContent={listContent} />
-            <ProductChange name="test3" amount={1} delete={() => { }} productId={2} position={2} listId="2" setter={() => { }} onMove={() => { }} listContent={listContent} />
+            <ProductChange name="test2" amount={1} delete={() => { }} productId={1} position={1} listId="0" setter={() => { }} onMove={() => { }} listContent={listContent} />
+            <ProductChange name="test3" amount={1} delete={() => { }} productId={2} position={2} listId="0" setter={() => { }} onMove={() => { }} listContent={listContent} />
         </TestEnvironment>)
     });
 
