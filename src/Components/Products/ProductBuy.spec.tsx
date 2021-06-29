@@ -48,7 +48,6 @@ describe('ProductChange', () => {
 
     it('should render Checkbox', () => {
         screen.getByTestId("CheckBox")
-        console.log(screen.getByTestId("CheckBox"))
     })
 
     it('should render text-divs', async () => {
