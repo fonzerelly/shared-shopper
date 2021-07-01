@@ -9,12 +9,12 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.7",
+    "env-cmd": "^10.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -36,8 +36,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start:dev": "env-cmd -f .env.development react-scripts start",
+    "start:prod": "env-cmd -f .env.production react-scripts start",
+    "build:dev": "env-cmd -f .env.development react-scripts build",
+    "build:prod": "env-cmd -f .env.production react-scripts build",
     "test": "react-scripts test",
+    "test:dev": "env-cmd -f .env.development react-scripts test",
+    "test:prod": "env-cmd -f .env.production react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -59,6 +64,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/user-event": "^12.8.3",
     "nock": "^13.0.11"
   }
 }
