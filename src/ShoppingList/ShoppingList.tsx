@@ -9,11 +9,9 @@ import { ProductChange, ProductInit } from '../Components/Products/ProductChange
 import { ProductBuy } from '../Components/Products/ProductBuy'
 import { Header } from '../Header/header'
 import { addContent, deleteContent, getContent} from '../Login/backend'
-import {  initialContent, checkListId } from '../Login/session';
+import {  initialContent, findListId } from '../Login/session';
 
-
-
-export default function ShoppingList() {
+export function ShoppingList() {
     enum ShoppingListMode {
         EDIT_MODE = 1,
         BUY_MODE
@@ -23,7 +21,7 @@ export default function ShoppingList() {
     const [listContent, setListContent] = useState(initialContent());
     const [productName, setProductName] = useState("")
     const [productCount, setProductCount] = useState(0)
-    const currentListId = checkListId()
+    const currentListId = findListId()
 
     useEffect(() => {
         getContent(currentListId)
@@ -31,33 +29,37 @@ export default function ShoppingList() {
 
     }, [currentListId])
 
-    function onClickFetch() {
-        addContent(productName, productCount, currentListId)
-        getContent(currentListId)
-            .then((data) => setListContent(data))
+    async function onClickFetch() {
+        await addContent(productName, productCount, currentListId)
+        const data = await getContent(currentListId)
+        setListContent(data)
     }
 
-    function onClickDelete(id: number) {
-        deleteContent(currentListId, id)
-        getContent(currentListId)
-            .then((data) => setListContent(data))
+    async function onClickDelete(id: number) {
+        await deleteContent(currentListId, id)
+        const data = await getContent(currentListId)
+        setListContent(data)
     }
     
-    function updateList() {
-        getContent(currentListId)
-            .then((data) => setListContent(data))    
+    async function updateList() {
+        const data = await getContent(currentListId)
+        setListContent(data)    
     }
 
     return <div>
         <Header titleName="Einkaufszettel" path="/list"></Header>
-        <div className="tab">
-            <Link to={`/list/shoppinglist/bearbeiten/?id=${currentListId}`}><button className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => setToggleState(ShoppingListMode.EDIT_MODE)}>Bearbeiten</button></Link>
-            <Link to={`/list/shoppinglist/kaufen/?id=${currentListId}`}><button className={toggleState === 2 ? "tabs active-tabs" : "tabs"} onClick={() => setToggleState(ShoppingListMode.BUY_MODE)}>Kaufen</button></Link>
+        <div className="tab" data-testid="tab">
+            <Link to={`/list/shoppinglist/bearbeiten/?id=${currentListId}`} data-testid="bearbeiten">
+                <button className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => setToggleState(ShoppingListMode.EDIT_MODE)}>Bearbeiten</button>
+            </Link>
+            <Link to={`/list/shoppinglist/kaufen/?id=${currentListId}`} data-testid="kaufen">
+                <button className={toggleState === 2 ? "tabs active-tabs" : "tabs"} onClick={() => setToggleState(ShoppingListMode.BUY_MODE)}>Kaufen</button>
+            </Link>
         </div>
         <Switch>
             <Route path={`/list/shoppinglist/bearbeiten`}>
-                <div className="content-tabs2">
-                    <div className="content-tabs">
+                <div className="content-tabs2" data-testid="content-tabs2">
+                    <div className="content-tabs" data-testid="content-tabs">
                         <ProductInit name="" amount="" setter={(txt: string) => { setProductName(txt) }} setterCount={(num: number) => { setProductCount(num) }} fetch={() => onClickFetch()} />
                         {listContent
                         .sort((a,b)=> a.position - b.position)

@@ -12,13 +12,13 @@ export function UpDownButtons(props: {listId: string | null, productId: number, 
     let buttonDown = <DownIcon />
     
 
-    function onClickUp() {
-        changePositionUp(props.listId, props.productId)
+   async function onClickUp() {
+        await changePositionUp(props.listId, props.productId)
         props.onMove()
     }
  
-    function onClickDown() {
-     changePositionDown(props.listId, props.productId)
+    async function onClickDown() {
+     await changePositionDown(props.listId, props.productId)
      props.onMove()
     }
  
@@ -42,8 +42,8 @@ export function UpDownButtons(props: {listId: string | null, productId: number, 
     }
 
     return <div className="Up_Down">
-        <button className="UpButton" onClick={() => {onClickUp()}} disabled={checkButtonPositionUp()}>{buttonUp}</button>
-        <button className="DownButton" onClick={() => {onClickDown()}} disabled={checkButtonPositionDown()} >{buttonDown}</button>
+        <button className="UpButton" onClick={() => {onClickUp()}} disabled={checkButtonPositionUp()} data-testid ="UpButton">{buttonUp}</button>
+        <button className="DownButton" onClick={() => {onClickDown()}} disabled={checkButtonPositionDown()} data-testid ="DownButton">{buttonDown}</button>
     </div>
 
 }

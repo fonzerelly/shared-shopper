@@ -15,37 +15,37 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
     const [componentMode, setComponentMode] = useState(ProductStatus.STATIC);
     const [currentAmount, setCurrentAmount] = useState("")
 
-    function onClickEdit() {
+    async function onClickEdit() {
         setComponentMode(ProductStatus.STATIC)
-        editCount(currentAmount, props.listId, props.productId)
-        getContent(props.listId)
-            .then((data) => props.setter(data))
+        await editCount(currentAmount, props.listId, props.productId)
+        const data = await getContent(props.listId)
+        props.setter(data)
     }
 
     if (componentMode === ProductStatus.EDITABLE) {
-        return <div className="Product">
-            <div className="text">
-                <PencilIcon2 onClick={()=>onClickEdit()} className={"pencil--" + String(componentMode)} />
-                <TrashIcon className="trash" onClick={()=> props.delete()} />
+        return <div className="Product" data-testid="product--editable">
+            <div className="text" data-testid="text-container2">
+                <PencilIcon2 onClick={()=>onClickEdit()} className={"pencil--" + String(componentMode)} data-testid="Pencil2"/>
+                <TrashIcon className="trash" onClick={()=> props.delete()} data-testid="trash" />
                 <input className="product--count" type="number" pattern="[0-9]*" placeholder={JSON.stringify(props.amount)} onChange={(e) => { setCurrentAmount(e.target.value)}}></input>
                 <input className="product--label" placeholder={props.name}></input>
             </div>
         </div>
     }
 
-    return <div className="Product">
-        <div className="text">
-            <PencilIcon onClick={() => setComponentMode(ProductStatus.EDITABLE)} className="pencil" />
+    return <div className="Product" data-testid="product--static">
+        <div className="text" data-testid="text-container">
+            <PencilIcon onClick={() => setComponentMode(ProductStatus.EDITABLE)} className="pencil" data-testid="Pencil1" />
             <p className="AmountPlace">{props.amount}x</p> <p>{props.name}</p>
         </div>
-        <UpDownButtons listId={props.listId} productId= {props.productId} position={props.position} onMove={()=>{props.onMove()}} list= {props.listContent} />
+        <UpDownButtons listId={props.listId} productId= {props.productId} position={props.position} onMove={()=>{props.onMove()}} list= {props.listContent} data-testid="UpDownButtons" />
     </div>
 }
 
 export function ProductInit(props: { name: string, amount: string, setter: Function, setterCount: Function, fetch: Function }) {
-    return <div className="Product">
+    return <div className="Product" data-testid="Initial">
         <div className="text">
-            <input className="productInit--count" type="number" pattern="[0-9]*" placeholder="Anzahl" onChange={(e) => { props.setterCount(e.target.value)}}></input>
+            <input className="productInit--count" type="number" pattern="[0-9]*" placeholder="0" onChange={(e) => { props.setterCount(e.target.value)}}></input>
             <input className="productInit--label" placeholder="Produkt" onChange={(e) => { props.setter(e.target.value)}}></input>
         </div>
         <div className="Up_Down">
