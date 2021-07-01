@@ -3,7 +3,7 @@ import { session } from "./session"
 
 let secret: string;
 
-export function aquireToken(email: string, password: string) {
+export function aquireToken(email: string, password: string):Promise<string> {
     secret= urlCheck();
     return fetch(`${process.env.REACT_APP_API}/login`, {
         method: "POST",

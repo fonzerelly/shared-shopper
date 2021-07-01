@@ -2,74 +2,13 @@
 
 exports[`renders learn react link 1`] = `
 <div
-  class="signinbody"
+  class="LoaderBody"
 >
+  <svg>
+    LogoWhite.svg
+  </svg>
   <div
-    class="logoPlace"
-  >
-    <svg>
-      Logo.svg
-    </svg>
-    <div
-      class="logoText"
-    >
-      Shared Shopper
-    </div>
-  </div>
-  <div
-    class="form"
-  >
-    <div
-      class="formInput"
-    >
-      <label>
-        E-Mail
-      </label>
-      <input
-        class="inputComp"
-        placeholder="E-Mail"
-        type="email"
-      />
-    </div>
-    <div
-      class="formInput"
-    >
-      <label>
-        Passwort
-      </label>
-      <input
-        class="inputComp"
-        placeholder="Passwort"
-        type="password"
-      />
-    </div>
-    <button
-      class="SecondaryButton"
-    >
-      Login
-    </button>
-    <div
-      class="orSection"
-    >
-      <div
-        class="line"
-      />
-      <p>
-        ODER
-      </p>
-      <div
-        class="line"
-      />
-    </div>
-    <a
-      href="/register"
-    >
-      <button
-        class="PrimaryButton"
-      >
-        Register
-      </button>
-    </a>
-  </div>
+    class="Loader"
+  />
 </div>
 `;

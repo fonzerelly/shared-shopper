@@ -1,9 +1,10 @@
 import { getList } from '../Login/backend'
 
 
-export const session: { token?: string } = {}
-
-
+export  const session:{token?:string, url:string}={
+    token: "",
+    url: "/list"
+}
 
 export function initialList() {
     return [{

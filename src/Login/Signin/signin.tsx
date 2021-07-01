@@ -13,14 +13,15 @@ export function SignIn() {
     const [password, setPassword] = useState("")
     const [readyToLoad, setReadyToLoad] = useState(false)
     const history = useHistory()
+
     useEffect(() => {
-        if(readyToLoad === true){
+        if (readyToLoad === true) {
             aquireToken(email, password).then((token) => {
-                session.token = token
-                history.push("/list")
+                session.token = token;
+                history.push(session.url) 
             })
         }
-    }, [readyToLoad, email, history, password])
+    }, [readyToLoad, password, email, history])
     const callToken = async () => {
         setReadyToLoad(true)
     }
@@ -28,9 +29,9 @@ export function SignIn() {
         <div className="signinbody">
             <Logosvg />
             <div className="form">
-                <InputComp label="E-Mail" place="E-Mail" type="email" setter={(txt: string) => {setEmail(txt)}} />
-                <InputComp label="Passwort" place="Passwort" type="password" setter={(txt:string) => {setPassword(txt)}} />
-                <button className="SecondaryButton" onClick={() => {callToken()}}>Login</button>
+                <InputComp label="E-Mail" place="E-Mail" type="email" setter={(txt: string) => { setEmail(txt) }} />
+                <InputComp label="Passwort" place="Passwort" type="password" setter={(txt: string) => { setPassword(txt) }} />
+                <button className="SecondaryButton" onClick={() => { callToken() }}>Login</button>
                 <ORSection />
                 <Link to="register"><PrimaryButton name="Register" /></Link>
             </div>

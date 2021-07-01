@@ -1,9 +1,11 @@
 import './Loading.css'
 import { ReactComponent as Logo } from '../img/LogoWhite.svg'
-import { CheckTokenAvailable } from './checkTokenAvailable'
+import { useHistory } from 'react-router'
+
 
 export function Loading() {
-    CheckTokenAvailable()
+    const history = useHistory()
+    setTimeout(() => {history.push('/signin')}, 1000);
     return <div className="LoaderBody">
         <Logo />
         <div className="Loader"></div>

@@ -1,5 +1,73 @@
+import List from "./List"
 import { searchExistingListName } from "./List"
+import {render, screen} from "@testing-library/react"
+import userEvent from '@testing-library/user-event'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+  } from 'react-router-dom';
 
+function TestEnvironment(props:{children: any}){
+    return <Router>
+    <Switch>
+        <Route>
+            {props.children}
+        </Route>
+    </Switch>
+    </Router>
+}
+
+
+describe("List", () => {
+
+    it("should render listBody", () => {
+        render(<TestEnvironment>
+        <List></List>
+        </TestEnvironment>)
+        screen.getByTestId("listBody")
+    })
+
+    it("should render Add", () => {
+        render(<TestEnvironment>
+        <List></List>
+        </TestEnvironment>)
+        screen.getByTestId("Add")
+    })
+
+    it("should render ListButton", () => {
+        const testIdName = "listButton"
+        render(<TestEnvironment>
+        <List></List>
+        </TestEnvironment>)
+        screen.getByTestId(testIdName)
+    })
+
+    it("should render ListContainer", () => {
+        render(<TestEnvironment>
+            <List></List>
+            </TestEnvironment>)
+            screen.getByTestId("ListContainer")
+    })
+
+    it("should render ButtonLink", () => {
+        render(<TestEnvironment>
+            <List></List>
+            </TestEnvironment>)
+            const ButtonLink = screen.getByTestId("ButtonLink")
+            expect(ButtonLink).toHaveAttribute("href")
+    })
+
+    it("should call onClickList function, when user clicks button", async () => {
+        const onClickList = jest.fn()
+        await render(<TestEnvironment>
+            <List ></List>
+            </TestEnvironment>)
+            const listButton = screen.getByTestId("listButton")
+            await userEvent.click(listButton)
+            expect(onClickList).toHaveBeenCalled
+    })
+})
 
 describe('searchExistingListName', () => {
     it('should return listName_1', () => {
@@ -32,5 +100,6 @@ describe('searchExistingListName', () => {
 
     it('should return List_2 when user is writing List_ and List__1 ist existing', () => {
         expect(searchExistingListName('List__2', [{name: 'List_'}, {name: 'List__1'}])).toEqual('List__2')
+
     })
 })
