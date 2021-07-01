@@ -26,7 +26,7 @@ export default function List(){
             await addList(searchExistingListName(listName, listFetch))
         }
         else {
-            await addList(date)
+            await addList(searchExistingListName(date, listFetch))
         }
         const data = await fetchedList()
         setListFetch(data)
@@ -65,7 +65,7 @@ export function searchExistingListName(listName: string, listFetch: any) {
 
     let listNameArray = listFetch.map((a: any) => a.name)
 
-    if(countedListName.match(/\d+/i) && !countedListName.includes("_") || countedListName=== "_"){
+    if((countedListName.match(/\d+/i) && !countedListName.includes("_")) || countedListName=== "_"){
         spListName = listName.split('_')
     }
 
