@@ -9,7 +9,7 @@ import { deleteList, addList } from '../Login/backend';
 import { initialList, fetchedList } from '../Login/session';
 import { ListInput } from '../Components/Input/Input'
 
-export default function List() {
+export default function List(){
     const [listFetch, setListFetch] = useState(initialList());
 
     useEffect(() => {
@@ -17,21 +17,22 @@ export default function List() {
             setListFetch(data))
     }, [])
 
-
     var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
     let date = dateformatter.format(new Date())
     const [listName, setListName] = useState("");
+
     async function onClickList() {
         if (listName.length > 0) {
-            await addList(listName)
+            await addList(searchExistingListName(listName, listFetch))
         }
         else {
             await addList(date)
         }
         const data = await fetchedList()
-            setListFetch(data)
+        setListFetch(data)
     }
-    async function onClickTrash (id: number) {
+
+    async function onClickTrash(id: number) {
         await deleteList(id)
         const data = await fetchedList()
         setListFetch(data)
@@ -47,12 +48,36 @@ export default function List() {
             </div>
 
             {listFetch.map((list, id) => {
-                return (<ListContainer name={list.name} listId={list.id} fetch={()=>onClickTrash(list.id)} key={id}></ListContainer>)
+                return (<ListContainer name={list.name} listId={list.id} fetch={() => onClickTrash(list.id)} key={id}></ListContainer>)
             })}
         </div>
     </div>
 }
 
-function ListContainer(props: { name: string, listId: number, fetch: Function}) {
-    return <div className="ListContainer"><Link to={`/list/shoppinglist/bearbeiten/?id=${props.listId}`}><p>{props.name}</p></Link> <button className="DelButton" onClick={() => {props.fetch(props.listId)}}><TrashIcon /></button> </div>
+function ListContainer(props: { name: string, listId: number, fetch: Function }) {
+    return <div className="ListContainer"><Link to={`/list/shoppinglist/bearbeiten/?id=${props.listId}`}><p>{props.name}</p></Link> <button className="DelButton" onClick={() => { props.fetch(props.listId) }}><TrashIcon /></button> </div>
+}
+
+export function searchExistingListName(listName: string, listFetch: any) {
+    let counter: number = 0
+    let countedListName: string = listName;
+    let spListName: string[] = [listName]
+
+    let listNameArray = listFetch.map((a: any) => a.name)
+
+    if(countedListName.match(/\d+/i) && !countedListName.includes("_") || countedListName=== "_"){
+        spListName = listName.split('_')
+    }
+
+    listNameArray.map((array: any)=> {
+        if(array.includes(spListName[0])){
+            counter++
+        }
+        return true
+    })
+
+    if (listNameArray.includes(spListName[0])) {
+        countedListName = (spListName[0]  + "_" + counter)
+    }
+    return countedListName
 }
