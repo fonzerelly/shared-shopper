@@ -11,6 +11,7 @@ import { ListInput } from '../Components/Input/Input'
 
 export default function List(){
     const [listFetch, setListFetch] = useState(initialList());
+    const [listName, setListName] = useState("");
 
     useEffect(() => {
         fetchedList().then((data) =>
@@ -19,7 +20,6 @@ export default function List(){
 
     var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
     let date = dateformatter.format(new Date())
-    const [listName, setListName] = useState("");
 
     async function onClickList() {
         if (listName.length > 0) {
@@ -48,7 +48,7 @@ export default function List(){
             </div>
 
             {listFetch.map((list, id) => {
-                return (<ListContainer data-testid = "testContainer" name={list.name} listId={list.id} fetch={()=>onClickTrash(list.id)} key={id}></ListContainer>)
+                return (<ListContainer name={list.name} listId={list.id} fetch={()=>onClickTrash(list.id)} key={id}></ListContainer>)
             })}
         </div>
     </div>

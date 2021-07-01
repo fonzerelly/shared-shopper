@@ -1,6 +1,7 @@
 import List from "./List"
 import { searchExistingListName } from "./List"
-import {render, screen, fireEvent} from "@testing-library/react"
+import {render, screen} from "@testing-library/react"
+import userEvent from '@testing-library/user-event'
 import {
     BrowserRouter as Router,
     Switch,
@@ -57,15 +58,14 @@ describe("List", () => {
             expect(ButtonLink).toHaveAttribute("href")
     })
 
-    xit("should render ButtonLink", async () => {
-        render(<TestEnvironment>
-            <List></List>
+    it("should call onClickList function, when user clicks button", async () => {
+        const onClickList = jest.fn()
+        await render(<TestEnvironment>
+            <List ></List>
             </TestEnvironment>)
-            const listButton = screen.getByRole("button", {name: "+"})
-            await fireEvent.click(listButton)
-            const container = screen.getByTestId("testContainer")
-            var count = Object.keys(container).length
-            expect(count).toBe(2)
+            const listButton = screen.getByTestId("listButton")
+            await userEvent.click(listButton)
+            expect(onClickList).toHaveBeenCalled
     })
 })
 
