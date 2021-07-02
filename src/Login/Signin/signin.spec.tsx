@@ -1,12 +1,10 @@
 import { render, screen, fireEvent, cleanup } from "@testing-library/react"
 import { SignIn } from "./signin"
-import { callToken } from "./signin";
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from 'react-router-dom';
-import { useState } from "react";
 
 function TestEnvironment(props: { children: any }) {
     return <Router>
