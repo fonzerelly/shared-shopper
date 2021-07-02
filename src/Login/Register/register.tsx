@@ -4,7 +4,6 @@ import {InputComp} from '../../Components/Input/Input'
 import Logosvg from '../../Components/Logo/Logo'
 import { PrimaryButton } from '../../Components/Buttons/Button'
 import { handleEmail } from './validators'
-import { registerUser } from '../backend'
 import {
   Link
 } from 'react-router-dom';
