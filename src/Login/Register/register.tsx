@@ -4,6 +4,7 @@ import {InputComp} from '../../Components/Input/Input'
 import Logosvg from '../../Components/Logo/Logo'
 import { PrimaryButton } from '../../Components/Buttons/Button'
 import { handleEmail } from './validators'
+import { registerUser } from '../backend'
 import {
   Link
 } from 'react-router-dom';
@@ -67,11 +68,11 @@ export function Register() {
       <div className="form">
         <InputComp label="E-Mail" type="email" place="E-Mail" setter={errorRender} />
         <p className="validError" data-testid="emerror">{error}</p>
-        <InputComp label="Passwort" type="password" place="Passwort" setter={handlePassword} />
+        <InputComp label="Passwort" type="password" place="Passwort" setter={handlePassword} data-testid="inputpassword"/>
         <p className="validError" data-testid="pwerror">{errorPW}</p>
         <InputComp label="Passwort wiederholen" type="password" place="Passwort" setter={handlePasswordCheck} />
         <p className="validError">{errorPWcheck}</p>
-        <Link to="/list" data-testid="link"><PrimaryButton name="Jetzt zusammen einkaufen!" /></Link>
+        <Link to="/list" data-testid="link"><PrimaryButton name="Jetzt zusammen einkaufen!" data-testid="Primary_Button"/></Link>
       </div>
     </div>
   </>

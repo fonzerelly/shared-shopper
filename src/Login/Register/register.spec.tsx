@@ -44,6 +44,10 @@ describe('SignIn', () => {
         const registerButton = screen.getByRole("button", { name: "Jetzt zusammen einkaufen!" })
         await fireEvent.click(registerButton)
         screen.getByTestId('pwerror')
+    })
+    it('should render error', async () => {
+        const registerButton = screen.getByRole("button", { name: "Jetzt zusammen einkaufen!" })
+        await fireEvent.click(registerButton)
         screen.getByTestId('emerror')
     })
     it('should render register button', () => {
