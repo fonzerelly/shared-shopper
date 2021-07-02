@@ -27,7 +27,7 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
             <div className="text" data-testid="text-container2">
                 <PencilIcon2 onClick={()=>onClickEdit()} className={"pencil--" + String(componentMode)} data-testid="Pencil2"/>
                 <TrashIcon className="trash" onClick={()=> props.delete()} data-testid="trash" />
-                <input className="product--count" type="number" pattern="[0-9]*" placeholder={JSON.stringify(props.amount)} onChange={(e) => { setCurrentAmount(e.target.value)}}></input>
+                <input className="product--count" type="number" pattern="[0-9]*" placeholder={String(props.amount)} onChange={(e) => { setCurrentAmount(e.target.value)}}></input>
                 <input className="product--label" placeholder={props.name}></input>
             </div>
         </div>
