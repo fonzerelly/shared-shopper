@@ -56,7 +56,7 @@ export function Register() {
   }
 
   return <>
-    <div className="registerbody">
+    <div className="registerbody" data-testid="body">
       <Logosvg />
       <div className="registertext">
         <h1>Registrierung</h1>
@@ -66,12 +66,12 @@ export function Register() {
       </div>
       <div className="form">
         <InputComp label="E-Mail" type="email" place="E-Mail" setter={errorRender} />
-        <p className="validError">{error}</p>
+        <p className="validError" data-testid="emerror">{error}</p>
         <InputComp label="Passwort" type="password" place="Passwort" setter={handlePassword} />
-        <p className="validError">{errorPW}</p>
+        <p className="validError" data-testid="pwerror">{errorPW}</p>
         <InputComp label="Passwort wiederholen" type="password" place="Passwort" setter={handlePasswordCheck} />
         <p className="validError">{errorPWcheck}</p>
-        <Link to="signin"><PrimaryButton name="Jetzt zusammen einkaufen!" /></Link>
+        <Link to="/list" data-testid="link"><PrimaryButton name="Jetzt zusammen einkaufen!" /></Link>
       </div>
     </div>
   </>

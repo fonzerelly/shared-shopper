@@ -45,7 +45,7 @@ describe('SignIn', () => {
         const registerButton = screen.getByTestId("PrimaryButton")
         expect(registerButton).toHaveClass("PrimaryButton")
     })
-    it('should render register button', () => {
+    it('should redirect to /register', () => {
         const registerButtonLink = screen.getByTestId("registerButton")
         expect(registerButtonLink).toHaveAttribute("href", "/register")
     })
