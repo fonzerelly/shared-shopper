@@ -5,6 +5,7 @@ import {
     Switch,
     Route
 } from 'react-router-dom';
+import userEvent from "@testing-library/user-event";
 
 function TestEnvironment(props: { children: any }) {
     return <Router>
@@ -37,13 +38,11 @@ describe('SignIn', () => {
     it("should render Passwort field", () => {
         screen.getByPlaceholderText('Passwort')
     })
-    it('should render Login button', () => {
-        const loginButton = screen.getByTestId("SecondaryButton")
-        expect(loginButton).toHaveClass("SecondaryButton")
-    })
-    it('should render register button', () => {
-        const registerButton = screen.getByTestId("PrimaryButton")
-        expect(registerButton).toHaveClass("PrimaryButton")
+    it('should have function callToken', () => {
+        const callToken= jest.fn()
+        const SecondaryButton = screen.getByTestId("SecondaryButton")
+        userEvent.click(SecondaryButton)
+        expect(callToken).toHaveBeenCalled
     })
     it('should render register button', () => {
         const registerButtonLink = screen.getByTestId("registerButton")
