@@ -5,6 +5,7 @@
 .listBody {
     width: 90vw;
     margin: 0 auto;
+    margin-top: 5vw;
 }
 
 .List_Header {
@@ -35,14 +36,28 @@ h1 {
 .ListButton {
     height: 40px;
     padding: 0px 35px;
-    background-color: var(--primary);
-    color:white;
-    border: none;
+    background-position: center;
+    background-size: 14000%;
+    transition: background 0.8s ease-in-out;
+    color: var(--primary);
+    background-image: radial-gradient(circle, transparent 1%, var(--primary) 1%);
+    background-color: transparent;
+    border: var(--primary) 1px solid;
     border-radius: 10px;
     margin-left: 5px;
     font-size: 24px;
     text-align: center;
 }
+.ListButton:hover{
+    background: rgb(255, 217, 194) radial-gradient(circle, transparent 1%, rgb(255, 217, 194) 1%)center/14000%;
+}
+.ListButton:active {
+    transition: background 0s;
+    background-color: rgba(245, 202, 164, 0.4);
+    background-size: 100%;
+}
+
+
 
 .ListInput {
     border: 1px solid #D3D3D3;
@@ -81,7 +96,7 @@ button {
 .tab{
     display:flex;
     flex-direction: row;
-    width: 90vw;
+    width: 100vw;
     justify-content: space-between;
     margin-bottom: 1rem;
     padding-bottom: 0px;
@@ -110,4 +125,9 @@ button {
 a {
     text-decoration: none;
     color: black;
+}
+
+.content-tabs2 {
+    margin: 0 auto;
+    width: 90vw;
 }

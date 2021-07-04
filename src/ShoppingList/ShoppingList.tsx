@@ -70,6 +70,7 @@ export function ShoppingList() {
                 </div>
             </Route>
             <Route path={`/list/shoppinglist/kaufen`}>
+                <div className="content-tabs2">
                 <h1>Kaufen</h1>
                 {listContent.map((list, id) => {
                     let content;
@@ -86,6 +87,7 @@ export function ShoppingList() {
                     }
                     return content
                 })}
+                </div>
             </Route>
         </Switch>
     </div>;
