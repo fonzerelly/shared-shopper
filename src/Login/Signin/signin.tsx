@@ -31,9 +31,9 @@ export function SignIn() {
             <div className="form">
                 <InputComp label="E-Mail" place="E-Mail" type="email" setter={(txt: string) => { setEmail(txt) }} />
                 <InputComp label="Passwort" place="Passwort" type="password" setter={(txt: string) => { setPassword(txt) }} />
-                <button className="SecondaryButton" onClick={() => { callToken() }}>Login</button>
+                <button className="SecondaryButton" data-testid="SecondaryButton" onClick={() => { callToken() }}>Login</button>
                 <ORSection />
-                <Link to="register"><PrimaryButton name="Register" /></Link>
+                <Link to="register" data-testid="registerButton"><PrimaryButton name="Register" /></Link>
             </div>
         </div>
     )
@@ -41,9 +41,9 @@ export function SignIn() {
 
 function ORSection() {
     return <div className="orSection">
-        <div className="line"></div>
+        <div className="line" data-testid="line1"></div>
         <p>ODER</p>
-        <div className="line"></div>
+        <div className="line" data-testid="line2"></div>
 
     </div>
 }
