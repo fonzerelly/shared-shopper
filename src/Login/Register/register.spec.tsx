@@ -16,7 +16,7 @@ function TestEnvironment(props: { children: any }) {
     </Router>
 }
 
-describe('SignIn', () => {
+describe('Register', () => {
     beforeEach(() => {
         return render(
             <TestEnvironment>
