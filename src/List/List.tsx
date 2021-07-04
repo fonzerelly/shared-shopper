@@ -39,9 +39,8 @@ export default function List(){
     }
 
     return <div>
-        <Header titleName="Einkaufszettel" path="/signin"></Header>
+        <Header titleName="Ihre Einkaufszettel" path="/signin"></Header>
         <div className="listBody" data-testid = "listBody">
-            <h1>Einkaufszettel</h1>
             <div className="Add" data-testid = "Add">
                 <ListInput place={date} setter={(txt: string) => { setListName(txt) }} />
                 <button className="ListButton" data-testid = "listButton" onClick={() => onClickList()}>+</button>
