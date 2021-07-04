@@ -44,7 +44,7 @@ describe('SignIn', () => {
         userEvent.click(SecondaryButton)
         expect(callToken).toHaveBeenCalled
     })
-    it('should render register button', () => {
+    it('should redirect to /register', () => {
         const registerButtonLink = screen.getByTestId("registerButton")
         expect(registerButtonLink).toHaveAttribute("href", "/register")
     })
