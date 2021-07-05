@@ -30,7 +30,6 @@ export async function getList() {
         }
     })
         .then((response) => response.json())
-        .then((data) => data.shoppingLists)
 }
 
 export async function getContent(id: string | null) { 
