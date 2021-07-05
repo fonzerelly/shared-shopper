@@ -13,13 +13,18 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
     }
 
     const [componentMode, setComponentMode] = useState(ProductStatus.STATIC);
-    const [currentAmount, setCurrentAmount] = useState("")
+    const [currentAmount, setCurrentAmount] = useState(String(props.amount))
 
     async function onClickEdit() {
-        setComponentMode(ProductStatus.STATIC)
-        await editCount(currentAmount, props.listId, props.productId)
         const data = await getContent(props.listId)
         props.setter(data)
+        //await editCount(currentAmount, props.listId, props.productId)
+        setComponentMode(ProductStatus.STATIC)
+    }
+    async function onChangeEdit(txt: string) {
+        let newAmount= parseInt(txt)+1
+        setCurrentAmount(String(newAmount))
+        await editCount(currentAmount, props.listId, props.productId)
     }
 
     if (componentMode === ProductStatus.EDITABLE) {
@@ -27,7 +32,7 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
             <div className="text" data-testid="text-container2">
                 <PencilIcon2 onClick={()=>onClickEdit()} className={"pencil--" + String(componentMode)} data-testid="Pencil2"/>
                 <TrashIcon className="trash" onClick={()=> props.delete()} data-testid="trash" />
-                <input className="product--count" type="number" pattern="[0-9]*" placeholder={String(props.amount)} onChange={(e) => { setCurrentAmount(e.target.value)}}></input>
+                <input className="product--count" type="number" pattern="[0-9]*" placeholder={String(props.amount)} onChange={(e) => {onChangeEdit(String(e.target.value))}}></input>
                 <input className="product--label" placeholder={props.name}></input>
             </div>
         </div>
