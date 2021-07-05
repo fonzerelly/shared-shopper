@@ -46,11 +46,17 @@ export function ShoppingList() {
         setListContent(data)    
     }
 
+    function refreshProductInput() {
+        setToggleState(ShoppingListMode.EDIT_MODE)
+        setProductName("")
+        setProductCount(0)
+    }
+
     return <div>
         <Header titleName="Einkaufszettel" path="/list"></Header>
         <div className="tab" data-testid="tab">
             <Link to={`/list/shoppinglist/bearbeiten/?id=${currentListId}`} data-testid="bearbeiten">
-                <button className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => setToggleState(ShoppingListMode.EDIT_MODE)}>Bearbeiten</button>
+                <button className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => refreshProductInput()}>Bearbeiten</button>
             </Link>
             <Link to={`/list/shoppinglist/kaufen/?id=${currentListId}`} data-testid="kaufen">
                 <button className={toggleState === 2 ? "tabs active-tabs" : "tabs"} onClick={() => setToggleState(ShoppingListMode.BUY_MODE)}>Kaufen</button>
