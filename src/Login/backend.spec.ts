@@ -37,7 +37,7 @@ describe("getList", () => {
       });
 
     const result =  await getList()
-    expect(result).toEqual('Test')
+    expect(result).toEqual( {shoppingLists: 'Test'})
   })
 })
 
