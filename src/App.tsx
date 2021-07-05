@@ -13,19 +13,6 @@ import {Loading} from './Loading/Loading'
 import { ProvideAuth, PrivateRoute} from './Login/auth';
 
 function App() {
-  // const commandPrototype = (product: string, count: number) => async () => {
-  //   await addEntry( product, count)
-  // }
-  // const commandBuffer: Function [] = []
-  // commandBuffer.push(commandPrototype('Kekse', 2))
-
-  // if (internet) {
-  //   commandBuffer.forEach((fn) => {
-  //     fn()
-  //   }
-  // }
-   
-  /* comment to trigger rerun of activation */
   return (
     <ProvideAuth>
       <Router>

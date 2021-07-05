@@ -8,13 +8,15 @@ import { Header } from '../Header/header'
 import { deleteList, addList } from '../Login/backend';
 import { initialList, fetchedList } from '../Login/session';
 import { ListInput } from '../Components/Input/Input'
+import {useToken} from '../useToken/useToken'
 
 export default function List(){
     const [listFetch, setListFetch] = useState(initialList());
     const [listName, setListName] = useState("");
+    const { token } = useToken();
 
     useEffect(() => {
-        fetchedList().then((data) =>
+        fetchedList(token).then((data) =>
             setListFetch(data))
     }, [])
 
@@ -23,18 +25,18 @@ export default function List(){
 
     async function onClickList() {
         if (listName.length > 0) {
-            await addList(searchExistingListName(listName, listFetch))
+            await addList(searchExistingListName(listName, listFetch), token)
         }
         else {
-            await addList(searchExistingListName(date, listFetch))
+            await addList(searchExistingListName(date, listFetch), token)
         }
-        const data = await fetchedList()
+        const data = await fetchedList(token)
         setListFetch(data)
     }
 
     async function onClickTrash(id: number) {
-        await deleteList(id)
-        const data = await fetchedList()
+        await deleteList(id,token)
+        const data = await fetchedList(token)
         setListFetch(data)
     }
 

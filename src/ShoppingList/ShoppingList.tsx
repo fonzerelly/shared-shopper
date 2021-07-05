@@ -10,6 +10,7 @@ import { ProductBuy } from '../Components/Products/ProductBuy'
 import { Header } from '../Header/header'
 import { addContent, deleteContent, getContent} from '../Login/backend'
 import {  initialContent, findListId } from '../Login/session';
+import {useToken} from '../useToken/useToken'
 
 export function ShoppingList() {
     enum ShoppingListMode {
@@ -22,27 +23,28 @@ export function ShoppingList() {
     const [productName, setProductName] = useState("")
     const [productCount, setProductCount] = useState(0)
     const currentListId = findListId()
+    const { token } = useToken();
 
     useEffect(() => {
-        getContent(currentListId)
+        getContent(currentListId, token)
             .then((data) => setListContent(data))
-
+            // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [currentListId])
 
     async function onClickFetch() {
-        await addContent(productName, productCount, currentListId)
-        const data = await getContent(currentListId)
+        await addContent(productName, productCount, currentListId, token)
+        const data = await getContent(currentListId, token)
         setListContent(data)
     }
 
     async function onClickDelete(id: number) {
-        await deleteContent(currentListId, id)
-        const data = await getContent(currentListId)
+        await deleteContent(currentListId, id, token)
+        const data = await getContent(currentListId, token)
         setListContent(data)
     }
     
     async function updateList() {
-        const data = await getContent(currentListId)
+        const data = await getContent(currentListId, token)
         setListContent(data)    
     }
 

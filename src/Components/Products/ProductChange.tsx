@@ -5,6 +5,7 @@ import { ReactComponent as TrashIcon } from '../../img/trash.svg'
 import React, { useState } from 'react';
 import { editCount, getContent } from '../../Login/backend'
 import { UpDownButtons } from '../UpDownButton/UpDownButton'
+import {useToken} from '../../useToken/useToken'
 
 export function ProductChange(props: { name: string, amount: number, delete: Function, productId: number, position: number; listId: string | null, setter: Function, onMove: Function, listContent: any }) {
     enum ProductStatus {
@@ -14,6 +15,7 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
 
     const [componentMode, setComponentMode] = useState(ProductStatus.STATIC);
     const [currentAmount, setCurrentAmount] = useState(String(props.amount))
+    const { token } = useToken();
 
     async function onClickEdit() {
         setComponentMode(ProductStatus.STATIC)
@@ -21,10 +23,10 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
 
     async function onChangeEdit(txt: string) {
         if (txt !== currentAmount) {
-            await editCount(txt, props.listId, props.productId)
+            await editCount(txt, props.listId, props.productId, token)
         }
         setCurrentAmount(txt)
-        const data = await getContent(props.listId)
+        const data = await getContent(props.listId, token)
             props.setter(data)
     }
 
@@ -49,7 +51,6 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
 }
 
 export function ProductInit(props: { name: string, amount: string, setter: Function, setterCount: Function, fetch: Function }) {
-    
     return <div className="Product" data-testid="Initial">
         <div className="text">
             <input className="productInit--count" type="number" pattern="[0-9]*" placeholder="0" onChange={(e) => { props.setterCount(e.target.value)}}></input>

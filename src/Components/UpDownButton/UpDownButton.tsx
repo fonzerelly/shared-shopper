@@ -5,20 +5,23 @@ import { ReactComponent as UpIconInactive } from '../../img/upInactive.svg'
 import { ReactComponent as DownIconInactive } from '../../img/downInactive.svg'
 import { changePositionUp, changePositionDown} from '../../Login/backend'
 import './UpDownButton.css'
+import {useToken} from '../../useToken/useToken'
 
 export function UpDownButtons(props: {listId: string | null, productId: number, position: number, onMove: Function, list: any}) {
 
     let buttonUp = <UpIcon />
     let buttonDown = <DownIcon />
+
+    const { token } = useToken();
     
 
    async function onClickUp() {
-        await changePositionUp(props.listId, props.productId)
+        await changePositionUp(props.listId, props.productId, token)
         props.onMove()
     }
  
     async function onClickDown() {
-     await changePositionDown(props.listId, props.productId)
+     await changePositionDown(props.listId, props.productId, token)
      props.onMove()
     }
  

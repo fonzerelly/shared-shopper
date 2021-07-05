@@ -7,21 +7,24 @@ import {InputComp} from '../../Components/Input/Input';
 import {aquireToken} from '../backend'
 import '../../Components/Buttons/button.css'
 import { session } from '../session';
+import {useToken} from '../../useToken/useToken'
 
 export function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [readyToLoad, setReadyToLoad] = useState(false)
+    const { setToken } = useToken();
     const history = useHistory()
+    
 
     useEffect(() => {
         if (readyToLoad === true) {
             aquireToken(email, password).then((token) => {
-                session.token = token;
+                setToken(token)
                 history.push(session.url) 
             })
         }
-    }, [readyToLoad, password, email, history])
+    }, [readyToLoad, password, email, history, setToken])
     const callToken = async () => {
         setReadyToLoad(true)
     }
