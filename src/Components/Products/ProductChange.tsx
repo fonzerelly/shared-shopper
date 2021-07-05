@@ -18,7 +18,6 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
     async function onClickEdit() {
         const data = await getContent(props.listId)
         props.setter(data)
-        //await editCount(currentAmount, props.listId, props.productId)
         setComponentMode(ProductStatus.STATIC)
     }
     async function onChangeEdit(txt: string) {
