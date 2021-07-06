@@ -6,7 +6,19 @@ export  const session:{token?:string, url:string}={
     url: "/list"
 }
 
-export function initialList() {
+export interface OrderListItem {
+    id: number,
+    name: string,
+    content: {
+        id: number,
+        label: string,
+        count: number,
+        position: number,
+        marked: boolean
+    }[]
+}
+
+export function initialList():OrderListItem[] {
     return [{
         id: 0,
         name: '',

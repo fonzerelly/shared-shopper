@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
 import { deleteList, addList } from '../Login/backend';
-import { initialList, fetchedList } from '../Login/session';
+import { initialList, fetchedList} from '../Login/session';
 import { ListInput } from '../Components/Input/Input'
 
 export default function List(){
@@ -23,10 +23,10 @@ export default function List(){
 
     async function onClickList() {
         if (listName.length > 0) {
-            await addList(searchExistingListName(listName, listFetch))
+            await addList(searchExistingListName(listName))
         }
         else {
-            await addList(searchExistingListName(date, listFetch))
+            await addList(searchExistingListName(date))
         }
         const data = await fetchedList()
         setListFetch(data)
@@ -57,26 +57,16 @@ function ListContainer(props: { name: string, listId: number, fetch: Function}) 
     return <div className="ListContainer" data-testid = "ListContainer"><Link to={`/list/shoppinglist/bearbeiten/?id=${props.listId}`} data-testid = "ButtonLink"><p>{props.name}</p></Link> <button className="DelButton" onClick={() => {props.fetch(props.listId)}}><TrashIcon /></button> </div>
 }
 
-export function searchExistingListName(listName: string, listFetch: any) {
-    let counter: number = 0
-    let countedListName: string = listName;
-    let spListName: string[] = [listName]
+let names = new Map<string, number>()
 
-    let listNameArray = listFetch.map((a: any) => a.name)
+export function searchExistingListName(listName: string):string{
 
-    if((countedListName.match(/\d+/i) && !countedListName.includes("_")) || countedListName=== "_"){
-        spListName = listName.split('_')
+    listName = listName.split(/(_\d+)*$/i)[0]
+    if(!names.has(listName)) {
+        names.set(listName, 0)
     }
+    let counter = names.get(listName)!
+    names.set(listName, counter+1)
 
-    listNameArray.map((array: any)=> {
-        if(array.includes(spListName[0])){
-            counter++
-        }
-        return true
-    })
-
-    if (listNameArray.includes(spListName[0])) {
-        countedListName = (spListName[0]  + "_" + counter)
-    }
-    return countedListName
+    return counter === 0 ? listName :`${listName}_${counter}`
 }
