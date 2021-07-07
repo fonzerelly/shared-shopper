@@ -53,13 +53,33 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
 }
 
 export function ProductInit(props: { name: string, amount: string, setter: Function, setterCount: Function, fetch: Function }) {
+    const [inputCount, setInputCount] = useState("");
+    const [inputLabel, setInputLabel] = useState("");
+
+    function onChangeCount(e: string) {
+        props.setterCount(e)
+        setInputCount(e)
+    }
+
+    function onChangeLabel(e: string) {
+        props.setter(e)
+        setInputLabel(e)
+    }
+
+    function onClickButton(){
+        props.fetch()
+        setInputCount("")
+        setInputLabel("")
+        props.setterCount("")
+        props.setter("")
+    }
     return <div className="Product" data-testid="Initial">
         <div className="text">
-            <input className="productInit--count" type="number" pattern="[0-9]*" placeholder="0" onChange={(e) => { props.setterCount(e.target.value)}}></input>
-            <input className="productInit--label" placeholder="Produkt" onChange={(e) => { props.setter(e.target.value) }}></input>
+            <input className="productInit--count" type="number" pattern="[0-9]*" placeholder="0" value={inputCount} onChange={(e) => { onChangeCount(e.target.value)}}></input>
+            <input className="productInit--label" placeholder="Produkt" value = {inputLabel} onChange={(e) => { onChangeLabel(e.target.value) }}></input>
         </div>
         <div className="Up_Down">
-            <button className="productInit--button" onClick={() => props.fetch()}>+</button>
+            <button className="productInit--button" onClick={() => onClickButton()}>+</button>
         </div>
     </div>
 }

@@ -14,6 +14,7 @@ import { useSecret} from '../secret/secret';
 export default function List(){
     const [listFetch, setListFetch] = useState(initialList());
     const [listName, setListName] = useState("");
+    const [inputValue, setInputValue] = useState("");
     const { token } = useToken();
     const {secret} = useSecret();
     
@@ -33,6 +34,8 @@ export default function List(){
         else {
             await addList(searchExistingListName(date, listFetch), token, secret)
         }
+        setListName("")
+        setInputValue("")
         const data = await getList(token, secret)
         setListFetch(data)
     }
@@ -43,11 +46,16 @@ export default function List(){
         setListFetch(data)
     }
 
+    function onChangeListInput (txt:string) {
+        setListName(txt)
+        setInputValue(txt)
+    }
+
     return <div>
         <Header titleName="Ihre Einkaufszettel" path="/signin" list={true}></Header>
         <div className="listBody" data-testid = "listBody">
             <div className="Add" data-testid = "Add">
-                <ListInput place={date} setter={(txt: string) => { setListName(txt) }} />
+                <ListInput place={date} value= {inputValue} setter={(txt: string) => { onChangeListInput(txt) }} />
                 <button className="ListButton" data-testid = "listButton" onClick={() => onClickList()}>+</button>
             </div>
 
