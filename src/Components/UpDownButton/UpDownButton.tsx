@@ -6,6 +6,7 @@ import { ReactComponent as DownIconInactive } from '../../img/downInactive.svg'
 import { changePositionUp, changePositionDown} from '../../Login/backend'
 import './UpDownButton.css'
 import {useToken} from '../../useToken/useToken'
+import { useSecret} from '../../secret/secret';
 
 export function UpDownButtons(props: {listId: string | null, productId: number, position: number, onMove: Function, list: any}) {
 
@@ -13,15 +14,16 @@ export function UpDownButtons(props: {listId: string | null, productId: number, 
     let buttonDown = <DownIcon />
 
     const { token } = useToken();
+    const {secret} = useSecret()
     
 
    async function onClickUp() {
-        await changePositionUp(props.listId, props.productId, token)
+        await changePositionUp(props.listId, props.productId, token, secret)
         props.onMove()
     }
  
     async function onClickDown() {
-     await changePositionDown(props.listId, props.productId, token)
+     await changePositionDown(props.listId, props.productId, token, secret)
      props.onMove()
     }
  

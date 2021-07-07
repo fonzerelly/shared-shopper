@@ -5,38 +5,41 @@ import './List.css';
 import { useEffect, useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
-import { deleteList, addList } from '../Login/backend';
-import { initialList, fetchedList } from '../Login/session';
+import { deleteList, addList, getList } from '../Login/backend';
+import { initialList} from '../Login/session';
 import { ListInput } from '../Components/Input/Input'
 import {useToken} from '../useToken/useToken'
+import { useSecret} from '../secret/secret';
 
 export default function List(){
     const [listFetch, setListFetch] = useState(initialList());
     const [listName, setListName] = useState("");
     const { token } = useToken();
+    const {secret} = useSecret();
+    
 
     useEffect(() => {
-        fetchedList(token).then((data) =>
-            setListFetch(data))
-    }, [])
+         getList(token, secret).then((data) =>
+             setListFetch(data))
+    }, [token, secret])
 
     var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
     let date = dateformatter.format(new Date())
 
     async function onClickList() {
         if (listName.length > 0) {
-            await addList(searchExistingListName(listName, listFetch), token)
+            await addList(searchExistingListName(listName, listFetch), token, secret)
         }
         else {
-            await addList(searchExistingListName(date, listFetch), token)
+            await addList(searchExistingListName(date, listFetch), token, secret)
         }
-        const data = await fetchedList(token)
+        const data = await getList(token, secret)
         setListFetch(data)
     }
 
     async function onClickTrash(id: number) {
-        await deleteList(id,token)
-        const data = await fetchedList(token)
+        await deleteList(id,token,secret)
+        const data = await getList(token, secret)
         setListFetch(data)
     }
 

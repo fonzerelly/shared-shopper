@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { editCount, getContent } from '../../Login/backend'
 import { UpDownButtons } from '../UpDownButton/UpDownButton'
 import {useToken} from '../../useToken/useToken'
+import { useSecret} from '../../secret/secret';
 
 export function ProductChange(props: { name: string, amount: number, delete: Function, productId: number, position: number; listId: string | null, setter: Function, onMove: Function, listContent: any }) {
     enum ProductStatus {
@@ -16,6 +17,7 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
     const [componentMode, setComponentMode] = useState(ProductStatus.STATIC);
     const [currentAmount, setCurrentAmount] = useState(String(props.amount))
     const { token } = useToken();
+    const {secret} = useSecret()
 
     async function onClickEdit() {
         setComponentMode(ProductStatus.STATIC)
@@ -23,10 +25,10 @@ export function ProductChange(props: { name: string, amount: number, delete: Fun
 
     async function onChangeEdit(txt: string) {
         if (txt !== currentAmount) {
-            await editCount(txt, props.listId, props.productId, token)
+            await editCount(txt, props.listId, props.productId, token, secret)
         }
         setCurrentAmount(txt)
-        const data = await getContent(props.listId, token)
+        const data = await getContent(props.listId, token, secret)
             props.setter(data)
     }
 

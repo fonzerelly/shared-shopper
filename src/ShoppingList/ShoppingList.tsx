@@ -11,6 +11,7 @@ import { Header } from '../Header/header'
 import { addContent, deleteContent, getContent} from '../Login/backend'
 import {  initialContent, findListId } from '../Login/session';
 import {useToken} from '../useToken/useToken'
+import { useSecret} from '../secret/secret';
 
 export function ShoppingList() {
     enum ShoppingListMode {
@@ -24,27 +25,27 @@ export function ShoppingList() {
     const [productCount, setProductCount] = useState(0)
     const currentListId = findListId()
     const { token } = useToken();
+    const {secret} = useSecret();
 
     useEffect(() => {
-        getContent(currentListId, token)
+        getContent(currentListId, token, secret)
             .then((data) => setListContent(data))
-            // eslint-disable-next-line react-hooks/exhaustive-deps 
-    }, [currentListId])
+    }, [currentListId,token, secret])
 
     async function onClickFetch() {
-        await addContent(productName, productCount, currentListId, token)
-        const data = await getContent(currentListId, token)
+        await addContent(productName, productCount, currentListId, token, secret)
+        const data = await getContent(currentListId, token, secret)
         setListContent(data)
     }
 
     async function onClickDelete(id: number) {
-        await deleteContent(currentListId, id, token)
-        const data = await getContent(currentListId, token)
+        await deleteContent(currentListId, id, token, secret)
+        const data = await getContent(currentListId, token, secret)
         setListContent(data)
     }
     
     async function updateList() {
-        const data = await getContent(currentListId, token)
+        const data = await getContent(currentListId, token, secret)
         setListContent(data)    
     }
 

@@ -2,12 +2,14 @@ import './products.css'
 import { Checkbox, CheckboxChecked } from '../Checkbox/Checkbox'
 import { editMark } from '../../Login/backend'
 import {useToken} from '../../useToken/useToken'
+import { useSecret} from '../../secret/secret';
 
 export function ProductBuy(props: { name: string, amount: number, state: boolean, productId: number, listId: string | null, markFn: Function}) {
     const { token } = useToken();
+    const { secret } = useSecret()
     
     async function markItem(){
-        await editMark(props.listId, props.productId, token)
+        await editMark(props.listId, props.productId, token, secret)
         props.markFn()
     }
 
