@@ -9,6 +9,7 @@ import '../../Components/Buttons/button.css'
 import { session } from '../session';
 import {useToken} from '../../useToken/useToken'
 import { useSecret, urlCheck } from '../../secret/secret';
+    
 
 export function SignIn() {
     const [email, setEmail] = useState("");
@@ -21,13 +22,15 @@ export function SignIn() {
     useEffect(() => {
         if (readyToLoad === true) {
             aquireToken(email, password, secret).then((token) => {
-                setToken(token)
-                history.push(session.url) 
+                 session.token = token
+                 setToken(session.token)
+                history.push(session.url)
             })
         }
-    }, [readyToLoad, password, email, history, secret])
+    }, [readyToLoad, password, email, history, secret, setToken])
 
     const callToken = async () => {
+        setToken(session.token)
         setSecret(urlCheck())
         setReadyToLoad(true)
     }
