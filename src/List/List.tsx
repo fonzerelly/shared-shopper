@@ -44,7 +44,7 @@ export default function List(){
     }
 
     return <div>
-        <Header titleName="Ihre Einkaufszettel" path="/signin"></Header>
+        <Header titleName="Ihre Einkaufszettel" path="/signin" list={true}></Header>
         <div className="listBody" data-testid = "listBody">
             <div className="Add" data-testid = "Add">
                 <ListInput place={date} setter={(txt: string) => { setListName(txt) }} />

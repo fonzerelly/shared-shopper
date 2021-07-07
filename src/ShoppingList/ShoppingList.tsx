@@ -56,7 +56,7 @@ export function ShoppingList() {
     }
 
     return <div>
-        <Header titleName="Einkaufszettel" path="/list"></Header>
+        <Header titleName="Einkaufszettel" path="/list" list={false}></Header>
         <div className="tab" data-testid="tab">
             <Link to={`/list/shoppinglist/bearbeiten/?id=${currentListId}`} data-testid="bearbeiten">
                 <button className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => refreshProductInput()}>Bearbeiten</button>

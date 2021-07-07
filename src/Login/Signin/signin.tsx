@@ -19,6 +19,8 @@ export function SignIn() {
     const {secret, setSecret} = useSecret();
     const history = useHistory()
 
+    //sessionStorage.clear();
+
     useEffect(() => {
         if (readyToLoad === true) {
             aquireToken(email, password, secret).then((token) => {
