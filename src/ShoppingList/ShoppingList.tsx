@@ -8,7 +8,7 @@ import '../List/List.css';
 import { ProductChange, ProductInit } from '../Components/Products/ProductChange'
 import { ProductBuy } from '../Components/Products/ProductBuy'
 import { Header } from '../Header/header'
-import { addContent, deleteContent, getContent, changePositionDown } from '../Login/backend'
+import { addContent, deleteContent, getContent } from '../Login/backend'
 import { initialContent, findListId } from '../Login/session';
 import { useToken } from '../useToken/useToken'
 import { useSecret } from '../secret/secret';

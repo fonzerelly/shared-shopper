@@ -3,7 +3,7 @@ import { ReactComponent as PencilIcon } from '../../img/pencil.svg'
 import { ReactComponent as PencilIcon2 } from '../../img/pencil2.svg'
 import { ReactComponent as TrashIcon } from '../../img/trash.svg'
 import React, { useState } from 'react';
-import { editCount, getContent, changePositionDown } from '../../Login/backend'
+import { editCount, getContent } from '../../Login/backend'
 import { UpDownButtons } from '../UpDownButton/UpDownButton'
 import {useToken} from '../../useToken/useToken'
 import { useSecret} from '../../secret/secret';
