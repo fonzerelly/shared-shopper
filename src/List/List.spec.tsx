@@ -100,6 +100,9 @@ describe('searchExistingListName', () => {
 
     it('should return List_2 when user is writing List_ and List__1 ist existing', () => {
         expect(searchExistingListName('List__2', [{name: 'List_'}, {name: 'List__1'}])).toEqual('List__2')
+    })
 
+    it('should return List_2 when user is writing List_ and List__1 ist existing', () => {
+        expect(searchExistingListName('List', [{name: 'List'}, {name: 'List_1'}, {name: 'List_3'}])).toEqual('List_4')
     })
 })

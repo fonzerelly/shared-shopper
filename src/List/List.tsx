@@ -91,5 +91,17 @@ export function searchExistingListName(listName: string, listFetch: any) {
     if (listNameArray.includes(spListName[0])) {
         countedListName = (spListName[0]  + "_" + counter)
     }
+
+    listNameArray.map((array: any)=> {
+        if(array.includes(countedListName)){
+            counter++
+        }
+        return true
+    })
+
+    if (listNameArray.includes(spListName[0])) {
+        countedListName = (spListName[0]  + "_" + counter)
+    }
+
     return countedListName
 }
