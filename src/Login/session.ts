@@ -1,5 +1,5 @@
 export const session:{token?: string | null, url:string}={
-    token: "",
+    token: sessionStorage.getItem('token'),
     url: "/list"
 }
 

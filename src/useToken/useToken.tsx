@@ -7,8 +7,8 @@ export function useToken() {
   }
   const [token, setToken] = useState(getToken());
 
-  const saveToken = (userToken: any) => {
-    sessionStorage.setItem('token', userToken)
+  const saveToken = async (userToken: any) => {
+    await sessionStorage.setItem('token', userToken)
     setToken(userToken.token)
   }
 
