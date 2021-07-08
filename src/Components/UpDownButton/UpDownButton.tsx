@@ -15,8 +15,7 @@ export function UpDownButtons(props: {listId: string | null, productId: number, 
 
     const { token } = useToken();
     const {secret} = useSecret()
-    
-
+  
    async function onClickUp() {
         await changePositionUp(props.listId, props.productId, token, secret)
         props.onMove()
@@ -37,7 +36,7 @@ export function UpDownButtons(props: {listId: string | null, productId: number, 
         }
     }
     function checkButtonPositionDown() {
-        if(props.position === props.list.length-1){
+        if(props.list[props.list.length-1].id === props.productId){
             buttonDown =<DownIconInactive />
             return true
         }
@@ -50,5 +49,4 @@ export function UpDownButtons(props: {listId: string | null, productId: number, 
         <button className="UpButton" onClick={() => {onClickUp()}} disabled={checkButtonPositionUp()} data-testid ="UpButton">{buttonUp}</button>
         <button className="DownButton" onClick={() => {onClickDown()}} disabled={checkButtonPositionDown()} data-testid ="DownButton">{buttonDown}</button>
     </div>
-
 }
