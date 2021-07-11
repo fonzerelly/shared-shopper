@@ -3,26 +3,37 @@ import { useEffect, useState } from 'react'
 import Logosvg from '../../Components/Logo/Logo'
 import { PrimaryButton } from '../../Components/Buttons/Button'
 import { Link, useHistory } from 'react-router-dom';
-import {InputComp} from '../../Components/Input/Input';
-import {aquireToken} from '../backend'
+import { InputComp } from '../../Components/Input/Input';
+import { aquireToken } from '../backend'
 import '../../Components/Buttons/button.css'
 import { session } from '../session';
+import { useToken } from '../../useToken/useToken'
+import { useSecret, urlCheck } from '../../secret/secret';
 
 export function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [readyToLoad, setReadyToLoad] = useState(false)
+    const { setToken } = useToken();
+    const { secret, setSecret } = useSecret();
     const history = useHistory()
 
     useEffect(() => {
+        let isMounted = true;
         if (readyToLoad === true) {
-            aquireToken(email, password).then((token) => {
-                session.token = token;
-                history.push(session.url) 
+            aquireToken(email, password, secret).then((token) => {
+                if (isMounted) {
+                    setToken(token)
+                }
+                session.token = sessionStorage.getItem('token')
+                history.push(session.url)
             })
         }
-    }, [readyToLoad, password, email, history])
+        return () => { isMounted = false }
+    }, [readyToLoad, password, email, history, secret, setToken])
+
     const callToken = async () => {
+        setSecret(urlCheck())
         setReadyToLoad(true)
     }
     return (

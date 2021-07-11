@@ -8,6 +8,6 @@ export  function InputComp(props:{place:string, label:string, type:string, sette
     </div>
 }
 
-export function ListInput(props:{place:string, setter: Function}) {
-    return <input className="ListInput" placeholder={props.place} onChange={(e) => { props.setter(e.target.value)}}></input>
+export function ListInput(props:{place:string, setter: Function, value: string}) {
+    return <input className="ListInput" value={props.value} placeholder={props.place} onChange={(e) => { props.setter(e.target.value)}}></input>
 }

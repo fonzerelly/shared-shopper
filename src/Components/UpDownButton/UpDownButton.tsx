@@ -5,20 +5,24 @@ import { ReactComponent as UpIconInactive } from '../../img/upInactive.svg'
 import { ReactComponent as DownIconInactive } from '../../img/downInactive.svg'
 import { changePositionUp, changePositionDown} from '../../Login/backend'
 import './UpDownButton.css'
+import {useToken} from '../../useToken/useToken'
+import { useSecret} from '../../secret/secret';
 
 export function UpDownButtons(props: {listId: string | null, productId: number, position: number, onMove: Function, list: any}) {
 
     let buttonUp = <UpIcon />
     let buttonDown = <DownIcon />
-    
 
+    const { token } = useToken();
+    const {secret} = useSecret()
+  
    async function onClickUp() {
-        await changePositionUp(props.listId, props.productId)
+        await changePositionUp(props.listId, props.productId, token, secret)
         props.onMove()
     }
  
     async function onClickDown() {
-     await changePositionDown(props.listId, props.productId)
+     await changePositionDown(props.listId, props.productId, token, secret)
      props.onMove()
     }
  
@@ -32,7 +36,7 @@ export function UpDownButtons(props: {listId: string | null, productId: number, 
         }
     }
     function checkButtonPositionDown() {
-        if(props.position === props.list.length-1){
+        if(props.list[props.list.length-1].id === props.productId){
             buttonDown =<DownIconInactive />
             return true
         }
@@ -45,5 +49,4 @@ export function UpDownButtons(props: {listId: string | null, productId: number, 
         <button className="UpButton" onClick={() => {onClickUp()}} disabled={checkButtonPositionUp()} data-testid ="UpButton">{buttonUp}</button>
         <button className="DownButton" onClick={() => {onClickDown()}} disabled={checkButtonPositionDown()} data-testid ="DownButton">{buttonDown}</button>
     </div>
-
 }

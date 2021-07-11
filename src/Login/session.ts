@@ -1,8 +1,5 @@
-import { getList } from '../Login/backend'
-
-
-export  const session:{token?:string, url:string}={
-    token: "",
+export const session:{token?: string | null, url:string}={
+    token: sessionStorage.getItem('token'),
     url: "/list"
 }
 
@@ -28,10 +25,6 @@ export function initialContent() {
         position: 0,
         marked: false
     }]
-}
-
-export async function fetchedList() {
-    return await getList()
 }
 
 export function checkListId(pathURL: string) {

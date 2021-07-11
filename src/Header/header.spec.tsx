@@ -20,7 +20,7 @@ describe('Header', () => {
     it('should render its titleName', () => {
         const titleName = "Test"
         render(<TestEnvironment>
-            <Header titleName={titleName} path="/signin" />
+            <Header titleName={titleName} path="/signin" list={false} />
         </TestEnvironment>)         
       
         screen.getByText(titleName)
@@ -30,7 +30,7 @@ describe('Header', () => {
         const testIdName = "BackButton"
         const path = "/signin"
         render(<TestEnvironment>
-            <Header titleName="Test" path={path} />
+            <Header titleName="Test" path={path} list={false}  />
         </TestEnvironment>)  
 
         screen.getByTestId(testIdName)
@@ -40,10 +40,21 @@ describe('Header', () => {
         const testIdName = "BackButton"
         const path = "/signin"
         render(<TestEnvironment>
-            <Header titleName="Test" path={path} />
+            <Header titleName="Test" path={path} list={false}  />
         </TestEnvironment>)  
                
         const backButton = screen.getByTestId(testIdName)
         expect(backButton).toHaveAttribute("href", path)
+    })
+
+    it('should render LogoutButton instead of BackButton when list is true', () => {
+        const testIdName = "LogoutButton"
+        const path = "/signin"
+
+        render(<TestEnvironment>
+            <Header titleName="Test" path={path} list={true}  />
+        </TestEnvironment>)  
+               
+        screen.getByTestId(testIdName)
     })
 })

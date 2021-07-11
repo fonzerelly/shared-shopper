@@ -5,44 +5,57 @@ import './List.css';
 import { useEffect, useState } from 'react';
 import { ReactComponent as TrashIcon } from '../img/trash.svg'
 import { Header } from '../Header/header'
-import { deleteList, addList } from '../Login/backend';
-import { initialList, fetchedList } from '../Login/session';
+import { deleteList, addList, getList } from '../Login/backend';
+import { initialList} from '../Login/session';
 import { ListInput } from '../Components/Input/Input'
+import {useToken} from '../useToken/useToken'
+import { useSecret} from '../secret/secret';
 
 export default function List(){
     const [listFetch, setListFetch] = useState(initialList());
     const [listName, setListName] = useState("");
+    const [inputValue, setInputValue] = useState("");
+    const { token } = useToken();
+    const {secret} = useSecret();
+    
 
     useEffect(() => {
-        fetchedList().then((data) =>
-            setListFetch(data))
-    }, [])
+         getList(token, secret).then((data) =>
+             setListFetch(data))
+    }, [token, secret])
 
     var dateformatter = new Intl.DateTimeFormat('de-DE', { day: "2-digit", month: "2-digit", year: "numeric" })
     let date = dateformatter.format(new Date())
 
     async function onClickList() {
         if (listName.length > 0) {
-            await addList(searchExistingListName(listName, listFetch))
+            await addList(searchExistingListName(listName, listFetch), token, secret)
         }
         else {
-            await addList(searchExistingListName(date, listFetch))
+            await addList(searchExistingListName(date, listFetch), token, secret)
         }
-        const data = await fetchedList()
+        setListName("")
+        setInputValue("")
+        const data = await getList(token, secret)
         setListFetch(data)
     }
 
     async function onClickTrash(id: number) {
-        await deleteList(id)
-        const data = await fetchedList()
+        await deleteList(id,token,secret)
+        const data = await getList(token, secret)
         setListFetch(data)
     }
 
+    function onChangeListInput (txt:string) {
+        setListName(txt)
+        setInputValue(txt)
+    }
+
     return <div>
-        <Header titleName="Ihre Einkaufszettel" path="/signin"></Header>
+        <Header titleName="Ihre Einkaufszettel" path="/signin" list={true}></Header>
         <div className="listBody" data-testid = "listBody">
             <div className="Add" data-testid = "Add">
-                <ListInput place={date} setter={(txt: string) => { setListName(txt) }} />
+                <ListInput place={date} value= {inputValue} setter={(txt: string) => { onChangeListInput(txt) }} />
                 <button className="ListButton" data-testid = "listButton" onClick={() => onClickList()}>+</button>
             </div>
 
@@ -78,5 +91,17 @@ export function searchExistingListName(listName: string, listFetch: any) {
     if (listNameArray.includes(spListName[0])) {
         countedListName = (spListName[0]  + "_" + counter)
     }
+
+    listNameArray.map((array: any)=> {
+        if(array.includes(countedListName)){
+            counter++
+        }
+        return true
+    })
+
+    if (listNameArray.includes(spListName[0])) {
+        countedListName = (spListName[0]  + "_" + counter)
+    }
+
     return countedListName
 }
